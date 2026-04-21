@@ -1,4 +1,5 @@
 import { ScrollReveal } from "./scroll-reveal";
+import { GlobeMount } from "./globe-mount";
 
 const FEATURES = [
   {
@@ -54,15 +55,29 @@ export function Network() {
   return (
     <section className="network" id="network">
       <div className="container-aurea">
-        <ScrollReveal className="section-head">
-          <span className="eyebrow-inline">The network</span>
-          <h2 className="section-title">
-            Every scan. Every sensor. <em>One signal.</em>
-          </h2>
-          <p className="section-sub">
-            Aurea fuses handheld scans, BLE sensors, carrier APIs, weather and customs feeds into a single live event stream — and exposes it as one clean HTTP contract.
-          </p>
-        </ScrollReveal>
+        <div className="reach-grid">
+          <ScrollReveal className="section-head reach-copy">
+            <span className="eyebrow-inline">The network</span>
+            <h2 className="section-title">
+              Every scan. Every sensor. <em>One signal.</em>
+            </h2>
+            <p className="section-sub">
+              Aurea fuses handheld scans, BLE sensors, carrier APIs, weather and customs feeds into a single live event stream — and exposes it as one clean HTTP contract.
+            </p>
+            <ul className="reach-hubs">
+              <li><span /> Singapore</li>
+              <li><span /> Amsterdam</li>
+              <li><span /> Dubai</li>
+              <li><span /> Los Angeles</li>
+              <li><span /> Tokyo</li>
+              <li><span /> São Paulo</li>
+              <li><span /> Hong Kong</li>
+              <li><span /> Johannesburg</li>
+            </ul>
+          </ScrollReveal>
+
+          <GlobeMount />
+        </div>
 
         <ul className="feature-list">
           {FEATURES.map((f) => (
