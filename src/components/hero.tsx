@@ -1,4 +1,5 @@
 import { TrackingForm } from "./tracking-form";
+import { HeroCubeMount } from "./hero-cube-mount";
 
 export function Hero() {
   return (
@@ -15,6 +16,7 @@ export function Hero() {
         <source src="/ocean.mp4" type="video/mp4" />
       </video>
       <div className="hero-vignette" aria-hidden="true" />
+      <HeroCubeMount />
 
       <div className="container-aurea">
         <div className="eyebrow">
