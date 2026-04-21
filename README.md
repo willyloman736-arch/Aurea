@@ -1,36 +1,80 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Aurea
 
-## Getting Started
+Premium global shipment tracking. Marketing site + public tracking lookup + (coming) customer dashboard.
 
-First, run the development server:
+## Stack
+
+- **Next.js 16** (App Router) · React 19 · TypeScript
+- **Tailwind CSS 4** + hand-tuned editorial design system
+- **Inter** + **Instrument Serif** (Google Fonts via `next/font`)
+- **Lucide React** for icons
+- Deploy: **Vercel** · Domain: Hostinger DNS
+
+## Roadmap
+
+| Phase | Status | Scope |
+|---|---|---|
+| 1 | ✅ | Landing + tracking lookup with demo data |
+| 2 | ⬜ | Real carrier tracking via **EasyPost**, **Neon Postgres** + Prisma |
+| 3 | ⬜ | **Clerk** auth + customer dashboard |
+| 4 | ⬜ | GitHub → Vercel deploy · Hostinger DNS wired |
+
+## Dev
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000). Try these tracking numbers:
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- `AUR-2847-JK3921` — in transit, Singapore → Amsterdam
+- `AUR-9931-LM7740` — out for delivery, Rotterdam → Berlin
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Structure
 
-## Learn More
+```
+src/
+├── app/
+│   ├── page.tsx                  Landing page (server)
+│   ├── track/[id]/page.tsx       Public tracking detail (server)
+│   ├── track/[id]/not-found.tsx  404 for unknown IDs
+│   ├── layout.tsx                Fonts + metadata
+│   └── globals.css               Design system
+├── components/
+│   ├── ambient.tsx               Animated bg blobs
+│   ├── nav.tsx                   Sticky glass nav
+│   ├── hero.tsx                  Video hero
+│   ├── tracking-form.tsx  [client]  Input with tabs + demo chips
+│   ├── tracking-result.tsx       Full result view
+│   ├── metrics.tsx               Stats strip
+│   ├── counter.tsx        [client]  Animated count-up
+│   ├── network.tsx               4 feature tiles
+│   ├── quote.tsx                 Editorial quote
+│   ├── cta.tsx                   Final CTA shell
+│   ├── footer.tsx                Multi-column footer
+│   └── scroll-reveal.tsx  [client]  IO-based reveal wrapper
+├── content/shipments.ts          Demo shipments (replaced in Phase 2)
+├── lib/types.ts                  Shipment / Event types
+└── lib/utils.ts                  cn() + helpers
+```
 
-To learn more about Next.js, take a look at the following resources:
+## Environment
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Phase 2 will need `.env.local` — see `.env.example`.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## Build
 
-## Deploy on Vercel
+```bash
+npm run build
+npm run start
+npm run lint
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## Deploy
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+git push origin main
+```
+
+Vercel auto-deploys. Connect `aurea.yourdomain.com` via Hostinger DNS → CNAME to `cname.vercel-dns.com`.
