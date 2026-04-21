@@ -1,0 +1,61 @@
+// Aurea — shipment tracking schema
+// Phase 2: real shipments cached from EasyPost
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Shipment {
+    id           String   @id @default(cuid())
+    trackingCode String   @unique
+    easypostId   String?  @unique
+    carrier      String?
+    status       String   @default("Pending")
+    service      String?
+    weight       String?
+    pieces       Int      @default(1)
+    dimensions   String?
+
+    // Route — flattened for fast queries
+    originCity   String?
+    originAddr   String?
+    destCity     String?
+    destAddr     String?
+
+    etaDate      String?
+    etaWindow    String?
+    progress     Int      @default(1)
+
+    events       TrackingEvent[]
+
+    // Ownership — Clerk user ID (wired in Phase 3)
+    ownerId      String?
+
+    createdAt    DateTime @default(now())
+    updatedAt    DateTime @updatedAt
+
+    @@index([ownerId])
+    @@index([updatedAt])
+}
+
+model TrackingEvent {
+    id         String   @id @default(cuid())
+    shipmentId String
+    shipment   Shipment @relation(fields: [shipmentId], references: [id], onDelete: Cascade)
+
+    time       DateTime
+    title      String
+    location   String?
+    status     String?
+    latest     Boolean  @default(false)
+
+    createdAt  DateTime @default(now())
+
+    @@index([shipmentId])
+    @@index([time])
+}

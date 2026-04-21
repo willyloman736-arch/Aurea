@@ -4,15 +4,18 @@ import { Ambient } from "@/components/ambient";
 import { Nav } from "@/components/nav";
 import { Footer } from "@/components/footer";
 import { TrackingResult } from "@/components/tracking-result";
-import { getShipment } from "@/content/shipments";
+import { lookupShipment } from "@/lib/shipments";
 
 interface Params {
   params: Promise<{ id: string }>;
 }
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { id } = await params;
-  const shipment = getShipment(decodeURIComponent(id));
+  const shipment = await lookupShipment(decodeURIComponent(id));
   if (!shipment) return { title: "Tracking not found — Aurea" };
   return {
     title: `${shipment.id} · ${shipment.status} — Aurea`,
@@ -22,8 +25,7 @@ export async function generateMetadata({ params }: Params): Promise<Metadata> {
 
 export default async function TrackPage({ params }: Params) {
   const { id } = await params;
-  const decoded = decodeURIComponent(id);
-  const shipment = getShipment(decoded);
+  const shipment = await lookupShipment(decodeURIComponent(id));
 
   if (!shipment) notFound();
 
@@ -31,7 +33,7 @@ export default async function TrackPage({ params }: Params) {
     <>
       <Ambient />
       <Nav />
-      <main style={{ paddingTop: 60 }}>
+      <main id="main-content" style={{ paddingTop: 60 }}>
         <TrackingResult shipment={shipment} />
       </main>
       <Footer />
