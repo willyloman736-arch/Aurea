@@ -13,6 +13,7 @@ export function Hero() {
         preload="auto"
         poster="/ocean-poster.jpg"
       >
+        <source src="/ocean.webm" type="video/webm" />
         <source src="/ocean.mp4" type="video/mp4" />
       </video>
       <div className="hero-vignette" aria-hidden="true" />
