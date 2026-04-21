@@ -12,7 +12,7 @@ export default function HomePage() {
     <>
       <Ambient />
       <Nav />
-      <main>
+      <main id="main-content">
         <Hero />
         <Metrics />
         <Network />

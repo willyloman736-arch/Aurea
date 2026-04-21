@@ -10,7 +10,7 @@ export function Hero() {
         loop
         playsInline
         preload="auto"
-        poster=""
+        poster="/ocean-poster.jpg"
       >
         <source src="/ocean.mp4" type="video/mp4" />
       </video>

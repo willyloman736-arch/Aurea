@@ -37,6 +37,43 @@
 * { box-sizing: border-box; }
 html { scroll-behavior: smooth; }
 
+/* Focus ring — visible only when using keyboard */
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+button:focus-visible,
+a:focus-visible,
+input:focus-visible {
+    outline-offset: 2px;
+}
+.track-input-wrap:focus-within :focus-visible {
+    outline: none;
+}
+
+/* Text selection */
+::selection {
+    background: rgba(217, 165, 106, 0.32);
+    color: var(--text-1);
+}
+
+/* Skip link for screen readers / keyboard users */
+.skip-link {
+    position: absolute;
+    top: -40px;
+    left: 16px;
+    padding: 8px 14px;
+    background: var(--text-1);
+    color: var(--bg);
+    border-radius: var(--r-sm);
+    font-size: 13px;
+    font-weight: 500;
+    z-index: 1000;
+    transition: top 0.2s var(--ease);
+}
+.skip-link:focus { top: 16px; }
+
 body {
     font-family: var(--font-inter), -apple-system, BlinkMacSystemFont, sans-serif;
     color: var(--text-1);
