@@ -1,5 +1,6 @@
 import { TrackingForm } from "./tracking-form";
 import { HeroCubeMount } from "./hero-cube-mount";
+import { HeroArcs } from "./hero-arcs";
 
 export function Hero() {
   return (
@@ -10,6 +11,7 @@ export function Hero() {
         <div className="hero-bg-blob hero-bg-blob-3" />
         <div className="hero-bg-grain" />
       </div>
+      <HeroArcs />
       <HeroCubeMount />
 
       <div className="container-aurea">
