@@ -16,7 +16,7 @@ export function Nav() {
         </nav>
         <div className="nav-actions">
           <Link href="/sign-in" className="btn-text">Sign in</Link>
-          <Link href="/sign-up" className="btn-primary">Start tracking</Link>
+          <Link href="/sign-up" className="btn-primary" data-magnetic>Start tracking</Link>
         </div>
       </div>
     </header>
