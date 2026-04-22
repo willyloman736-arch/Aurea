@@ -3,8 +3,8 @@
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { hasDatabase, prisma } from "@/lib/db";
-import { hasEasyPost, lookupOrCreateTracker } from "@/lib/easypost";
-import { easypostToShipment } from "@/lib/mappers";
+import { hasShippo, lookupOrCreateTracker } from "@/lib/shippo";
+import { shippoToShipment } from "@/lib/mappers";
 
 export async function createShipmentAction(formData: FormData) {
   const trackingCode = (formData.get("trackingCode") as string | null)?.trim().toUpperCase();
@@ -14,10 +14,10 @@ export async function createShipmentAction(formData: FormData) {
     return { error: "Tracking number is required." };
   }
 
-  if (!hasEasyPost()) {
+  if (!hasShippo()) {
     return {
       error:
-        "EASYPOST_API_KEY is not configured. Add your EasyPost test key to .env.local to create real trackers.",
+        "SHIPPO_API_KEY is not configured. Add your Shippo test key to .env.local to create real trackers.",
     };
   }
 
@@ -30,11 +30,14 @@ export async function createShipmentAction(formData: FormData) {
 
   try {
     const tracker = await lookupOrCreateTracker(trackingCode, carrier);
-    const mapped = easypostToShipment(tracker);
+    if (!tracker) {
+      return { error: "No tracker could be found or registered for that number." };
+    }
+    const mapped = shippoToShipment(tracker);
 
     const data = {
       trackingCode: mapped.id,
-      easypostId: tracker.id,
+      easypostId: null,
       carrier: tracker.carrier,
       status: mapped.status,
       service: mapped.service,
@@ -57,12 +60,12 @@ export async function createShipmentAction(formData: FormData) {
     });
 
     await prisma.trackingEvent.deleteMany({ where: { shipmentId: saved.id } });
-    const events = tracker.tracking_details.slice(0, 12).map((ev, i) => ({
+    const events = (tracker.tracking_history ?? []).slice(0, 12).map((ev, i) => ({
       shipmentId: saved.id,
-      time: new Date(ev.datetime),
-      title: ev.message || ev.description || ev.status,
+      time: new Date(ev.status_date),
+      title: ev.status_details || ev.status.replace(/_/g, " ").toLowerCase(),
       location:
-        [ev.tracking_location?.city, ev.tracking_location?.state, ev.tracking_location?.country]
+        [ev.location?.city, ev.location?.state, ev.location?.country]
           .filter(Boolean)
           .join(", ") || null,
       status: ev.status,

@@ -6,12 +6,13 @@ import { createShipmentAction } from "./actions";
 
 const CARRIERS = [
   { value: "", label: "Auto-detect (recommended)" },
-  { value: "FedEx", label: "FedEx" },
-  { value: "UPS", label: "UPS" },
-  { value: "USPS", label: "USPS" },
-  { value: "DHLExpress", label: "DHL Express" },
-  { value: "Canpar", label: "Canpar" },
-  { value: "OnTrac", label: "OnTrac" },
+  { value: "shippo", label: "Shippo (test mode)" },
+  { value: "usps", label: "USPS" },
+  { value: "ups", label: "UPS" },
+  { value: "fedex", label: "FedEx" },
+  { value: "dhl_express", label: "DHL Express" },
+  { value: "canada_post", label: "Canada Post" },
+  { value: "ontrac", label: "OnTrac" },
 ];
 
 export function NewShipmentForm() {
@@ -40,13 +41,14 @@ export function NewShipmentForm() {
           autoFocus
           spellCheck={false}
           autoComplete="off"
-          placeholder="e.g. 1Z999AA10123456784 or EZ1000000001"
+          placeholder="e.g. 1Z999AA10123456784 or SHIPPO_DELIVERED"
           className="dash-input"
           disabled={pending}
         />
         <small>
-          Works with FedEx, UPS, USPS, DHL, and most international carriers. Use
-          <code> EZ1000000001</code> in test mode to simulate a delivered shipment.
+          Works with USPS, UPS, FedEx, DHL, and 70+ other carriers. Use
+          <code> SHIPPO_DELIVERED</code>, <code>SHIPPO_TRANSIT</code>, etc. in test mode
+          to simulate each tracking state.
         </small>
       </div>
 

@@ -1,26 +1,26 @@
 import type { Shipment } from "./types";
 import { getShipment as getDemoShipment } from "@/content/shipments";
-import { hasEasyPost, lookupOrCreateTracker, type EasyPostTracker } from "./easypost";
-import { easypostToShipment } from "./mappers";
+import { hasShippo, lookupOrCreateTracker, type ShippoTracker } from "./shippo";
+import { shippoToShipment } from "./mappers";
 import { hasDatabase, prisma } from "./db";
 
-/** How long a cached shipment is considered fresh before refreshing from EasyPost. */
+/** How long a cached shipment is considered fresh before refreshing from Shippo. */
 const CACHE_TTL_MS = 1000 * 60 * 10; // 10 minutes
 
 /**
  * Unified shipment lookup.
  *
  * Resolution order:
- *   1. DEMO_SHIPMENTS (hardcoded in content/shipments.ts) — for marketing demos
- *   2. DB cache (if recent)
- *   3. EasyPost live API (creates tracker if new)
- *      → writes to DB cache
- *   4. null (→ 404)
+ *   1. DEMO_SHIPMENTS (hardcoded in content/shipments.ts) — marketing demos.
+ *   2. DB cache — if recent, return cached.
+ *   3. Shippo live API — lookup-or-create under auto-detected carrier.
+ *      → writes to DB cache on success.
+ *   4. null (→ 404).
  */
 export async function lookupShipment(trackingCode: string): Promise<Shipment | null> {
   const code = trackingCode.trim().toUpperCase();
 
-  // 1. Demo (always works, no network, no DB)
+  // 1. Demo
   const demo = getDemoShipment(code);
   if (demo) return demo;
 
@@ -34,18 +34,18 @@ export async function lookupShipment(trackingCode: string): Promise<Shipment | n
       if (cached) {
         const age = Date.now() - cached.updatedAt.getTime();
         if (age < CACHE_TTL_MS) return dbToShipment(cached);
-        // else fall through to refresh from EasyPost
       }
     } catch (err) {
       console.error("DB cache lookup failed:", err);
     }
   }
 
-  // 3. EasyPost live lookup
-  if (hasEasyPost()) {
+  // 3. Shippo live
+  if (hasShippo()) {
     try {
       const tracker = await lookupOrCreateTracker(code);
-      const shipment = easypostToShipment(tracker);
+      if (!tracker) return null;
+      const shipment = shippoToShipment(tracker);
       if (hasDatabase()) {
         cacheTracker(tracker, shipment).catch((err) =>
           console.error("Failed to cache tracker:", err),
@@ -53,7 +53,7 @@ export async function lookupShipment(trackingCode: string): Promise<Shipment | n
       }
       return shipment;
     } catch (err) {
-      console.error("EasyPost lookup failed:", err);
+      console.error("Shippo lookup failed:", err);
     }
   }
 
@@ -118,10 +118,10 @@ function dbToShipment(s: DbShipmentWithEvents): Shipment {
   };
 }
 
-async function cacheTracker(tracker: EasyPostTracker, mapped: Shipment) {
+async function cacheTracker(tracker: ShippoTracker, mapped: Shipment) {
   const data = {
     trackingCode: mapped.id,
-    easypostId: tracker.id,
+    easypostId: null,
     carrier: tracker.carrier,
     status: mapped.status,
     service: mapped.service,
@@ -143,14 +143,13 @@ async function cacheTracker(tracker: EasyPostTracker, mapped: Shipment) {
     create: data,
   });
 
-  // Replace events (simple strategy — fine at our scale)
   await prisma.trackingEvent.deleteMany({ where: { shipmentId: shipment.id } });
-  const events = tracker.tracking_details.slice(0, 12).map((ev, i) => ({
+  const events = (tracker.tracking_history ?? []).slice(0, 12).map((ev, i) => ({
     shipmentId: shipment.id,
-    time: new Date(ev.datetime),
-    title: ev.message || ev.description || ev.status,
+    time: new Date(ev.status_date),
+    title: ev.status_details || ev.status.replace(/_/g, " ").toLowerCase(),
     location:
-      [ev.tracking_location?.city, ev.tracking_location?.state, ev.tracking_location?.country]
+      [ev.location?.city, ev.location?.state, ev.location?.country]
         .filter(Boolean)
         .join(", ") || null,
     status: ev.status,

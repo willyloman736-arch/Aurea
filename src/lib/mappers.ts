@@ -1,44 +1,42 @@
 import type { Shipment, ShipmentEvent, ShipmentProgress, ShipmentStatus } from "./types";
-import type { EasyPostTracker } from "./easypost";
+import type { ShippoAddress, ShippoTracker, ShippoTrackingStatus } from "./shippo";
 
-/** EasyPost status → our progress step (1–4). */
-const STATUS_TO_PROGRESS: Record<string, ShipmentProgress> = {
-  pre_transit: 1,
-  in_transit: 2,
-  out_for_delivery: 3,
-  delivered: 4,
-  available_for_pickup: 3,
-  return_to_sender: 2,
-  failure: 2,
-  cancelled: 1,
-  error: 1,
-  unknown: 1,
+/** Shippo status → our progress step (1–4). */
+const STATUS_TO_PROGRESS: Record<ShippoTrackingStatus["status"], ShipmentProgress> = {
+  UNKNOWN: 1,
+  PRE_TRANSIT: 1,
+  TRANSIT: 2,
+  DELIVERED: 4,
+  RETURNED: 2,
+  FAILURE: 2,
 };
 
-/** EasyPost status → our display label. */
-const STATUS_TO_LABEL: Record<string, ShipmentStatus> = {
-  pre_transit: "Label created",
-  in_transit: "In Transit",
-  out_for_delivery: "Out for delivery",
-  delivered: "Delivered",
-  available_for_pickup: "Out for delivery",
-  return_to_sender: "Exception",
-  failure: "Exception",
-  cancelled: "Exception",
-  error: "Exception",
-  unknown: "In Transit",
+/** Shippo status → our display label. */
+const STATUS_TO_LABEL: Record<ShippoTrackingStatus["status"], ShipmentStatus> = {
+  UNKNOWN: "In Transit",
+  PRE_TRANSIT: "Label created",
+  TRANSIT: "In Transit",
+  DELIVERED: "Delivered",
+  RETURNED: "Exception",
+  FAILURE: "Exception",
 };
 
 const CARRIER_LABEL: Record<string, string> = {
-  FedEx: "FedEx",
-  FedExDefault: "FedEx",
-  UPS: "UPS",
-  USPS: "USPS",
-  DHL: "DHL",
-  DHLExpress: "DHL Express",
-  Canpar: "Canpar",
-  OnTrac: "OnTrac",
+  shippo: "Shippo (test)",
+  usps: "USPS",
+  ups: "UPS",
+  fedex: "FedEx",
+  dhl_express: "DHL Express",
+  dhl: "DHL",
+  canada_post: "Canada Post",
+  ontrac: "OnTrac",
+  lasership: "LaserShip",
+  newgistics: "Newgistics",
 };
+
+function carrierLabel(carrier: string): string {
+  return CARRIER_LABEL[carrier.toLowerCase()] ?? carrier.toUpperCase();
+}
 
 function formatDateStr(iso: string | null | undefined): string {
   if (!iso) return "Pending";
@@ -62,70 +60,91 @@ function formatEventTime(iso: string): string {
   });
 }
 
-function formatLocation(loc: EasyPostTracker["tracking_details"][number]["tracking_location"]): string {
-  return [loc?.city, loc?.state, loc?.country].filter(Boolean).join(", ") || "—";
+function formatAddress(addr: ShippoAddress | null | undefined): string {
+  if (!addr) return "—";
+  return [addr.city, addr.state, addr.country].filter(Boolean).join(", ") || "—";
 }
 
-export function easypostToShipment(tracker: EasyPostTracker): Shipment {
-  const progress: ShipmentProgress = STATUS_TO_PROGRESS[tracker.status] ?? 1;
-  const status: ShipmentStatus = STATUS_TO_LABEL[tracker.status] ?? "In Transit";
+export function shippoToShipment(tracker: ShippoTracker): Shipment {
+  const status = tracker.tracking_status;
+  const progress: ShipmentProgress = STATUS_TO_PROGRESS[status.status] ?? 1;
+  const label: ShipmentStatus = STATUS_TO_LABEL[status.status] ?? "In Transit";
 
-  // Sort events newest → oldest
-  const sorted = [...(tracker.tracking_details ?? [])].sort(
-    (a, b) => new Date(b.datetime).getTime() - new Date(a.datetime).getTime(),
+  // Sort history newest → oldest
+  const sorted = [...(tracker.tracking_history ?? [])].sort(
+    (a, b) => new Date(b.status_date).getTime() - new Date(a.status_date).getTime(),
   );
 
   const events: ShipmentEvent[] = sorted.slice(0, 12).map((ev, i) => ({
-    time: formatEventTime(ev.datetime),
-    title: ev.message || ev.description || ev.status_detail || ev.status,
-    loc: formatLocation(ev.tracking_location),
+    time: formatEventTime(ev.status_date),
+    title: ev.status_details || ev.status.replace(/_/g, " ").toLowerCase(),
+    loc: formatAddress(ev.location),
     latest: i === 0,
   }));
 
-  const firstEvent = sorted[sorted.length - 1];
-  const lastEvent = sorted[0];
-  const origin = firstEvent?.tracking_location;
-  const destination = lastEvent?.tracking_location;
+  // "Out for delivery" is a substatus inside TRANSIT — try to detect it.
+  const substatusText = (status.substatus ?? "").toLowerCase();
+  if (substatusText.includes("out_for_delivery") || substatusText.includes("out for delivery")) {
+    return buildShipment({
+      tracker,
+      events,
+      label: "Out for delivery",
+      progress: 3,
+    });
+  }
 
-  const carrierLabel = CARRIER_LABEL[tracker.carrier] ?? tracker.carrier;
-  const service = tracker.carrier_detail?.service
-    ? `${carrierLabel} ${tracker.carrier_detail.service}`
-    : carrierLabel;
+  return buildShipment({ tracker, events, label, progress });
+}
+
+function buildShipment({
+  tracker,
+  events,
+  label,
+  progress,
+}: {
+  tracker: ShippoTracker;
+  events: ShipmentEvent[];
+  label: ShipmentStatus;
+  progress: ShipmentProgress;
+}): Shipment {
+  const carrier = carrierLabel(tracker.carrier);
+  const service = tracker.servicelevel?.name
+    ? `${carrier} ${tracker.servicelevel.name}`
+    : carrier;
 
   return {
-    id: tracker.tracking_code,
-    status,
+    id: tracker.tracking_number,
+    status: label,
     service,
-    weight: tracker.weight ? `${(tracker.weight * 28.35).toFixed(0)} g` : "—",
+    weight: "—",
     pieces: 1,
     dimensions: "—",
     origin: {
-      city:
-        tracker.carrier_detail?.origin_location ||
-        (origin ? formatLocation(origin) : "Origin pending"),
-      addr: carrierLabel,
+      city: formatAddress(tracker.address_from),
+      addr: carrier,
     },
     destination: {
-      city:
-        tracker.carrier_detail?.destination_location ||
-        (destination ? formatLocation(destination) : "Destination pending"),
-      addr: carrierLabel,
+      city: formatAddress(tracker.address_to),
+      addr: carrier,
     },
-    etaDate: formatDateStr(tracker.est_delivery_date),
+    etaDate: formatDateStr(tracker.eta),
     etaWindow:
-      tracker.status === "delivered"
+      tracker.tracking_status.status === "DELIVERED"
         ? "Delivered"
-        : tracker.est_delivery_date
+        : tracker.eta
           ? "Estimated"
           : "Awaiting first scan",
     progress,
-    events: events.length > 0 ? events : [
-      {
-        time: formatEventTime(tracker.updated_at),
-        title: "Tracker created — awaiting first carrier scan",
-        loc: carrierLabel,
-        latest: true,
-      },
-    ],
+    events:
+      events.length > 0
+        ? events
+        : [
+            {
+              time: formatEventTime(tracker.object_updated ?? new Date().toISOString()),
+              title: "Tracker created — awaiting first carrier scan",
+              loc: carrier,
+              latest: true,
+            },
+          ],
   };
 }

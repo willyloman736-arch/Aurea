@@ -36,19 +36,20 @@ export default function NewShipmentPage() {
           <h3>How it works</h3>
           <ol className="dash-steps">
             <li>
-              <strong>Submit</strong> the tracking number — no carrier pick needed.
+              <strong>Submit</strong> the tracking number. Aurea detects the
+              carrier from the number format (UPS 1Z…, USPS 94…, etc.).
             </li>
             <li>
-              <strong>Aurea creates a tracker</strong> via EasyPost; auto-detects
-              FedEx, UPS, USPS, DHL, and 70+ more.
+              <strong>Aurea registers a tracker</strong> with Shippo; supports
+              USPS, UPS, FedEx, DHL, and 70+ carriers.
             </li>
             <li>
               <strong>Events flow in</strong> as the carrier scans the package.
-              A webhook keeps the cache fresh — no polling needed.
+              A Shippo <code>track_updated</code> webhook keeps the cache fresh — no polling.
             </li>
             <li>
               <strong>Customers see live status</strong> at
-              <code>/track/[tracking-number]</code> (public, indexable).
+              <code>/track/[tracking-number]</code> (public, shareable).
             </li>
           </ol>
         </div>

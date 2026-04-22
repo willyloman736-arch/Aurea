@@ -31,19 +31,23 @@ function StatusRow({
 }
 
 export default async function SettingsPage() {
-  const hasEasyPost = !!process.env.EASYPOST_API_KEY;
-  const easyPostMode = process.env.EASYPOST_API_KEY?.startsWith("EZTK")
+  const shippoKey = process.env.SHIPPO_API_KEY;
+  const hasShippo = !!shippoKey;
+  const shippoMode = shippoKey?.startsWith("shippo_test_")
     ? "Test mode"
-    : process.env.EASYPOST_API_KEY?.startsWith("EZAK")
-      ? "Production mode"
+    : shippoKey?.startsWith("shippo_live_")
+      ? "Live mode"
       : "—";
   const hasDb = !!process.env.DATABASE_URL;
-  const hasWebhookSecret = !!process.env.EASYPOST_WEBHOOK_SECRET;
+  const hasWebhookSecret = !!process.env.SHIPPO_WEBHOOK_SECRET;
+  const webhookSecret = process.env.SHIPPO_WEBHOOK_SECRET;
 
-  const webhookUrl =
-    process.env.VERCEL_URL
-      ? `https://${process.env.VERCEL_URL}/api/webhooks/easypost`
-      : "https://your-domain.com/api/webhooks/easypost";
+  const baseUrl = process.env.VERCEL_URL
+    ? `https://${process.env.VERCEL_URL}`
+    : "https://your-domain.com";
+  const webhookUrl = hasWebhookSecret
+    ? `${baseUrl}/api/webhooks/shippo?token=${webhookSecret}`
+    : `${baseUrl}/api/webhooks/shippo?token=<SHIPPO_WEBHOOK_SECRET>`;
 
   return (
     <>
@@ -62,10 +66,10 @@ export default async function SettingsPage() {
 
           <div className="dash-status-list">
             <StatusRow
-              label="EasyPost API"
-              value={hasEasyPost ? easyPostMode : "EASYPOST_API_KEY missing"}
-              ok={hasEasyPost}
-              help="Get a key at easypost.com → API Keys. Test keys (EZTK…) are free and unlimited."
+              label="Shippo API"
+              value={hasShippo ? shippoMode : "SHIPPO_API_KEY missing"}
+              ok={hasShippo}
+              help="Get a key at apps.goshippo.com/settings/api. Test keys (shippo_test_…) are free and unlimited."
             />
             <StatusRow
               label="Neon Postgres"
@@ -74,10 +78,10 @@ export default async function SettingsPage() {
               help="Get a connection string at console.neon.tech. Free tier is 0.5 GB."
             />
             <StatusRow
-              label="Webhook signing"
-              value={hasWebhookSecret ? "Enabled" : "EASYPOST_WEBHOOK_SECRET missing"}
+              label="Webhook secret"
+              value={hasWebhookSecret ? "Enabled" : "SHIPPO_WEBHOOK_SECRET missing"}
               ok={hasWebhookSecret}
-              help="Optional but recommended. Any random string — paste the same value into EasyPost webhook config."
+              help="Long random string. Paste the same value into your Shippo webhook URL as ?token=… — we authenticate incoming webhooks with it."
             />
           </div>
         </div>
@@ -85,9 +89,9 @@ export default async function SettingsPage() {
         <div className="dash-card">
           <h2 className="dash-card-title">Webhook endpoint</h2>
           <p className="dash-card-sub">
-            Paste this URL into EasyPost → Webhooks → Add webhook, and select
-            <code> tracker.updated</code>. EasyPost will push events as carriers
-            scan packages, so the cache stays fresh without polling.
+            Paste this URL into Shippo → Webhooks → Add webhook, and subscribe to
+            <code> track_updated</code>. Shippo will push events as carriers scan
+            packages, so the cache stays fresh without polling.
           </p>
           <div className="dash-copy-row">
             <code>{webhookUrl}</code>

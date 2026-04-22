@@ -15,7 +15,7 @@ Premium global shipment tracking. Marketing site + public tracking lookup + (com
 | Phase | Status | Scope |
 |---|---|---|
 | 1 | ✅ | Landing + tracking lookup with demo data |
-| 2 | ✅ | Real carrier tracking via **EasyPost**, **Neon Postgres** + Prisma 6 |
+| 2 | ✅ | Real carrier tracking via **Shippo**, **Neon Postgres** + Prisma 6 |
 | 3 | ⬜ | **Clerk** auth + customer dashboard |
 | 4 | ⬜ | GitHub → Vercel deploy · Hostinger DNS wired |
 
@@ -25,10 +25,10 @@ Tracking lookup resolves in this order:
 
 1. **Demo shipments** (`src/content/shipments.ts`) — hardcoded for marketing demos.
 2. **DB cache** (Neon Postgres, 10-minute TTL).
-3. **EasyPost API** — creates a new tracker if none exists; auto-detects carrier.
+3. **Shippo API** — creates a new tracker if none exists; carrier auto-detected from tracking-number format.
 4. **404** — via `src/app/track/[id]/not-found.tsx`.
 
-Webhook endpoint at `/api/webhooks/easypost` accepts `tracker.updated` events and refreshes the DB cache.
+Webhook endpoint at `/api/webhooks/shippo` accepts `track_updated` events and refreshes the DB cache. Authenticated via `?token=<SHIPPO_WEBHOOK_SECRET>` query string.
 
 ### Running a migration
 
