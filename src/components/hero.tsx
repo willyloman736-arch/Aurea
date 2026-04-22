@@ -4,19 +4,12 @@ import { HeroCubeMount } from "./hero-cube-mount";
 export function Hero() {
   return (
     <section className="hero" id="home">
-      <video
-        className="hero-video"
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        poster="/ocean-poster.jpg"
-      >
-        <source src="/ocean.webm" type="video/webm" />
-        <source src="/ocean.mp4" type="video/mp4" />
-      </video>
-      <div className="hero-vignette" aria-hidden="true" />
+      <div className="hero-bg" aria-hidden="true">
+        <div className="hero-bg-blob hero-bg-blob-1" />
+        <div className="hero-bg-blob hero-bg-blob-2" />
+        <div className="hero-bg-blob hero-bg-blob-3" />
+        <div className="hero-bg-grain" />
+      </div>
       <HeroCubeMount />
 
       <div className="container-aurea">

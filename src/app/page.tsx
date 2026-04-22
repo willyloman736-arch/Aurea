@@ -2,6 +2,7 @@ import { Ambient } from "@/components/ambient";
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
 import { Metrics } from "@/components/metrics";
+import { HowItWorks } from "@/components/how-it-works";
 import { Network } from "@/components/network";
 import { Quote } from "@/components/quote";
 import { Cta } from "@/components/cta";
@@ -15,6 +16,7 @@ export default function HomePage() {
       <main id="main-content">
         <Hero />
         <Metrics />
+        <HowItWorks />
         <Network />
         <Quote />
         <Cta />
