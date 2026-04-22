@@ -1,5 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Instrument_Serif } from "next/font/google";
+import { SmoothScroll } from "@/components/smooth-scroll";
+import { CursorGlow } from "@/components/cursor-glow";
 import "./globals.css";
 
 const inter = Inter({
@@ -39,7 +41,8 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} ${serif.variable}`}>
       <body>
         <a href="#main-content" className="skip-link">Skip to content</a>
-        {children}
+        <SmoothScroll>{children}</SmoothScroll>
+        <CursorGlow />
       </body>
     </html>
   );
