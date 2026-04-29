@@ -1,5 +1,4 @@
 import { ScrollReveal } from "./scroll-reveal";
-import { GlobeMount } from "./globe-mount";
 
 const FEATURES = [
   {
@@ -55,29 +54,25 @@ export function Network() {
   return (
     <section className="network" id="network">
       <div className="container-aurea">
-        <div className="reach-grid">
-          <ScrollReveal className="section-head reach-copy">
-            <span className="eyebrow-inline">The network</span>
-            <h2 className="section-title">
-              Every lane. Every hub. <em>One network.</em>
-            </h2>
-            <p className="section-sub">
-              Ten regional hubs, 220 countries, the same on-time discipline whether your cargo moves twenty kilometres or two continents. We own the lanes, we own the custody chain — and we own the outcome.
-            </p>
-            <ul className="reach-hubs">
-              <li><span /> Singapore</li>
-              <li><span /> Amsterdam</li>
-              <li><span /> Dubai</li>
-              <li><span /> Los Angeles</li>
-              <li><span /> Tokyo</li>
-              <li><span /> São Paulo</li>
-              <li><span /> Hong Kong</li>
-              <li><span /> Johannesburg</li>
-            </ul>
-          </ScrollReveal>
-
-          <GlobeMount />
-        </div>
+        <ScrollReveal className="section-head">
+          <span className="eyebrow-inline">The network</span>
+          <h2 className="section-title">
+            Every lane. Every hub. <em>One network.</em>
+          </h2>
+          <p className="section-sub">
+            Ten regional hubs, 220 countries, the same on-time discipline whether your cargo moves twenty kilometres or two continents. We own the lanes, we own the custody chain — and we own the outcome.
+          </p>
+          <ul className="reach-hubs">
+            <li><span /> Singapore</li>
+            <li><span /> Amsterdam</li>
+            <li><span /> Dubai</li>
+            <li><span /> Los Angeles</li>
+            <li><span /> Tokyo</li>
+            <li><span /> São Paulo</li>
+            <li><span /> Hong Kong</li>
+            <li><span /> Johannesburg</li>
+          </ul>
+        </ScrollReveal>
 
         <ul className="feature-list">
           {FEATURES.map((f) => (
