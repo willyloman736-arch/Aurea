@@ -5431,6 +5431,41 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 }
 
 /* =========================================================
+   DEMO MODE BANNER — subtle reminder when no DATABASE_URL
+   ========================================================= */
+.demo-banner {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 24px;
+    background: rgba(217, 165, 106, 0.08);
+    border-bottom: 1px solid rgba(217, 165, 106, 0.20);
+    font-size: 12.5px;
+    color: var(--text-2);
+    line-height: 1.5;
+}
+.demo-banner strong {
+    color: var(--accent);
+    font-weight: 500;
+}
+.demo-banner-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 8px rgba(217, 165, 106, 0.7);
+    flex-shrink: 0;
+    animation: demo-banner-pulse 2.4s ease-in-out infinite;
+}
+@keyframes demo-banner-pulse {
+    0%, 100% { opacity: 1; }
+    50%      { opacity: 0.45; }
+}
+@media (max-width: 720px) {
+    .demo-banner { padding: 10px 18px; font-size: 11.5px; }
+}
+
+/* =========================================================
    MOBILE POLISH — full-site small-screen pass
    Covers: hamburger nav, drawer, overflow guards, button stacks,
    touch targets, footer collapse, portal sizing, content wrapping.

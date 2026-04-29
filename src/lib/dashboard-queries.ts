@@ -1,4 +1,11 @@
 import { prisma, hasDatabase } from "./db";
+import {
+  demoStats,
+  demoListAll,
+  demoFindById,
+  demoFindByCode,
+  type DemoShipment,
+} from "./demo-store";
 
 export interface DashboardStats {
   total: number;
@@ -23,7 +30,8 @@ export interface DashboardShipmentRow {
 
 export async function getStats(): Promise<DashboardStats> {
   if (!hasDatabase()) {
-    return { total: 0, inTransit: 0, delivered: 0, exceptions: 0, dbConfigured: false };
+    const s = demoStats();
+    return { ...s, dbConfigured: false };
   }
 
   try {
@@ -39,8 +47,25 @@ export async function getStats(): Promise<DashboardStats> {
   }
 }
 
+function demoToRow(s: DemoShipment): DashboardShipmentRow {
+  return {
+    id: s.id,
+    trackingCode: s.trackingCode,
+    carrier: s.carrier,
+    status: s.status,
+    service: s.service,
+    originCity: s.originCity,
+    destCity: s.destCity,
+    etaDate: s.etaDate,
+    progress: s.progress,
+    updatedAt: s.updatedAt,
+  };
+}
+
 export async function getShipments(limit = 50, search?: string): Promise<DashboardShipmentRow[]> {
-  if (!hasDatabase()) return [];
+  if (!hasDatabase()) {
+    return demoListAll(limit, search).map(demoToRow);
+  }
 
   try {
     return await prisma.shipment.findMany({
@@ -77,7 +102,7 @@ export async function getShipments(limit = 50, search?: string): Promise<Dashboa
 }
 
 export async function getShipmentById(id: string) {
-  if (!hasDatabase()) return null;
+  if (!hasDatabase()) return demoFindById(id);
   try {
     return await prisma.shipment.findUnique({
       where: { id },
@@ -89,7 +114,7 @@ export async function getShipmentById(id: string) {
 }
 
 export async function getShipmentByCode(trackingCode: string) {
-  if (!hasDatabase()) return null;
+  if (!hasDatabase()) return demoFindByCode(trackingCode);
   try {
     return await prisma.shipment.findUnique({
       where: { trackingCode: trackingCode.toUpperCase() },

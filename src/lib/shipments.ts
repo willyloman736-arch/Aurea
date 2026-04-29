@@ -3,6 +3,7 @@ import { getShipment as getDemoShipment } from "@/content/shipments";
 import { hasShippo, lookupOrCreateTracker, type ShippoTracker } from "./shippo";
 import { shippoToShipment } from "./mappers";
 import { hasDatabase, prisma } from "./db";
+import { demoFindByCode, type DemoShipment } from "./demo-store";
 
 /** How long a cached shipment is considered fresh before refreshing from Shippo. */
 const CACHE_TTL_MS = 1000 * 60 * 10; // 10 minutes
@@ -20,11 +21,18 @@ const CACHE_TTL_MS = 1000 * 60 * 10; // 10 minutes
 export async function lookupShipment(trackingCode: string): Promise<Shipment | null> {
   const code = trackingCode.trim().toUpperCase();
 
-  // 1. Demo
+  // 1. Marketing-fixture demo (hardcoded)
   const demo = getDemoShipment(code);
   if (demo) return demo;
 
-  // 2. DB cache
+  // 2. In-process demo store (fallback when no DB) — operator-created
+  //    shipments live here until the next process cold-start.
+  if (!hasDatabase()) {
+    const demoStored = demoFindByCode(code);
+    if (demoStored) return demoStoreToShipment(demoStored);
+  }
+
+  // 3. DB cache
   if (hasDatabase()) {
     try {
       const cached = await prisma.shipment.findUnique({
@@ -180,4 +188,53 @@ async function cacheTracker(tracker: ShippoTracker, mapped: Shipment) {
   if (events.length > 0) {
     await prisma.trackingEvent.createMany({ data: events });
   }
+}
+
+function demoStoreToShipment(s: DemoShipment): Shipment {
+  return {
+    id: s.trackingCode,
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    status: s.status as any,
+    service: s.service ?? "—",
+    weight: s.weight ?? "—",
+    pieces: s.pieces ?? 1,
+    dimensions: s.dimensions ?? "—",
+    origin: {
+      city: s.originCity ?? "Origin",
+      addr: s.originAddr ?? "",
+    },
+    destination: {
+      city: s.destCity ?? "Destination",
+      addr: s.destAddr ?? "",
+    },
+    etaDate: s.etaDate ?? "Pending",
+    etaWindow: s.etaWindow ?? "—",
+    progress: Math.max(1, Math.min(4, s.progress)) as 1 | 2 | 3 | 4,
+    sender: s.senderName
+      ? {
+          name: s.senderName,
+          email: s.senderEmail ?? undefined,
+          phone: s.senderPhone ?? undefined,
+        }
+      : undefined,
+    receiver: s.receiverName
+      ? {
+          name: s.receiverName,
+          email: s.receiverEmail ?? undefined,
+          phone: s.receiverPhone ?? undefined,
+        }
+      : undefined,
+    packageDescription: s.packageDescription ?? undefined,
+    events: s.events.map((ev, i) => ({
+      time: ev.time.toLocaleString("en-US", {
+        month: "short",
+        day: "numeric",
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
+      title: ev.title,
+      loc: ev.location ?? "—",
+      latest: ev.latest || i === 0,
+    })),
+  };
 }

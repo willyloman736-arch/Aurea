@@ -4,6 +4,11 @@ import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 import { hasDatabase, prisma } from "@/lib/db";
 import { statusToProgress } from "@/lib/tracking-code";
+import {
+  demoCreate,
+  demoAddEvent,
+  demoFindByCode,
+} from "@/lib/demo-store";
 import type { ShipmentStatus } from "@/lib/types";
 
 function s(formData: FormData, key: string): string | undefined {
@@ -12,13 +17,6 @@ function s(formData: FormData, key: string): string | undefined {
 }
 
 export async function createShipmentAction(formData: FormData) {
-  if (!hasDatabase()) {
-    return {
-      error:
-        "DATABASE_URL is not configured. Add your Neon Postgres connection string to .env to persist shipments.",
-    };
-  }
-
   const trackingCode = s(formData, "trackingCode")?.toUpperCase();
   if (!trackingCode) return { error: "Tracking number is required." };
 
@@ -65,6 +63,26 @@ export async function createShipmentAction(formData: FormData) {
     etaDate: s(formData, "etaDate"),
     internalNotes: s(formData, "internalNotes"),
   };
+
+  // Demo mode — write to in-process store when DATABASE_URL isn't configured.
+  if (!hasDatabase()) {
+    if (demoFindByCode(trackingCode)) {
+      return {
+        error: `Tracking code ${trackingCode} already exists. Regenerate or pick a new one.`,
+      };
+    }
+    const saved = demoCreate(data);
+    demoAddEvent(saved.id, {
+      time: new Date(),
+      title: `Shipment created · ${status.toLowerCase()}`,
+      location: data.dispatchLocation ?? data.originCity ?? null,
+      status,
+    });
+    revalidatePath("/dashboard");
+    revalidatePath("/dashboard/shipments");
+    revalidatePath(`/track/${trackingCode}`);
+    redirect(`/dashboard/shipments/${saved.id}`);
+  }
 
   try {
     const existing = await prisma.shipment.findUnique({
