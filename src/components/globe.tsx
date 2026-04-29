@@ -44,15 +44,20 @@ function latLngToVec3(lat: number, lng: number, r = RADIUS): THREE.Vector3 {
 }
 
 // Soft round sprite for dots and halos — avoids the "ugly square pixel" look
-// that pointsMaterial gets without a map.
-function makeRadialSprite(inner: string, outer: string): THREE.CanvasTexture {
+// that pointsMaterial gets without a map. Soft falloff (no hard center) so
+// dots read as warm specks against the surface, not glaring pixels.
+function makeRadialSprite(
+  inner: string,
+  outer: string,
+  power = 1,
+): THREE.CanvasTexture {
   const size = 128;
   const canvas = document.createElement("canvas");
   canvas.width = canvas.height = size;
   const ctx = canvas.getContext("2d")!;
   const g = ctx.createRadialGradient(size / 2, size / 2, 0, size / 2, size / 2, size / 2);
   g.addColorStop(0, inner);
-  g.addColorStop(0.5, outer);
+  g.addColorStop(0.4 * power, outer);
   g.addColorStop(1, "rgba(0,0,0,0)");
   ctx.fillStyle = g;
   ctx.fillRect(0, 0, size, size);
@@ -66,14 +71,15 @@ function Dots() {
   const tex = useMemo(
     () =>
       makeRadialSprite(
-        "rgba(255, 232, 196, 1)",
-        "rgba(217, 165, 106, 0.5)",
+        "rgba(231, 179, 122, 0.85)",
+        "rgba(217, 165, 106, 0.32)",
+        1.1,
       ),
     [],
   );
 
   const positions = useMemo(() => {
-    const count = 1600;
+    const count = 720;
     const arr = new Float32Array(count * 3);
     const goldenAngle = Math.PI * (3 - Math.sqrt(5));
     for (let i = 0; i < count; i++) {
@@ -93,11 +99,11 @@ function Dots() {
         <bufferAttribute attach="attributes-position" args={[positions, 3]} />
       </bufferGeometry>
       <pointsMaterial
-        size={0.026}
+        size={0.022}
         map={tex}
-        color="#e9b981"
+        color="#e0a06a"
         transparent
-        opacity={0.85}
+        opacity={0.7}
         sizeAttenuation
         depthWrite={false}
         blending={THREE.AdditiveBlending}
@@ -263,38 +269,38 @@ function HubMarker({
 }
 
 function Atmosphere() {
-  // Three stacked back-side shells produce a soft amber rim that fades
-  // outward — no shaders needed.
+  // Stacked back-side shells produce a soft amber rim that fades outward.
+  // Kept gentle so it reads as atmosphere, not a halo frame.
   return (
     <group>
       <mesh>
-        <sphereGeometry args={[RADIUS * 1.025, 64, 64]} />
+        <sphereGeometry args={[RADIUS * 1.04, 64, 64]} />
         <meshBasicMaterial
           color="#d9a56a"
           transparent
-          opacity={0.22}
+          opacity={0.12}
           side={THREE.BackSide}
           depthWrite={false}
           blending={THREE.AdditiveBlending}
         />
       </mesh>
       <mesh>
-        <sphereGeometry args={[RADIUS * 1.09, 48, 48]} />
+        <sphereGeometry args={[RADIUS * 1.13, 48, 48]} />
         <meshBasicMaterial
           color="#d9a56a"
           transparent
-          opacity={0.08}
+          opacity={0.05}
           side={THREE.BackSide}
           depthWrite={false}
           blending={THREE.AdditiveBlending}
         />
       </mesh>
       <mesh>
-        <sphereGeometry args={[RADIUS * 1.22, 32, 32]} />
+        <sphereGeometry args={[RADIUS * 1.28, 32, 32]} />
         <meshBasicMaterial
           color="#b8844a"
           transparent
-          opacity={0.04}
+          opacity={0.025}
           side={THREE.BackSide}
           depthWrite={false}
           blending={THREE.AdditiveBlending}
@@ -341,16 +347,6 @@ function GlobeGroup({
           metalness={0}
         />
       </mesh>
-      {/* Thin warm rim sitting on the surface */}
-      <mesh>
-        <sphereGeometry args={[RADIUS * 1.0008, 64, 64]} />
-        <meshBasicMaterial
-          color="#1a1410"
-          transparent
-          opacity={0.6}
-          depthWrite={false}
-        />
-      </mesh>
       <Dots />
       {ROUTES.map(([a, b], i) => (
         <Arc key={i} index={i} start={HUBS[a]} end={HUBS[b]} />
@@ -379,7 +375,7 @@ export function Globe({
 
   return (
     <Canvas
-      camera={{ position: [0, 0.2, 2.85], fov: 38 }}
+      camera={{ position: [0, 0.18, 3.5], fov: 38 }}
       gl={{
         antialias: true,
         alpha: true,

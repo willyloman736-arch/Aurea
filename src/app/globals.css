@@ -992,8 +992,12 @@ h1, h2, h3, h4 {
     position: relative;
     width: 100%;
     aspect-ratio: 1 / 1;
-    max-width: 560px;
+    max-width: 580px;
     margin: 0 auto;
+    /* Feather the square canvas edge into the page background so the
+       3D scene reads as an open globe, not a framed square. */
+    -webkit-mask-image: radial-gradient(circle at 50% 50%, #000 0%, #000 64%, rgba(0,0,0,0.85) 78%, transparent 96%);
+            mask-image: radial-gradient(circle at 50% 50%, #000 0%, #000 64%, rgba(0,0,0,0.85) 78%, transparent 96%);
 }
 .globe-wrap canvas {
     display: block;
@@ -1003,24 +1007,13 @@ h1, h2, h3, h4 {
 .globe-wrap::before {
     content: '';
     position: absolute;
-    inset: -22%;
+    inset: -28%;
     background:
-        radial-gradient(circle at 50% 50%, rgba(217, 165, 106, 0.22) 0%, rgba(217, 165, 106, 0.08) 32%, transparent 62%),
-        radial-gradient(circle at 50% 50%, rgba(184, 132, 74, 0.10) 0%, transparent 70%);
+        radial-gradient(circle at 50% 50%, rgba(217, 165, 106, 0.18) 0%, rgba(217, 165, 106, 0.06) 32%, transparent 64%),
+        radial-gradient(circle at 50% 50%, rgba(184, 132, 74, 0.08) 0%, transparent 72%);
     pointer-events: none;
     z-index: -1;
-    filter: blur(2px);
-}
-.globe-wrap::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: 50%;
-    box-shadow: inset 0 0 80px 10px rgba(0, 0, 0, 0.55);
-    pointer-events: none;
-    mix-blend-mode: multiply;
-    opacity: 0.6;
-    z-index: 0;
+    filter: blur(3px);
 }
 .globe-loading {
     width: 100%;
