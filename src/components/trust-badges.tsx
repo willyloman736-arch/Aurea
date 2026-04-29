@@ -1,12 +1,10 @@
 import { ScrollReveal } from "./scroll-reveal";
 
-// Last-mile partners. Wordmark placeholders with brand-color accents — replace
-// with official SVGs at /public/badges/{fedex,usps,dhl,ups}.svg when available.
 const PARTNERS = [
-  { name: "FedEx", tone: "fedex" },
-  { name: "USPS", tone: "usps" },
-  { name: "DHL", tone: "dhl" },
-  { name: "UPS", tone: "ups" },
+  { name: "FedEx", src: "/badges/fedex.png" },
+  { name: "USPS", src: "/badges/usps.png" },
+  { name: "DHL", src: "/badges/dhl.png" },
+  { name: "UPS", src: "/badges/ups.jpg" },
 ] as const;
 
 export function TrustBadges() {
@@ -18,8 +16,13 @@ export function TrustBadges() {
         </span>
         <div className="trust-row">
           {PARTNERS.map((p) => (
-            <div key={p.name} className={`trust-badge trust-${p.tone}`}>
-              {p.name}
+            <div key={p.name} className="trust-badge">
+              <img
+                src={p.src}
+                alt={`${p.name} logo`}
+                className="trust-badge-img"
+                loading="lazy"
+              />
             </div>
           ))}
         </div>
