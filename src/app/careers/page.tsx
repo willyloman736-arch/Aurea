@@ -102,7 +102,7 @@ export default function CareersPage() {
         <div className="page-cta-actions">
           <Link
             href="mailto:careers@aurealogistics.com?subject=Application"
-            className="btn-primary"
+            className="btn-primary" data-magnetic
           >
             careers@aurealogistics.com
           </Link>

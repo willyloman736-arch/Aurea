@@ -197,6 +197,7 @@ h1, h2, h3, h4 {
     text-decoration: none;
 }
 .btn-primary:hover { background: #fff; transform: translateY(-1px); }
+.btn-primary:active { transform: translateY(0) scale(0.97); transition-duration: 80ms; }
 .btn-ghost {
     display: inline-flex;
     align-items: center;
@@ -214,6 +215,7 @@ h1, h2, h3, h4 {
     text-decoration: none;
 }
 .btn-ghost:hover { border-color: rgba(255, 255, 255, 0.35); background: rgba(255, 255, 255, 0.03); }
+.btn-ghost:active { transform: scale(0.97); transition-duration: 80ms; }
 .btn-text {
     padding: 9px 14px;
     font-size: 13.5px;
@@ -1523,21 +1525,32 @@ h1, h2, h3, h4 {
     z-index: 0;
 }
 
-/* Reveal: visible by default. Modern browsers get scroll-timeline animation. */
-.reveal { opacity: 1; transform: none; }
-.reveal.visible { opacity: 1; transform: none; }
-
-@supports (animation-timeline: view()) {
-    .reveal {
-        animation: reveal-fade linear both;
-        animation-timeline: view();
-        animation-range: entry 0% entry 35%;
-    }
-    @keyframes reveal-fade {
-        from { opacity: 0; transform: translateY(24px); }
-        to   { opacity: 1; transform: none; }
-    }
+/* Reveal: starts hidden, animates in when IntersectionObserver adds .visible.
+   Stagger via --reveal-delay custom property for grids. */
+.reveal {
+    opacity: 0;
+    transform: translateY(20px);
+    transition:
+        opacity 0.65s cubic-bezier(0.2, 0.8, 0.2, 1),
+        transform 0.65s cubic-bezier(0.2, 0.8, 0.2, 1);
+    transition-delay: var(--reveal-delay, 0ms);
+    will-change: opacity, transform;
 }
+.reveal.visible {
+    opacity: 1;
+    transform: none;
+}
+/* Auto-stagger for common grid containers — children reveal in sequence */
+.cs-grid > .reveal:nth-child(2)        { --reveal-delay: 80ms; }
+.cs-grid > .reveal:nth-child(3)        { --reveal-delay: 160ms; }
+.feature-list > .reveal:nth-child(2)   { --reveal-delay: 60ms; }
+.feature-list > .reveal:nth-child(3)   { --reveal-delay: 120ms; }
+.feature-list > .reveal:nth-child(4)   { --reveal-delay: 180ms; }
+.how-list > .reveal:nth-child(2)       { --reveal-delay: 100ms; }
+.how-list > .reveal:nth-child(3)       { --reveal-delay: 200ms; }
+.metrics-inner > .metric:nth-child(2)  { transition-delay: 60ms; }
+.metrics-inner > .metric:nth-child(3)  { transition-delay: 120ms; }
+.metrics-inner > .metric:nth-child(4)  { transition-delay: 180ms; }
 
 /* ========== Result card ========== */
 .result-section { padding: 40px 0 60px; }
@@ -1677,7 +1690,37 @@ h1, h2, h3, h4 {
     .footer-base { flex-direction: column; gap: 14px; }
 }
 @media (prefers-reduced-motion: reduce) {
-    * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+    *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+    .reveal { opacity: 1 !important; transform: none !important; }
+}
+
+/* =========================================================
+   VIEW TRANSITIONS — soft crossfade between routes
+   ========================================================= */
+@view-transition {
+    navigation: auto;
+}
+::view-transition-old(root),
+::view-transition-new(root) {
+    animation-duration: 280ms;
+    animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+::view-transition-old(root) {
+    animation-name: aurea-fade-out;
+}
+::view-transition-new(root) {
+    animation-name: aurea-fade-in;
+}
+@keyframes aurea-fade-out {
+    to   { opacity: 0; transform: translateY(-6px); }
+}
+@keyframes aurea-fade-in {
+    from { opacity: 0; transform: translateY(8px); }
 }
 
 /* =========================================================

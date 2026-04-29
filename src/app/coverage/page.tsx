@@ -123,7 +123,7 @@ export default function CoveragePage() {
           shipping and how often.
         </p>
         <div className="page-cta-actions">
-          <Link href="/contact" className="btn-primary">
+          <Link href="/contact" className="btn-primary" data-magnetic>
             Talk to ops
           </Link>
         </div>

@@ -158,7 +158,7 @@ export default function FaqPage() {
         <div className="page-cta-actions">
           <Link
             href="mailto:hello@aurealogistics.com"
-            className="btn-primary"
+            className="btn-primary" data-magnetic
           >
             Email hello@aurealogistics.com
           </Link>

@@ -121,7 +121,7 @@ export default function ServicesPage() {
           inside an hour, weekdays.
         </p>
         <div className="page-cta-actions">
-          <Link href="/contact" className="btn-primary">
+          <Link href="/contact" className="btn-primary" data-magnetic>
             Get a quote
           </Link>
           <Link href="/coverage" className="btn-ghost">

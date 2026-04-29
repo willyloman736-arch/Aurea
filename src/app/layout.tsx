@@ -42,6 +42,11 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en" className={`${inter.variable} ${serif.variable}`}>
+      <head>
+        <noscript>
+          <style>{`.reveal{opacity:1!important;transform:none!important;}`}</style>
+        </noscript>
+      </head>
       <body>
         <a href="#main-content" className="skip-link">Skip to content</a>
         <ScrollProgress />

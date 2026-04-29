@@ -108,7 +108,7 @@ export default function NetworkPage() {
           often. We&rsquo;ll quote service the same hour, weekdays.
         </p>
         <div className="page-cta-actions">
-          <Link href="/contact" className="btn-primary">
+          <Link href="/contact" className="btn-primary" data-magnetic>
             Talk to ops
           </Link>
           <Link href="/coverage" className="btn-ghost">
