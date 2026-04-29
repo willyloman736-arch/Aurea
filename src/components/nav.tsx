@@ -12,6 +12,10 @@ export function Nav() {
         <nav className="nav-links" aria-label="Primary">
           <Link href="/services">Services</Link>
           <Link href="/network">Network</Link>
+          <Link href="/portal" className="nav-live">
+            <span className="nav-live-dot" aria-hidden="true" />
+            Live
+          </Link>
           <Link href="/customers">Customers</Link>
           <Link href="/faq">FAQ</Link>
         </nav>

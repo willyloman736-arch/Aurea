@@ -1,4 +1,12 @@
 import Link from "next/link";
+import Image from "next/image";
+
+const FOOTER_PARTNERS = [
+  { name: "FedEx", src: "/badges/fedex.png" },
+  { name: "USPS", src: "/badges/usps.png" },
+  { name: "DHL", src: "/badges/dhl.png" },
+  { name: "UPS", src: "/badges/ups.jpg" },
+] as const;
 
 export function Footer() {
   return (
@@ -35,6 +43,23 @@ export function Footer() {
               <Link href="/insurance">Insurance</Link>
               <Link href="/claims">File a claim</Link>
             </div>
+          </div>
+        </div>
+        <div className="footer-partners" aria-label="Last-mile carrier partners">
+          <span className="footer-partners-label">Last-mile partners</span>
+          <div className="footer-partners-row">
+            {FOOTER_PARTNERS.map((p) => (
+              <div key={p.name} className="footer-partner-badge">
+                <Image
+                  src={p.src}
+                  alt={`${p.name} logo`}
+                  className="footer-partner-img"
+                  width={300}
+                  height={120}
+                  sizes="100px"
+                />
+              </div>
+            ))}
           </div>
         </div>
         <div className="footer-base">
