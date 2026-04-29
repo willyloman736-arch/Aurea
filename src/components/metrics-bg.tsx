@@ -14,7 +14,8 @@ function SpiralRibbon({ phase = 0, color = "#d9a56a" }: { phase?: number; color?
 
   return (
     <mesh ref={ref} rotation={[phase, phase * 0.5, 0]}>
-      <torusKnotGeometry args={[1.4, 0.08, 240, 16, 2, 5]} />
+      {/* Reduced tessellation: 240→120 tubular, 16→10 radial — ~40% fewer verts */}
+      <torusKnotGeometry args={[1.4, 0.08, 120, 10, 2, 5]} />
       <meshStandardMaterial
         color={color}
         roughness={0.25}
@@ -26,12 +27,13 @@ function SpiralRibbon({ phase = 0, color = "#d9a56a" }: { phase?: number; color?
   );
 }
 
-export function MetricsBg() {
+export function MetricsBg({ active = true }: { active?: boolean }) {
   return (
     <Canvas
       camera={{ position: [0, 0, 4.2], fov: 50 }}
       gl={{ antialias: true, alpha: true, powerPreference: "low-power" }}
-      dpr={[1, 1.5]}
+      dpr={[1, 1.3]}
+      frameloop={active ? "always" : "never"}
       style={{ background: "transparent" }}
     >
       <ambientLight intensity={0.4} />

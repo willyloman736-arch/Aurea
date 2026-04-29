@@ -1,6 +1,5 @@
 import { Counter } from "./counter";
 import { ScrollReveal } from "./scroll-reveal";
-import { MetricsBgMount } from "./metrics-bg-mount";
 
 function CracksOverlay() {
   return (
@@ -30,7 +29,6 @@ function CracksOverlay() {
 export function Metrics() {
   return (
     <section className="metrics">
-      <MetricsBgMount />
       <ScrollReveal className="container-aurea metrics-inner">
         <div className="metric">
           <div className="metric-num">

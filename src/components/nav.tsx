@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { NavGlobeMount } from "./nav-globe-mount";
 
 export function Nav() {
   return (
@@ -17,6 +18,7 @@ export function Nav() {
         <div className="nav-actions">
           <Link href="/sign-in" className="btn-text">Sign in</Link>
           <Link href="/sign-up" className="btn-primary" data-magnetic>Start tracking</Link>
+          <NavGlobeMount />
         </div>
       </div>
     </header>

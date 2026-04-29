@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useInView } from "./use-in-view";
 
 const MetricsBg = dynamic(
   () => import("./metrics-bg").then((m) => m.MetricsBg),
@@ -11,9 +12,10 @@ const MetricsBg = dynamic(
 );
 
 export function MetricsBgMount() {
+  const [ref, inView] = useInView<HTMLDivElement>("200px");
   return (
-    <div className="metrics-3d-bg" aria-hidden="true">
-      <MetricsBg />
+    <div ref={ref} className="metrics-3d-bg" aria-hidden="true">
+      <MetricsBg active={inView} />
     </div>
   );
 }

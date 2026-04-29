@@ -19,15 +19,15 @@ function PackageCube() {
         <boxGeometry args={[1.6, 1.6, 1.6]} />
         <MeshTransmissionMaterial
           backside
-          samples={6}
-          resolution={256}
+          samples={3}
+          resolution={128}
           thickness={0.6}
           roughness={0.08}
-          chromaticAberration={0.3}
+          chromaticAberration={0.2}
           anisotropy={0.15}
-          distortion={0.25}
+          distortion={0.18}
           distortionScale={0.3}
-          temporalDistortion={0.1}
+          temporalDistortion={0}
           ior={1.5}
           transmission={0.98}
           color="#f3d6a8"
@@ -44,12 +44,13 @@ function PackageCube() {
   );
 }
 
-export function HeroCube() {
+export function HeroCube({ active = true }: { active?: boolean }) {
   return (
     <Canvas
       camera={{ position: [2.4, 1.6, 3.2], fov: 38 }}
       gl={{ antialias: true, alpha: true, powerPreference: "high-performance" }}
-      dpr={[1, 2]}
+      dpr={[1, 1.6]}
+      frameloop={active ? "always" : "never"}
       style={{ background: "transparent" }}
     >
       <ambientLight intensity={0.4} />

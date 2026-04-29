@@ -4,6 +4,7 @@ import dynamic from "next/dynamic";
 import { useState } from "react";
 import { X, MapPin } from "lucide-react";
 import type { Hub } from "./globe";
+import { useInView } from "./use-in-view";
 
 const Globe = dynamic(
   () => import("./globe").then((m) => m.Globe),
@@ -15,10 +16,15 @@ const Globe = dynamic(
 
 export function GlobeMount() {
   const [selected, setSelected] = useState<Hub | null>(null);
+  const [ref, inView] = useInView<HTMLDivElement>("400px");
 
   return (
-    <div className="globe-wrap">
-      <Globe onHubClick={setSelected} selectedHub={selected} />
+    <div ref={ref} className="globe-wrap">
+      {inView ? (
+        <Globe onHubClick={setSelected} selectedHub={selected} />
+      ) : (
+        <div className="globe-loading" />
+      )}
 
       <div className="globe-hint">
         <span className="globe-hint-dot" />

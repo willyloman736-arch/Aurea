@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useInView } from "./use-in-view";
 
 const HeroCube = dynamic(
   () => import("./hero-cube").then((m) => m.HeroCube),
@@ -11,9 +12,10 @@ const HeroCube = dynamic(
 );
 
 export function HeroCubeMount() {
+  const [ref, inView] = useInView<HTMLDivElement>("300px");
   return (
-    <div className="hero-cube-wrap" aria-hidden="true">
-      <HeroCube />
+    <div ref={ref} className="hero-cube-wrap" aria-hidden="true">
+      <HeroCube active={inView} />
     </div>
   );
 }
