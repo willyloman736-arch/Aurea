@@ -18,8 +18,8 @@ export function Footer() {
             </div>
             <div>
               <h5>Coverage</h5>
+              <Link href="/portal">Live portal</Link>
               <Link href="/coverage#hubs">Network hubs</Link>
-              <Link href="/coverage#lanes">Lane map</Link>
               <Link href="/coverage#customs">Customs &amp; duties</Link>
             </div>
             <div>
