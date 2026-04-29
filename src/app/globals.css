@@ -3963,35 +3963,51 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 .portal-stats {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 12px;
+    gap: 14px;
 }
 .portal-stat {
-    padding: 18px 20px;
+    position: relative;
+    padding: 22px 24px;
     background:
-        linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015));
-    border: 1px solid var(--hairline);
+        linear-gradient(135deg, rgba(255, 255, 255, 0.07) 0%, rgba(255, 255, 255, 0.02) 100%);
+    border: 1px solid var(--hairline-2);
     border-radius: var(--r-md);
-    backdrop-filter: blur(20px) saturate(160%);
-    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    backdrop-filter: blur(22px) saturate(170%);
+    -webkit-backdrop-filter: blur(22px) saturate(170%);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.06) inset,
+        0 12px 28px rgba(0, 0, 0, 0.32);
+    overflow: hidden;
+}
+.portal-stat::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(217, 165, 106, 0.35), transparent);
+    opacity: 0.6;
 }
 .portal-stat strong {
     display: block;
     font-family: var(--font-serif-display), Georgia, serif;
-    font-size: 30px;
+    font-size: 42px;
     font-weight: 400;
     color: var(--text-1);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.025em;
     line-height: 1;
     font-feature-settings: "tnum";
 }
 .portal-stat-warn { color: #e08a7a !important; }
 .portal-stat span {
     display: block;
-    font-size: 11.5px;
+    font-size: 11px;
+    font-weight: 500;
     color: var(--text-3);
-    letter-spacing: 0.06em;
+    letter-spacing: 0.14em;
     text-transform: uppercase;
-    margin-top: 8px;
+    margin-top: 12px;
 }
 
 /* Filter chips */
@@ -4064,23 +4080,77 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 
 /* Map elements */
 .map-grid line {
-    stroke: rgba(255, 255, 255, 0.04);
+    stroke: rgba(255, 255, 255, 0.045);
     stroke-width: 0.4;
+}
+.map-grid .map-grid-axis {
+    stroke: rgba(217, 165, 106, 0.10);
+    stroke-width: 0.5;
+}
+.map-continents polygon {
+    transition: stroke 0.3s var(--ease), fill 0.3s var(--ease);
 }
 .map-route { transition: all 0.2s var(--ease); }
 .map-route:hover { filter: brightness(1.2); }
 .map-route-hits path:hover {
     stroke: rgba(217, 165, 106, 0.05) !important;
 }
-.map-hub { transition: all 0.2s var(--ease); }
+.map-hub { transition: all 0.2s var(--ease); cursor: pointer; }
 .map-hub-label {
     font-family: var(--font-inter), sans-serif;
     font-size: 7px;
-    font-weight: 500;
-    fill: var(--text-3);
-    letter-spacing: 0.06em;
+    font-weight: 600;
+    fill: var(--text-1);
+    letter-spacing: 0.10em;
     pointer-events: none;
+}
+.map-hub-label-bg {
+    fill: rgba(11, 15, 19, 0.85);
+    stroke: rgba(217, 165, 106, 0.30);
+    stroke-width: 0.4;
+    pointer-events: none;
+}
+.map-hub-label-group {
+    animation: map-label-in 0.18s var(--ease);
+}
+@keyframes map-label-in {
+    from { opacity: 0; transform: translateY(2px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Hint when no shipment is selected */
+.portal-hint {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    font-size: 11px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
     text-transform: uppercase;
+    color: var(--text-3);
+    background: rgba(11, 15, 19, 0.6);
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-pill);
+    pointer-events: none;
+}
+.portal-hint-dot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px rgba(217, 165, 106, 0.7);
+    animation: portal-hint-pulse 2s ease-in-out infinite;
+}
+@keyframes portal-hint-pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50%      { opacity: 0.55; transform: scale(0.85); }
 }
 
 /* Selected shipment overlay (top-right corner of map) */

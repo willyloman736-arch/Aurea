@@ -109,6 +109,14 @@ export function PortalClient() {
             onSelect={setSelectedId}
           />
 
+          {/* Hint when nothing selected */}
+          {!selected && (
+            <div className="portal-hint" aria-hidden="true">
+              <span className="portal-hint-dot" />
+              <span>Click any route to drill in</span>
+            </div>
+          )}
+
           {/* Selected shipment overlay */}
           {selected && (
             <div className="portal-detail">
