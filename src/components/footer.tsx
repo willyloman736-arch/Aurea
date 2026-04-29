@@ -11,28 +11,28 @@ export function Footer() {
           </Link>
           <div className="footer-cols">
             <div>
-              <h5>Platform</h5>
-              <Link href="#">Tracking API</Link>
-              <Link href="#">Webhooks</Link>
-              <Link href="#">Dashboards</Link>
+              <h5>Services</h5>
+              <Link href="#how">Express parcel</Link>
+              <Link href="#how">International freight</Link>
+              <Link href="#how">Same-day pickup</Link>
             </div>
             <div>
-              <h5>Developers</h5>
-              <Link href="#">Reference</Link>
-              <Link href="#">SDKs</Link>
-              <Link href="#">Status</Link>
+              <h5>Coverage</h5>
+              <Link href="#network">Network hubs</Link>
+              <Link href="#network">Lane map</Link>
+              <Link href="#faq">Customs &amp; duties</Link>
             </div>
             <div>
               <h5>Company</h5>
-              <Link href="#">About</Link>
+              <Link href="#customers">Customers</Link>
               <Link href="#">Careers</Link>
-              <Link href="#">Press</Link>
+              <Link href="mailto:hello@aurealogistics.com">Contact</Link>
             </div>
             <div>
               <h5>Legal</h5>
               <Link href="#">Privacy</Link>
               <Link href="#">Terms</Link>
-              <Link href="#">Security</Link>
+              <Link href="#">Insurance</Link>
             </div>
           </div>
         </div>

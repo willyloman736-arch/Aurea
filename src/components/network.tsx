@@ -4,9 +4,9 @@ import { GlobeMount } from "./globe-mount";
 const FEATURES = [
   {
     num: "01",
-    title: "Real-time events",
-    body: "Sub-second streaming from every scan point. Kafka-backed, HMAC-signed webhooks, at-least-once delivery.",
-    meta: ["18M/day", "<500ms"],
+    title: "Live custody",
+    body: "Every scan, every checkpoint, every handoff — visible to you and your recipient the moment it happens. No polling, no support calls.",
+    meta: ["Real-time", "<500ms"],
     icon: (
       <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth={1.25}>
         <path d="M4 14h6l2-6 4 12 2-6h6" strokeLinecap="round" strokeLinejoin="round" />
@@ -16,8 +16,8 @@ const FEATURES = [
   {
     num: "02",
     title: "Predictive ETA",
-    body: "Machine-learning models adjust delivery windows for weather, traffic, customs and hub congestion — before delays propagate.",
-    meta: ["±38 min", "Per-lane"],
+    body: "Per-lane historical performance plus real-time congestion data. We update the ETA every checkpoint — and we hold to within 38 minutes.",
+    meta: ["±38 min", "Every lane"],
     icon: (
       <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth={1.25}>
         <path d="M3 18c4 0 4-6 8-6s4 6 8 6 4-6 6-6" strokeLinecap="round" />
@@ -27,8 +27,8 @@ const FEATURES = [
   },
   {
     num: "03",
-    title: "Secure handoff",
-    body: "OAuth 2.0, OTP at the door, geo-verified proof of delivery. SOC 2 Type II and ISO 27001 from day one.",
+    title: "Chain of custody",
+    body: "OTP at the door for high-value parcels, geo-verified proof of delivery, audit-ready logs. SOC 2 Type II and ISO 27001 — every shipment.",
     meta: ["SOC 2", "ISO 27001"],
     icon: (
       <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth={1.25}>
@@ -39,9 +39,9 @@ const FEATURES = [
   },
   {
     num: "04",
-    title: "Global coverage",
-    body: "Single API across 220 countries. Local-language receipts, per-region residency, compliant carrier handoffs.",
-    meta: ["220 countries", "EU residency"],
+    title: "Global reach",
+    body: "Ten regional hubs. 220 countries served. We handle customs paperwork, duty calculation, and clearance — your cargo doesn't sit at a border.",
+    meta: ["220 countries", "Customs handled"],
     icon: (
       <svg viewBox="0 0 28 28" fill="none" stroke="currentColor" strokeWidth={1.25}>
         <circle cx="14" cy="14" r="10" />
@@ -59,10 +59,10 @@ export function Network() {
           <ScrollReveal className="section-head reach-copy">
             <span className="eyebrow-inline">The network</span>
             <h2 className="section-title">
-              Every scan. Every sensor. <em>One signal.</em>
+              Every lane. Every hub. <em>One network.</em>
             </h2>
             <p className="section-sub">
-              Aurea fuses handheld scans, BLE sensors, carrier APIs, weather and customs feeds into a single live event stream — and exposes it as one clean HTTP contract.
+              Ten regional hubs, 220 countries, the same on-time discipline whether your cargo moves twenty kilometres or two continents. We own the lanes, we own the custody chain — and we own the outcome.
             </p>
             <ul className="reach-hubs">
               <li><span /> Singapore</li>

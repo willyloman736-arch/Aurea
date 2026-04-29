@@ -15,22 +15,22 @@ export function Hero() {
       <div className="container-aurea">
         <div className="eyebrow">
           <span className="eyebrow-dot" />
-          Live across 220 countries
+          From dispatch to doorstep · 220 countries
         </div>
 
         <h1 className="hero-title">
-          Shipment tracking,<br />
-          engineered for <em>scale.</em>
+          Cargo, moved like<br />
+          <em>it matters.</em>
         </h1>
 
         <p className="hero-lede">
-          One endpoint. Eighteen million daily events. Zero blind spots between first mile and final handshake.
+          Premium freight and parcel logistics across 220 countries. Doorstep pickup, custody every step, on-time arrival measured in minutes — not days.
         </p>
 
         <TrackingForm />
 
         <div className="hero-credits">
-          <span className="hero-credits-label">Trusted by operations teams at</span>
+          <span className="hero-credits-label">Moving cargo for</span>
           <div className="hero-credits-logos">
             <span>VENDR</span>
             <span>FLEXPORT</span>

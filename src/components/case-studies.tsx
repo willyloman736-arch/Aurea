@@ -8,7 +8,7 @@ const STUDIES = [
     unit: "%",
     metricLabel: "support tickets",
     story:
-      "Replaced three separate carrier integrations with one Aurea endpoint. Ops reclaimed six hours a week, and on-time delivery numbers finally told the truth.",
+      "We move 20,000 parcels a month with Aurea. They don't lose packages, they don't pad delivery windows, and our customers stopped calling to ask where their orders are.",
     author: "Maya Aldrin",
     role: "VP Operations",
     initial: "M",
@@ -18,11 +18,11 @@ const STUDIES = [
     logo: "FLEXPORT",
     metric: "±38",
     unit: "min",
-    metricLabel: "median ETA accuracy",
+    metricLabel: "ETA accuracy",
     story:
-      "Aurea's predictive ETA replaced our in-house model entirely. Our customers now know when packages arrive — not when they should have arrived.",
+      "Aurea handles our cross-border freight through customs without us sitting on the phone. ETAs hold within thirty minutes. We've stopped scheduling around their delays — because there aren't any.",
     author: "Daniel Okafor",
-    role: "Head of Platform",
+    role: "Head of Logistics",
     initial: "D",
   },
   {
@@ -30,11 +30,11 @@ const STUDIES = [
     logo: "RAMP",
     metric: "220",
     unit: "countries",
-    metricLabel: "live in week one",
+    metricLabel: "served, no follow-ups",
     story:
-      "Launched international tracking in 48 hours. Aurea handles every carrier, every country, every language receipt. Code shipped Tuesday, customers haven't noticed.",
+      "We ship hardware, swag, and signed contracts to employees in 40 countries. Aurea is the only courier we trust to land a package without four follow-up emails.",
     author: "Sara Kim",
-    role: "Staff Engineer",
+    role: "Ops Lead",
     initial: "S",
   },
 ];

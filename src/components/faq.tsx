@@ -7,28 +7,28 @@ import { cn } from "@/lib/utils";
 
 const FAQS = [
   {
-    q: "How fast do tracking events propagate?",
-    a: "Sub-second from carrier scan to your webhook. Our ingestion pipeline is Kafka-backed with at-least-once delivery and HMAC-signed webhooks. In practice, you see a scan in your dashboard within 800ms of it being recorded at the carrier.",
+    q: "How fast can you pick up?",
+    a: "Most major cities, same-day pickup if booked before 11am local time. Otherwise next business day. Account customers get fixed pickup windows — every Tuesday at 10, every Friday at 4 — whatever rhythm suits the operation.",
   },
   {
-    q: "Which carriers do you support?",
-    a: "Every major US carrier (USPS, FedEx, UPS, DHL, OnTrac, LaserShip, Newgistics) plus 70+ international carriers including Royal Mail, Canada Post, Japan Post, Yamato, Aramex, SF Express, and every EU national post. Auto-detection from tracking-number format means your code doesn't change when you add a new carrier.",
+    q: "What can I ship?",
+    a: "Standard parcels up to 50 kg. Freight up to one tonne per pallet. Hazmat by arrangement, with proper documentation. We do not transport firearms, perishables without prior cold-chain approval, live animals, or anything restricted by destination customs.",
   },
   {
-    q: "How does predictive ETA work?",
-    a: "A gradient-boosted model trained on 4 years of carrier-specific scan histories, weather data, and customs clearance times. It predicts delivery windows per lane with a median error of ±38 minutes. Models retrain nightly with the latest 24 hours of scans.",
+    q: "How accurate is the ETA?",
+    a: "Per-lane historical performance, real-time congestion data, and current cargo position. We update the ETA every time a checkpoint scans. Median error across all lanes is ±38 minutes. Where we miss, we credit the shipping cost — no claim forms.",
   },
   {
-    q: "Is my data safe?",
-    a: "SOC 2 Type II and ISO 27001 certified from day one. All data encrypted at rest (AES-256) and in transit (TLS 1.3). EU customers get dedicated EU residency — data never leaves Frankfurt or Dublin. We don't sell, share, or train on your shipment data.",
+    q: "Is my cargo insured?",
+    a: "Every shipment is covered up to its declared value, included in the base rate. Add additional cover for high-value items at booking. Claims are handled in-house — most resolve in under 48 hours, no third-party adjusters.",
   },
   {
-    q: "What happens if a carrier goes down?",
-    a: "We maintain two independent aggregator connections plus direct API keys for the major carriers. If one path fails, the other serves your traffic with no code change on your side. Our status page at status.aurea.co reflects any incident within 60 seconds.",
+    q: "What if delivery is delayed?",
+    a: "You'll see the new ETA in your tracking page within minutes of the delay being detected. If the cargo was time-sensitive and the delay is on us, we credit the full shipping cost automatically — no email, no support ticket.",
   },
   {
-    q: "Can I bring my own carrier accounts?",
-    a: "Yes. On Growth and Scale plans you can wire up your own negotiated FedEx/UPS accounts for discounted rates. Tracking data still flows through Aurea's unified API — you get your rates plus our reliability.",
+    q: "Do you handle customs?",
+    a: "For international shipments we handle all customs paperwork, duty calculation, and clearance through our broker network. Customs status appears as a checkpoint on your tracking page — no surprise calls from a port asking for documents.",
   },
 ];
 

@@ -35,13 +35,13 @@ export function Metrics() {
             <Counter to={18.2} decimals={1} />
             <span className="metric-unit">M</span>
           </div>
-          <div className="metric-label">Shipments tracked daily</div>
+          <div className="metric-label">Packages delivered</div>
         </div>
         <div className="metric">
           <div className="metric-num">
             <Counter to={220} />
           </div>
-          <div className="metric-label">Countries, live</div>
+          <div className="metric-label">Countries served</div>
         </div>
         <div className="metric">
           <div className="metric-num">
@@ -52,10 +52,10 @@ export function Metrics() {
         </div>
         <div className="metric">
           <div className="metric-num">
-            &lt;<Counter to={180} />
-            <span className="metric-unit">ms</span>
+            <Counter to={4} />
+            <span className="metric-unit">h</span>
           </div>
-          <div className="metric-label">API p99 latency</div>
+          <div className="metric-label">Avg pickup window</div>
         </div>
 
         <CracksOverlay />

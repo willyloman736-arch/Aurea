@@ -3,13 +3,9 @@ import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
 import { Metrics } from "@/components/metrics";
 import { HowItWorks } from "@/components/how-it-works";
-import { Network } from "@/components/network";
-import { Integrations } from "@/components/integrations";
 import { DashboardPreview } from "@/components/dashboard-preview";
-import { DeveloperCode } from "@/components/developer-code";
+import { Network } from "@/components/network";
 import { CaseStudies } from "@/components/case-studies";
-import { Pricing } from "@/components/pricing";
-import { RoiCalculator } from "@/components/roi-calculator";
 import { Faq } from "@/components/faq";
 import { Cta } from "@/components/cta";
 import { Footer } from "@/components/footer";
@@ -24,12 +20,8 @@ export default function HomePage() {
         <Metrics />
         <HowItWorks />
         <DashboardPreview />
-        <DeveloperCode />
         <Network />
-        <Integrations />
         <CaseStudies />
-        <Pricing />
-        <RoiCalculator />
         <Faq />
         <Cta />
       </main>
