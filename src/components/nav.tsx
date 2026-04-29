@@ -10,10 +10,10 @@ export function Nav() {
           <span className="brand-text">Aurea</span>
         </Link>
         <nav className="nav-links" aria-label="Primary">
-          <Link href="#how">Services</Link>
-          <Link href="#network">Network</Link>
-          <Link href="#customers">Customers</Link>
-          <Link href="#faq">FAQ</Link>
+          <Link href="/services">Services</Link>
+          <Link href="/network">Network</Link>
+          <Link href="/customers">Customers</Link>
+          <Link href="/faq">FAQ</Link>
         </nav>
         <div className="nav-actions">
           <Link href="/sign-in" className="btn-text">Sign in</Link>
