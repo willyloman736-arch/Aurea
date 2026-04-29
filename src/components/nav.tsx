@@ -17,7 +17,7 @@ export function Nav() {
         </nav>
         <div className="nav-actions">
           <Link href="/sign-in" className="btn-text">Sign in</Link>
-          <Link href="/sign-up" className="btn-primary" data-magnetic>Get a quote</Link>
+          <Link href="/quote" className="btn-primary" data-magnetic>Get a quote</Link>
           <NavGlobeMount />
         </div>
       </div>

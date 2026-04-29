@@ -12,9 +12,9 @@ export function Footer() {
           <div className="footer-cols">
             <div>
               <h5>Services</h5>
-              <Link href="/services#express">Express parcel</Link>
-              <Link href="/services#international">International freight</Link>
-              <Link href="/services#same-day">Same-day pickup</Link>
+              <Link href="/quote">Get a quote</Link>
+              <Link href="/book">Book a pickup</Link>
+              <Link href="/services">All services</Link>
             </div>
             <div>
               <h5>Coverage</h5>
@@ -33,6 +33,7 @@ export function Footer() {
               <Link href="/privacy">Privacy</Link>
               <Link href="/terms">Terms</Link>
               <Link href="/insurance">Insurance</Link>
+              <Link href="/claims">File a claim</Link>
             </div>
           </div>
         </div>

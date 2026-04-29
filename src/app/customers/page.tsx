@@ -161,7 +161,7 @@ export default function CustomersPage() {
           lane this week.
         </p>
         <div className="page-cta-actions">
-          <Link href="/contact" className="btn-primary" data-magnetic>
+          <Link href="/quote" className="btn-primary" data-magnetic>
             Get a quote
           </Link>
           <Link href="/services" className="btn-ghost">
