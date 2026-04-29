@@ -12,27 +12,27 @@ export function Footer() {
           <div className="footer-cols">
             <div>
               <h5>Services</h5>
-              <Link href="#how">Express parcel</Link>
-              <Link href="#how">International freight</Link>
-              <Link href="#how">Same-day pickup</Link>
+              <Link href="/services#express">Express parcel</Link>
+              <Link href="/services#international">International freight</Link>
+              <Link href="/services#same-day">Same-day pickup</Link>
             </div>
             <div>
               <h5>Coverage</h5>
-              <Link href="#network">Network hubs</Link>
-              <Link href="#network">Lane map</Link>
-              <Link href="#faq">Customs &amp; duties</Link>
+              <Link href="/coverage#hubs">Network hubs</Link>
+              <Link href="/coverage#lanes">Lane map</Link>
+              <Link href="/coverage#customs">Customs &amp; duties</Link>
             </div>
             <div>
               <h5>Company</h5>
-              <Link href="#customers">Customers</Link>
-              <Link href="#">Careers</Link>
-              <Link href="mailto:hello@aurealogistics.com">Contact</Link>
+              <Link href="/#customers">Customers</Link>
+              <Link href="/careers">Careers</Link>
+              <Link href="/contact">Contact</Link>
             </div>
             <div>
               <h5>Legal</h5>
-              <Link href="#">Privacy</Link>
-              <Link href="#">Terms</Link>
-              <Link href="#">Insurance</Link>
+              <Link href="/privacy">Privacy</Link>
+              <Link href="/terms">Terms</Link>
+              <Link href="/insurance">Insurance</Link>
             </div>
           </div>
         </div>
