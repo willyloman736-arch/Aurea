@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { Moon, Truck, Sun } from "lucide-react";
 import { ScrollReveal } from "./scroll-reveal";
 
@@ -44,11 +45,14 @@ export function Overnight() {
           <ScrollReveal as="div" className="overnight-visual">
             <div className="overnight-image-frame">
               {/* Save image at: aurea/public/overnight.jpg */}
-              <img
+              <Image
                 src="/overnight.jpg"
                 alt="Aurea overnight loading bay — couriers loading parcels into a van after dark"
                 className="overnight-image"
-                loading="lazy"
+                width={1920}
+                height={1080}
+                sizes="(max-width: 900px) 100vw, 60vw"
+                priority={false}
               />
               <div className="overnight-image-stamp">
                 <span className="overnight-image-dot" />

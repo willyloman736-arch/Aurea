@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ScrollReveal } from "./scroll-reveal";
 
 const PARTNERS = [
@@ -17,11 +18,13 @@ export function TrustBadges() {
         <div className="trust-row">
           {PARTNERS.map((p) => (
             <div key={p.name} className="trust-badge">
-              <img
+              <Image
                 src={p.src}
                 alt={`${p.name} logo`}
                 className="trust-badge-img"
-                loading="lazy"
+                width={300}
+                height={120}
+                sizes="152px"
               />
             </div>
           ))}

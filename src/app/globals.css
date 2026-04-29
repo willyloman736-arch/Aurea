@@ -1944,6 +1944,7 @@ h1, h2, h3, h4 {
     font-weight: 400;
     letter-spacing: -0.025em;
     line-height: 1;
+    font-variant-numeric: tabular-nums;
     color: var(--accent);
     font-variant-numeric: tabular-nums;
     display: inline-flex;
@@ -3731,6 +3732,10 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
     white-space: nowrap;
 }
 .ship-segment:hover { color: var(--text-1); background: rgba(255, 255, 255, 0.04); }
+.ship-segment:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
 .ship-segment.is-active {
     background: rgba(217, 165, 106, 0.14);
     color: var(--accent);
@@ -3934,6 +3939,10 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
     white-space: nowrap;
 }
 .portal-filter:hover { color: var(--text-1); }
+.portal-filter:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
 .portal-filter.is-active {
     color: var(--accent);
     background: rgba(217, 165, 106, 0.12);
@@ -4415,6 +4424,10 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 .quote-service-card:hover {
     border-color: var(--hairline-2);
     transform: translateY(-1px);
+}
+.quote-service-card:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
 }
 .quote-service-card.is-active {
     border-color: rgba(217, 165, 106, 0.45);

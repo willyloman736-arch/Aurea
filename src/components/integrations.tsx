@@ -40,7 +40,7 @@ export function Integrations() {
 
         <ScrollReveal className="int-footnote">
           Aurea handles carrier differences behind a single HTTP contract. Add a new
-          shipping partner tomorrow and your code doesn't change.
+          shipping partner tomorrow and your code doesn&rsquo;t change.
         </ScrollReveal>
       </div>
     </section>

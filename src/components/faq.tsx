@@ -44,7 +44,7 @@ export function Faq() {
             Questions,<br /><em>answered.</em>
           </h2>
           <p className="section-sub">
-            Can't find what you're looking for? Ping us at{" "}
+            Can&rsquo;t find what you&rsquo;re looking for? Ping us at{" "}
             <a href="mailto:hello@aurealogistics.com">hello@aurealogistics.com</a>
             {" "}— replies within an hour during business days.
           </p>

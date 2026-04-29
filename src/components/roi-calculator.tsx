@@ -35,7 +35,7 @@ export function RoiCalculator() {
             See what <em>Aurea saves you.</em>
           </h2>
           <p className="section-sub-centered">
-            Drag the slider. We'll show you the cost vs. generic carrier APIs and
+            Drag the slider. We&rsquo;ll show you the cost vs. generic carrier APIs and
             how many support hours your team gets back.
           </p>
         </ScrollReveal>

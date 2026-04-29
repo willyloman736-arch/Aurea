@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useMemo, useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { useRouter } from "next/navigation";
 import { Search, ArrowRight } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -13,21 +13,28 @@ interface Item {
 }
 
 const ITEMS: Item[] = [
-  { group: "Navigate",  label: "Home",              hint: "Landing page",             href: "/" },
-  { group: "Navigate",  label: "Dashboard",         hint: "Operator console",         href: "/dashboard" },
-  { group: "Navigate",  label: "Pricing",           hint: "Plans and tiers",          href: "/#pricing" },
-  { group: "Navigate",  label: "Network",           hint: "Carriers + 3D globe",      href: "/#network" },
-  { group: "Navigate",  label: "For developers",    hint: "API docs + SDKs",          href: "/#developers" },
-  { group: "Navigate",  label: "Case studies",      hint: "Customer stories",         href: "/#customers" },
-  { group: "Navigate",  label: "FAQ",               hint: "Common questions",         href: "/#faq" },
-  { group: "Account",   label: "Sign in",           hint: "Access your account",      href: "/sign-in" },
-  { group: "Account",   label: "Sign up",           hint: "Create an account",        href: "/sign-up" },
-  { group: "Track",     label: "Track a shipment",  hint: "Enter a tracking number",  href: "/#track" },
-  { group: "Track",     label: "AUR-2847-JK3921",   hint: "Demo · In transit",        href: "/track/AUR-2847-JK3921" },
-  { group: "Track",     label: "AUR-9931-LM7740",   hint: "Demo · Out for delivery",  href: "/track/AUR-9931-LM7740" },
-  { group: "Dashboard", label: "New shipment",      hint: "Create a tracker",         href: "/dashboard/shipments/new" },
-  { group: "Dashboard", label: "All shipments",     hint: "List + search",            href: "/dashboard/shipments" },
-  { group: "Dashboard", label: "Settings",          hint: "Env keys + webhooks",      href: "/dashboard/settings" },
+  { group: "Navigate",  label: "Home",              hint: "Landing page",                    href: "/" },
+  { group: "Navigate",  label: "Services",          hint: "Express, freight, same-day",      href: "/services" },
+  { group: "Navigate",  label: "Network",           hint: "How custody holds end-to-end",    href: "/network" },
+  { group: "Navigate",  label: "Coverage",          hint: "Hubs, lanes, customs",            href: "/coverage" },
+  { group: "Navigate",  label: "Customers",         hint: "Case studies",                    href: "/customers" },
+  { group: "Navigate",  label: "FAQ",               hint: "Common questions",                href: "/faq" },
+  { group: "Action",    label: "Get a quote",       hint: "Live rate calculator",            href: "/quote" },
+  { group: "Action",    label: "Book a pickup",     hint: "Schedule a courier",              href: "/book" },
+  { group: "Action",    label: "File a claim",      hint: "Damaged, lost, delayed",          href: "/claims" },
+  { group: "Action",    label: "Live portal",       hint: "Real-time map + ticker",          href: "/portal" },
+  { group: "Track",     label: "AUR-2847-JK3921",   hint: "Demo · In transit",               href: "/track/AUR-2847-JK3921" },
+  { group: "Track",     label: "AUR-9931-LM7740",   hint: "Demo · Out for delivery",         href: "/track/AUR-9931-LM7740" },
+  { group: "Account",   label: "Sign in",           hint: "Access your account",             href: "/sign-in" },
+  { group: "Dashboard", label: "Dashboard home",    hint: "Operator console",                href: "/dashboard" },
+  { group: "Dashboard", label: "New shipment",      hint: "Create a tracker",                href: "/dashboard/shipments/new" },
+  { group: "Dashboard", label: "All shipments",     hint: "List + search",                   href: "/dashboard/shipments" },
+  { group: "Dashboard", label: "Settings",          hint: "Env keys + webhooks",             href: "/dashboard/settings" },
+  { group: "Company",   label: "Contact",           hint: "Email, offices, hours",           href: "/contact" },
+  { group: "Company",   label: "Careers",           hint: "Open roles in every hub",         href: "/careers" },
+  { group: "Legal",     label: "Privacy",           hint: "How we handle data",              href: "/privacy" },
+  { group: "Legal",     label: "Terms",             hint: "Terms of service",                href: "/terms" },
+  { group: "Legal",     label: "Insurance",         hint: "Cover terms",                     href: "/insurance" },
 ];
 
 export function CommandPalette() {
@@ -61,10 +68,24 @@ export function CommandPalette() {
     return () => window.removeEventListener("keydown", onKey);
   }, [open]);
 
-  // Reset selection when query/open changes
-  useEffect(() => {
+  // Reset selection during render when query/open changes. State-based
+  // prev-tracking is the React-19-blessed alternative to setState-in-effect.
+  const [prevQuery, setPrevQuery] = useState(query);
+  const [prevOpen, setPrevOpen] = useState(open);
+  if (prevQuery !== query || prevOpen !== open) {
+    setPrevQuery(query);
+    setPrevOpen(open);
     setSelected(0);
-  }, [query, open]);
+  }
+
+  const navigate = useCallback(
+    (item: Item) => {
+      router.push(item.href);
+      setOpen(false);
+      setQuery("");
+    },
+    [router],
+  );
 
   // Arrow key + Enter navigation
   useEffect(() => {
@@ -84,7 +105,7 @@ export function CommandPalette() {
     }
     window.addEventListener("keydown", onKey);
     return () => window.removeEventListener("keydown", onKey);
-  }, [open, filtered, selected]);
+  }, [open, filtered, selected, navigate]);
 
   // Lock body scroll while open
   useEffect(() => {
@@ -95,12 +116,6 @@ export function CommandPalette() {
       document.body.style.overflow = prev;
     };
   }, [open]);
-
-  function navigate(item: Item) {
-    router.push(item.href);
-    setOpen(false);
-    setQuery("");
-  }
 
   if (!open) return null;
 
