@@ -1,5 +1,4 @@
 import { TrackingForm } from "./tracking-form";
-import { HeroCubeMount } from "./hero-cube-mount";
 import { HeroArcs } from "./hero-arcs";
 
 export function Hero() {
@@ -12,7 +11,6 @@ export function Hero() {
         <div className="hero-bg-grain" />
       </div>
       <HeroArcs />
-      <HeroCubeMount />
 
       <div className="container-aurea">
         <div className="eyebrow">
