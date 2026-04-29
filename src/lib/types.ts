@@ -1,5 +1,6 @@
 export type ShipmentStatus =
-  | "Label created"
+  | "Pending"
+  | "Picked up"
   | "In Transit"
   | "Out for delivery"
   | "Delivered"
@@ -19,6 +20,12 @@ export interface ShipmentLocation {
   addr: string;
 }
 
+export interface ShipmentParty {
+  name?: string;
+  email?: string;
+  phone?: string;
+}
+
 export interface Shipment {
   id: string;
   status: ShipmentStatus;
@@ -32,6 +39,10 @@ export interface Shipment {
   etaWindow: string;
   progress: ShipmentProgress;
   events: ShipmentEvent[];
+  // Model A — manual courier mode
+  sender?: ShipmentParty;
+  receiver?: ShipmentParty;
+  packageDescription?: string;
 }
 
 export const STEP_LABELS = [

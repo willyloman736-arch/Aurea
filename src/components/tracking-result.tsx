@@ -34,6 +34,9 @@ export function TrackingResult({ shipment }: { shipment: Shipment }) {
             <div className="route-point">
               <small>From</small>
               <div className="city">{shipment.origin.city}</div>
+              {shipment.sender?.name && (
+                <div className="route-party">{shipment.sender.name}</div>
+              )}
               <div className="addr">{shipment.origin.addr}</div>
             </div>
             <div className="route-arrow">
@@ -42,6 +45,9 @@ export function TrackingResult({ shipment }: { shipment: Shipment }) {
             <div className="route-point" style={{ textAlign: "right" }}>
               <small>To</small>
               <div className="city">{shipment.destination.city}</div>
+              {shipment.receiver?.name && (
+                <div className="route-party">{shipment.receiver.name}</div>
+              )}
               <div className="addr">{shipment.destination.addr}</div>
             </div>
           </div>
@@ -84,6 +90,12 @@ export function TrackingResult({ shipment }: { shipment: Shipment }) {
               </div>
               <div className="side-card" style={{ marginTop: 14 }}>
                 <h4>Shipment details</h4>
+                {shipment.packageDescription && (
+                  <div className="side-row">
+                    <span>Contents</span>
+                    <span>{shipment.packageDescription}</span>
+                  </div>
+                )}
                 <div className="side-row"><span>Service</span><span>{shipment.service}</span></div>
                 <div className="side-row"><span>Pieces</span><span>{shipment.pieces}</span></div>
                 <div className="side-row"><span>Weight</span><span>{shipment.weight}</span></div>

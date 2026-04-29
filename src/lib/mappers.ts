@@ -14,7 +14,7 @@ const STATUS_TO_PROGRESS: Record<ShippoTrackingStatus["status"], ShipmentProgres
 /** Shippo status → our display label. */
 const STATUS_TO_LABEL: Record<ShippoTrackingStatus["status"], ShipmentStatus> = {
   UNKNOWN: "In Transit",
-  PRE_TRANSIT: "Label created",
+  PRE_TRANSIT: "Pending",
   TRANSIT: "In Transit",
   DELIVERED: "Delivered",
   RETURNED: "Exception",

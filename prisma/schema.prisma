@@ -31,6 +31,22 @@ model Shipment {
     etaWindow    String?
     progress     Int      @default(1)
 
+    // Sender contact (Model A — manual courier mode)
+    senderName    String?
+    senderEmail   String?
+    senderPhone   String?
+
+    // Receiver contact (Model A)
+    receiverName  String?
+    receiverEmail String?
+    receiverPhone String?
+
+    // Package + ops
+    packageDescription String?
+    declaredValue      String?
+    dispatchLocation   String?
+    internalNotes      String?
+
     events       TrackingEvent[]
 
     // Ownership — Clerk user ID (wired in Phase 3)

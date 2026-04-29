@@ -76,6 +76,13 @@ type DbShipmentWithEvents = {
   etaDate: string | null;
   etaWindow: string | null;
   progress: number;
+  senderName: string | null;
+  senderEmail: string | null;
+  senderPhone: string | null;
+  receiverName: string | null;
+  receiverEmail: string | null;
+  receiverPhone: string | null;
+  packageDescription: string | null;
   events: Array<{
     time: Date;
     title: string;
@@ -104,6 +111,21 @@ function dbToShipment(s: DbShipmentWithEvents): Shipment {
     etaDate: s.etaDate ?? "Pending",
     etaWindow: s.etaWindow ?? "—",
     progress: Math.max(1, Math.min(4, s.progress)) as 1 | 2 | 3 | 4,
+    sender: s.senderName
+      ? {
+          name: s.senderName,
+          email: s.senderEmail ?? undefined,
+          phone: s.senderPhone ?? undefined,
+        }
+      : undefined,
+    receiver: s.receiverName
+      ? {
+          name: s.receiverName,
+          email: s.receiverEmail ?? undefined,
+          phone: s.receiverPhone ?? undefined,
+        }
+      : undefined,
+    packageDescription: s.packageDescription ?? undefined,
     events: s.events.map((ev, i) => ({
       time: ev.time.toLocaleString("en-US", {
         month: "short",

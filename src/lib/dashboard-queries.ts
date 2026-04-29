@@ -51,6 +51,8 @@ export async function getShipments(limit = 50, search?: string): Promise<Dashboa
               { carrier: { contains: search, mode: "insensitive" } },
               { originCity: { contains: search, mode: "insensitive" } },
               { destCity: { contains: search, mode: "insensitive" } },
+              { senderName: { contains: search, mode: "insensitive" } },
+              { receiverName: { contains: search, mode: "insensitive" } },
             ],
           }
         : undefined,
