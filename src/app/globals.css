@@ -5969,6 +5969,114 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 }
 
 /* =========================================================
+   SIGN-IN — premium login card centered on a soft navy gradient
+   ========================================================= */
+.signin-shell {
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 32px 20px;
+    background:
+        radial-gradient(ellipse at top, rgba(26, 68, 128, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, rgba(113, 186, 229, 0.06) 0%, transparent 50%),
+        linear-gradient(180deg, #f4f6fa 0%, #ffffff 100%);
+    position: relative;
+}
+.signin-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 28px;
+    text-decoration: none;
+    color: var(--text-1);
+    font-weight: 700;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+}
+.signin-brand .brand-mark {
+    color: var(--accent);
+    font-size: 20px;
+}
+
+.signin-card {
+    width: 100%;
+    max-width: 420px;
+    padding: 36px 36px 28px;
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85));
+    border: 1px solid var(--hairline-2);
+    border-radius: var(--r-lg);
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.8) inset,
+        0 24px 48px rgba(10, 30, 60, 0.10),
+        0 0 0 1px rgba(26, 68, 128, 0.04);
+}
+
+.signin-head {
+    margin-bottom: 24px;
+}
+.signin-head .eyebrow-inline {
+    margin-bottom: 12px;
+}
+.signin-title {
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    color: var(--text-1);
+    margin: 4px 0 8px;
+}
+.signin-title em {
+    color: var(--accent);
+    font-style: normal;
+    font-weight: 700;
+}
+.signin-sub {
+    font-size: 14px;
+    color: var(--text-3);
+    line-height: 1.55;
+}
+
+.signin-form { display: grid; gap: 14px; }
+.signin-form .ship-field { margin-bottom: 0; }
+.signin-submit {
+    width: 100%;
+    margin-top: 8px;
+    padding: 13px 22px;
+    font-size: 14px;
+    gap: 8px;
+}
+
+.signin-foot {
+    margin-top: 22px;
+    padding-top: 18px;
+    border-top: 1px solid var(--hairline);
+    display: flex;
+    justify-content: center;
+    gap: 6px;
+    font-size: 12.5px;
+    color: var(--text-3);
+}
+.signin-foot a {
+    color: var(--accent);
+    text-decoration: none;
+    font-weight: 500;
+}
+.signin-foot a:hover {
+    color: var(--accent-2);
+}
+
+@media (max-width: 480px) {
+    .signin-card { padding: 28px 22px 22px; }
+    .signin-title { font-size: 22px; }
+}
+
+/* =========================================================
    HERO BG SLIDER — full-bleed cycling images BEHIND the hero
    text. Replaces the old hero-arcs decorative SVG. Simpler
    than the standalone hero-slider — no dots, no progress bar.

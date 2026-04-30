@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useTransition } from "react";
 import {
   LayoutDashboard,
   Package,
@@ -12,6 +13,7 @@ import {
   Activity,
 } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { signOutAction } from "@/app/sign-in/actions";
 
 const PRIMARY_NAV = [
   { href: "/dashboard", label: "Overview", icon: LayoutDashboard, exact: true },
@@ -27,10 +29,17 @@ const SECONDARY_NAV = [
 
 export function Sidebar() {
   const pathname = usePathname();
+  const [pending, start] = useTransition();
 
   function isActive(href: string, exact?: boolean) {
     if (exact) return pathname === href;
     return pathname === href || pathname.startsWith(href + "/");
+  }
+
+  function handleSignOut() {
+    start(async () => {
+      await signOutAction();
+    });
   }
 
   return (
@@ -75,7 +84,13 @@ export function Sidebar() {
           <div className="dash-profile-name">Admin</div>
           <div className="dash-profile-email">ops@aurea.example</div>
         </div>
-        <button className="dash-icon-btn" title="Sign out" aria-label="Sign out">
+        <button
+          className="dash-icon-btn"
+          title="Sign out"
+          aria-label="Sign out"
+          onClick={handleSignOut}
+          disabled={pending}
+        >
           <LogOut size={14} strokeWidth={1.5} />
         </button>
       </div>
