@@ -1,8 +1,9 @@
 import Link from "next/link";
-import { ArrowRight, Download, Share2 } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import type { Shipment } from "@/lib/types";
 import { STEP_LABELS } from "@/lib/types";
 import { TrackMap } from "./track-map";
+import { TrackingActions } from "./tracking-actions";
 
 export function TrackingResult({ shipment }: { shipment: Shipment }) {
   const pct = ((shipment.progress - 1) / (STEP_LABELS.length - 1)) * 100;
@@ -21,14 +22,10 @@ export function TrackingResult({ shipment }: { shipment: Shipment }) {
                 <span className="status-badge">{shipment.status}</span>
               </h2>
             </div>
-            <div className="result-actions">
-              <button className="btn-ghost">
-                <Share2 size={14} /> Share
-              </button>
-              <button className="btn-ghost">
-                <Download size={14} /> Download PDF
-              </button>
-            </div>
+            <TrackingActions
+              trackingCode={shipment.id}
+              status={shipment.status}
+            />
           </div>
 
           <TrackMap
