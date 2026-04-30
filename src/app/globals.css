@@ -6043,94 +6043,44 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
     border-radius: var(--r-lg) var(--r-lg) 0 0;
 }
 
-/* OFFICIAL STAMP — generated at receipt issue, today's date inside */
+/* OFFICIAL STAMP — SVG with curved text on real arcs.
+   Positioned bottom-right over the footer area where it overlaps only
+   decorative space, not critical info. Rotated -8° for hand-stamped feel. */
 .rcpt-stamp {
     position: absolute;
-    top: 76px;
-    right: 48px;
-    width: 138px;
-    height: 138px;
+    bottom: 32px;
+    right: 36px;
+    width: 150px;
+    height: 150px;
     pointer-events: none;
     z-index: 5;
-    transform: rotate(-9deg);
-    /* Slight ink-bleed feel — softens the otherwise crisp CSS */
-    opacity: 0.78;
-    filter: contrast(1.05);
+    transform: rotate(-8deg);
+    /* Ink-bleed: slight blur + opacity for authentic rubber-stamp feel */
+    opacity: 0.82;
+    filter: contrast(1.08);
 }
-.rcpt-stamp-inner {
+.rcpt-stamp svg {
     width: 100%;
     height: 100%;
-    border: 3px solid #1a4480;
-    border-radius: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    color: #1a4480;
-    position: relative;
-    background:
-        radial-gradient(circle at 30% 30%, rgba(26, 68, 128, 0.04), transparent 60%);
-}
-.rcpt-stamp-inner::before {
-    content: "";
-    position: absolute;
-    inset: 5px;
-    border: 1px solid #1a4480;
-    border-radius: 50%;
-    pointer-events: none;
-}
-.rcpt-stamp-arc-top,
-.rcpt-stamp-arc-bottom {
-    font-size: 7.5px;
-    font-weight: 700;
-    letter-spacing: 0.30em;
-    color: inherit;
-    text-transform: uppercase;
-    /* Approximate "curved" feel by spacing widely; pure CSS without SVG */
-}
-.rcpt-stamp-arc-top { margin-bottom: 6px; }
-.rcpt-stamp-arc-bottom { margin-top: 6px; }
-.rcpt-stamp-date {
-    font-family: ui-monospace, "SF Mono", Consolas, monospace;
-    font-size: 13px;
-    font-weight: 800;
-    letter-spacing: 0.06em;
-    color: inherit;
-    border-top: 1.5px solid currentColor;
-    border-bottom: 1.5px solid currentColor;
-    padding: 4px 14px;
-    margin: 4px 0 2px;
-    white-space: nowrap;
-}
-.rcpt-stamp-label {
-    font-size: 10px;
-    font-weight: 800;
-    letter-spacing: 0.16em;
-    color: inherit;
-    text-transform: uppercase;
-    margin-bottom: 2px;
+    overflow: visible;
 }
 
 @media (max-width: 720px) {
     .rcpt-stamp {
-        width: 110px;
-        height: 110px;
-        top: auto;
-        bottom: 32px;
-        right: 22px;
+        width: 120px;
+        height: 120px;
+        bottom: 24px;
+        right: 18px;
     }
-    .rcpt-stamp-date { font-size: 11px; padding: 3px 10px; }
-    .rcpt-stamp-arc-top, .rcpt-stamp-arc-bottom { font-size: 7px; letter-spacing: 0.22em; }
-    .rcpt-stamp-label { font-size: 9px; }
 }
 
 @media print {
     .rcpt-stamp {
-        opacity: 0.85 !important;
-        /* Force the navy stamp ink to print regardless of "background graphics" toggle */
+        opacity: 0.88 !important;
         -webkit-print-color-adjust: exact !important;
         print-color-adjust: exact !important;
     }
+    .rcpt-stamp svg { color-adjust: exact; }
 }
 
 /* HEADER */

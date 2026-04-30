@@ -60,14 +60,121 @@ export default async function ShipmentReceiptPage({
       />
 
       <article className="rcpt-doc">
-        {/* STAMP — generated at receipt issue */}
+        {/* OFFICIAL STAMP — SVG with proper curved text along arcs */}
         <div className="rcpt-stamp" aria-hidden="true">
-          <div className="rcpt-stamp-inner">
-            <div className="rcpt-stamp-arc-top">AUREA · LOGISTICS</div>
-            <div className="rcpt-stamp-date">{today}</div>
-            <div className="rcpt-stamp-label">RECEIVED</div>
-            <div className="rcpt-stamp-arc-bottom">OFFICIAL DOCUMENT</div>
-          </div>
+          <svg viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              {/* Top arc — text reads from left to right, arching upward */}
+              <path
+                id="rcpt-stamp-top-arc"
+                d="M 28 100 A 72 72 0 0 1 172 100"
+                fill="none"
+              />
+              {/* Bottom arc — drawn right→left so text reads upright */}
+              <path
+                id="rcpt-stamp-bottom-arc"
+                d="M 172 100 A 72 72 0 0 1 28 100"
+                fill="none"
+              />
+            </defs>
+
+            {/* Outer ring */}
+            <circle
+              cx="100"
+              cy="100"
+              r="92"
+              fill="none"
+              stroke="#1a4480"
+              strokeWidth="3.5"
+            />
+            {/* Inner ring */}
+            <circle
+              cx="100"
+              cy="100"
+              r="84"
+              fill="none"
+              stroke="#1a4480"
+              strokeWidth="1"
+            />
+
+            {/* Top curved text */}
+            <text
+              fontFamily="var(--font-public-sans), sans-serif"
+              fontSize="11"
+              fontWeight="800"
+              letterSpacing="2.4"
+              fill="#1a4480"
+            >
+              <textPath
+                href="#rcpt-stamp-top-arc"
+                startOffset="50%"
+                textAnchor="middle"
+              >
+                ★ AUREA LOGISTICS ★
+              </textPath>
+            </text>
+
+            {/* Bottom curved text (the path reverses so it reads upright) */}
+            <text
+              fontFamily="var(--font-public-sans), sans-serif"
+              fontSize="9.5"
+              fontWeight="700"
+              letterSpacing="2.2"
+              fill="#1a4480"
+            >
+              <textPath
+                href="#rcpt-stamp-bottom-arc"
+                startOffset="50%"
+                textAnchor="middle"
+              >
+                OFFICIAL · DOCUMENT
+              </textPath>
+            </text>
+
+            {/* Centre — horizontal rule + RECEIVED + date + horizontal rule */}
+            <line
+              x1="48"
+              y1="78"
+              x2="152"
+              y2="78"
+              stroke="#1a4480"
+              strokeWidth="1"
+            />
+            <line
+              x1="48"
+              y1="124"
+              x2="152"
+              y2="124"
+              stroke="#1a4480"
+              strokeWidth="1"
+            />
+
+            <text
+              x="100"
+              y="94"
+              textAnchor="middle"
+              fontFamily="var(--font-public-sans), sans-serif"
+              fontSize="11"
+              fontWeight="800"
+              letterSpacing="2"
+              fill="#1a4480"
+            >
+              RECEIVED
+            </text>
+
+            <text
+              x="100"
+              y="115"
+              textAnchor="middle"
+              fontFamily='ui-monospace, "SF Mono", Consolas, monospace'
+              fontSize="14"
+              fontWeight="800"
+              letterSpacing="1.4"
+              fill="#1a4480"
+            >
+              {today}
+            </text>
+          </svg>
         </div>
 
         {/* HEADER */}
