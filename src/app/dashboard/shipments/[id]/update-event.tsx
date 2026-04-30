@@ -11,6 +11,7 @@ const PRESET_TITLES: Record<ShipmentStatus, string> = {
   "Picked up": "Picked up by courier",
   "In Transit": "In transit",
   "Out for delivery": "Out for delivery",
+  "On hold": "On hold — awaiting action",
   Delivered: "Delivered to recipient",
   Exception: "Exception — action required",
 };

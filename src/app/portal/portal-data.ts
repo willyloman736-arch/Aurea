@@ -18,6 +18,7 @@ export interface ActiveShipment {
     | "Picked up"
     | "In Transit"
     | "Out for delivery"
+    | "On hold"
     | "Delivered"
     | "Exception";
   pieces: number;

@@ -21,6 +21,7 @@ const STATUS_DOT_COLOR: Record<PortalEvent["status"], string> = {
   "Picked up": "#a8c4e0",
   "In Transit": "#d9a56a",
   "Out for delivery": "#f5d4a5",
+  "On hold": "#b3a8c4",
   Delivered: "#9ae0b8",
   Exception: "#e08a7a",
 };

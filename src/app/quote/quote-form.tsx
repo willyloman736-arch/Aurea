@@ -34,7 +34,14 @@ export function QuoteForm() {
     `&to=${encodeURIComponent(destName)}` +
     `&weight=${encodeURIComponent(weight)}` +
     `&pieces=${encodeURIComponent(pieces)}` +
-    `&service=${encodeURIComponent(service)}`;
+    `&service=${encodeURIComponent(service)}` +
+    `&total=${result.total.toFixed(2)}` +
+    `&base=${result.base.toFixed(2)}` +
+    `&weightFee=${result.weight.toFixed(2)}` +
+    `&serviceFee=${result.service.toFixed(2)}` +
+    `&etaMin=${result.etaMin}` +
+    `&etaMax=${result.etaMax}` +
+    `&zoneLabel=${encodeURIComponent(result.zoneLabel)}`;
 
   return (
     <div className="ship-form">

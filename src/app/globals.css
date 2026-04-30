@@ -4402,6 +4402,11 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
     background: rgba(245, 212, 165, 0.08);
     border-color: rgba(245, 212, 165, 0.28);
 }
+.portal-pill-hold {
+    color: #b3a8c4;
+    background: rgba(179, 168, 196, 0.08);
+    border-color: rgba(179, 168, 196, 0.28);
+}
 .portal-pill-delivered {
     color: #9ae0b8;
     background: rgba(154, 224, 184, 0.08);
@@ -5845,4 +5850,87 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
     .portal-ships,
     .live-events-list,
     .dash-table-wrap { overflow-x: auto; }
+}
+
+/* =========================================================
+   MOBILE FIX-UP — final overrides for grids that came AFTER
+   their first @media block in source order. Earlier mobile
+   rules lost the cascade because base rules came later.
+   These !important overrides win because they're last.
+   ========================================================= */
+@media (max-width: 720px) {
+    /* Case studies — was 3-col, must collapse to 1 col */
+    .cs-grid {
+        grid-template-columns: 1fr !important;
+        gap: 14px !important;
+    }
+    .cs-card { min-width: 0 !important; }
+
+    /* Network feature list */
+    .feature-list { grid-template-columns: 1fr !important; }
+
+    /* Pricing / FAQ / Dev / ROI / Reach grids */
+    .pricing-grid { grid-template-columns: 1fr !important; }
+    .int-grid { grid-template-columns: repeat(2, 1fr) !important; }
+    .faq-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .dev-grid { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .roi-grid { grid-template-columns: 1fr !important; }
+    .reach-grid { grid-template-columns: 1fr !important; gap: 40px !important; }
+    .how-connector { display: none !important; }
+
+    /* Footer */
+    .footer-top { grid-template-columns: 1fr !important; gap: 32px !important; }
+    .footer-cols { grid-template-columns: 1fr 1fr !important; }
+
+    /* Track result */
+    .result-details { grid-template-columns: 1fr !important; }
+    .result-route { grid-template-columns: 1fr !important; text-align: left !important; }
+    .progress-steps { flex-wrap: wrap !important; gap: 6px !important; }
+
+    /* Globe wrap */
+    .globe-wrap { max-width: 360px !important; }
+
+    /* ===== Dashboard preview — show simplified mobile shape =====
+       Marketing illustration, not actual dashboard. We keep the
+       browser chrome + stats cards, hide the full table since it
+       won't fit, and float the toast inline. */
+    .dash-preview {
+        transform: none !important;
+        margin-top: 32px !important;
+        max-width: 100%;
+        overflow: hidden;
+    }
+    .dp-body {
+        grid-template-columns: 1fr !important;
+        min-height: auto !important;
+    }
+    .dp-side { display: none !important; }
+    .dp-main { padding: 16px !important; min-width: 0 !important; }
+    .dp-header { flex-direction: column !important; align-items: flex-start !important; gap: 8px !important; }
+    .dp-stats {
+        grid-template-columns: 1fr 1fr !important;
+        gap: 10px !important;
+    }
+    .dp-stat { padding: 12px 14px !important; min-width: 0 !important; }
+    .dp-stat-num { font-size: 22px !important; }
+    .dp-table { display: none !important; } /* preview-only — too wide for mobile */
+    .dp-toast {
+        position: static !important;
+        margin-top: 14px !important;
+        width: 100% !important;
+        max-width: 100% !important;
+        box-sizing: border-box !important;
+    }
+
+    /* Trust badges — already correct in main mobile block, reinforce */
+    .trust-row { gap: 10px !important; }
+
+    /* Defensive: any direct child of container should never overflow */
+    .container-aurea > * { min-width: 0; }
+}
+
+@media (max-width: 480px) {
+    .cs-grid { gap: 12px !important; }
+    .dp-stats { grid-template-columns: 1fr !important; }
+    .footer-cols { grid-template-columns: 1fr !important; }
 }

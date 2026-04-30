@@ -19,6 +19,7 @@ const FILTERS: Array<{
   { id: "Picked up", label: "Picked up" },
   { id: "In Transit", label: "In transit" },
   { id: "Out for delivery", label: "Out for delivery" },
+  { id: "On hold", label: "On hold" },
   { id: "Delivered", label: "Delivered" },
   { id: "Exception", label: "Exception" },
 ];
@@ -27,6 +28,7 @@ const STATUS_BADGE: Record<ActiveShipment["status"], string> = {
   "Picked up": "portal-pill portal-pill-picked",
   "In Transit": "portal-pill portal-pill-transit",
   "Out for delivery": "portal-pill portal-pill-out",
+  "On hold": "portal-pill portal-pill-hold",
   Delivered: "portal-pill portal-pill-delivered",
   Exception: "portal-pill portal-pill-exception",
 };

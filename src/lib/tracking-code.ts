@@ -17,6 +17,7 @@ export const STATUS_OPTIONS: ShipmentStatus[] = [
   "Picked up",
   "In Transit",
   "Out for delivery",
+  "On hold",
   "Delivered",
   "Exception",
 ];
@@ -27,6 +28,8 @@ export function statusToProgress(status: ShipmentStatus): ShipmentProgress {
     case "Picked up":
       return 1;
     case "In Transit":
+      return 2;
+    case "On hold":
       return 2;
     case "Out for delivery":
       return 3;

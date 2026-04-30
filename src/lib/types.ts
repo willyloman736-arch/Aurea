@@ -3,6 +3,7 @@ export type ShipmentStatus =
   | "Picked up"
   | "In Transit"
   | "Out for delivery"
+  | "On hold"
   | "Delivered"
   | "Exception";
 
