@@ -5975,6 +5975,170 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 }
 
 /* =========================================================
+   TRACK MAP — public /track/[id] location visualization
+   ========================================================= */
+.track-map {
+    margin: 0 0 32px;
+    display: grid;
+    gap: 14px;
+}
+.track-map-frame {
+    position: relative;
+    aspect-ratio: 16 / 8;
+    width: 100%;
+    background:
+        radial-gradient(ellipse at center, rgba(26, 68, 128, 0.04), transparent 70%),
+        linear-gradient(180deg, #f8fafc 0%, #f0f3f7 100%);
+    border: 1px solid var(--hairline-2);
+    border-radius: var(--r-lg);
+    overflow: hidden;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.6) inset,
+        0 14px 28px rgba(10, 30, 60, 0.10);
+}
+.track-map-svg { width: 100%; height: 100%; display: block; }
+
+/* Legend along the bottom of the frame */
+.track-map-legend {
+    position: absolute;
+    bottom: 14px;
+    left: 14px;
+    right: 14px;
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    padding: 10px 14px;
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(14px) saturate(160%);
+    -webkit-backdrop-filter: blur(14px) saturate(160%);
+    border: 1px solid var(--hairline);
+    border-radius: var(--r-md);
+    box-shadow: 0 6px 18px rgba(10, 30, 60, 0.10);
+}
+.track-map-leg {
+    flex: 1;
+    min-width: 0;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto auto;
+    align-items: center;
+    column-gap: 8px;
+}
+.track-map-leg small {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 9.5px;
+    font-weight: 500;
+    letter-spacing: 0.10em;
+    text-transform: uppercase;
+    color: var(--text-3);
+}
+.track-map-leg strong {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-1);
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+.track-map-leg-dot {
+    grid-row: 1 / span 2;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    align-self: center;
+}
+.track-map-leg-dot[data-kind="origin"] {
+    background: #1a4480;
+    box-shadow: 0 0 0 2px rgba(26, 68, 128, 0.16);
+}
+.track-map-leg-dot[data-kind="dest"] {
+    background: #fff;
+    border: 1.5px solid #1a4480;
+}
+.track-map-leg-current {
+    flex: 1.4;
+    border-left: 1px solid var(--hairline);
+    border-right: 1px solid var(--hairline);
+    padding: 0 12px;
+    margin: 0 4px;
+}
+
+/* Progress bar + label below the frame */
+.track-map-meta {
+    display: grid;
+    gap: 8px;
+}
+.track-map-meta-bar {
+    height: 4px;
+    background: rgba(10, 30, 60, 0.06);
+    border-radius: 2px;
+    overflow: hidden;
+}
+.track-map-meta-fill {
+    height: 100%;
+    border-radius: 2px;
+    transition: width 0.6s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+.track-map-meta-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 12px;
+    color: var(--text-3);
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+}
+.track-map-meta-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+.track-map-meta-label svg { color: var(--accent); }
+.track-map-meta-percent {
+    font-weight: 600;
+    color: var(--text-2);
+    font-feature-settings: "tnum";
+}
+
+/* Empty/no-location hint */
+.track-map-hint {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 14px;
+    font-size: 12.5px;
+    color: var(--text-3);
+    background: rgba(26, 68, 128, 0.04);
+    border: 1px solid rgba(26, 68, 128, 0.10);
+    border-radius: var(--r-md);
+}
+.track-map-hint svg { color: var(--accent); flex-shrink: 0; }
+
+@media (max-width: 720px) {
+    .track-map-frame { aspect-ratio: 4 / 3.2; }
+    .track-map-legend {
+        flex-direction: column;
+        gap: 6px;
+        padding: 10px 12px;
+        bottom: 10px;
+        left: 10px;
+        right: 10px;
+    }
+    .track-map-leg-current {
+        border-left: none;
+        border-right: none;
+        border-top: 1px solid var(--hairline);
+        border-bottom: 1px solid var(--hairline);
+        padding: 6px 0;
+        margin: 0;
+    }
+}
+
+/* =========================================================
    .aurea-dark — DARK SCOPE for /dashboard/* and /sign-in
    Marketing site stays USPS light. Dashboard + admin login
    flip to dark navy so glassmorphism reads premium.

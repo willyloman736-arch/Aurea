@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, Download, Share2 } from "lucide-react";
 import type { Shipment } from "@/lib/types";
 import { STEP_LABELS } from "@/lib/types";
+import { TrackMap } from "./track-map";
 
 export function TrackingResult({ shipment }: { shipment: Shipment }) {
   const pct = ((shipment.progress - 1) / (STEP_LABELS.length - 1)) * 100;
@@ -29,6 +30,16 @@ export function TrackingResult({ shipment }: { shipment: Shipment }) {
               </button>
             </div>
           </div>
+
+          <TrackMap
+            origin={shipment.origin}
+            destination={shipment.destination}
+            currentLoc={shipment.events[0]?.loc}
+            status={shipment.status}
+            progressFraction={
+              (shipment.progress - 1) / (STEP_LABELS.length - 1)
+            }
+          />
 
           <div className="result-route">
             <div className="route-point">
