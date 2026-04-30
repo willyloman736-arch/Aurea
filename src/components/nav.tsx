@@ -36,16 +36,15 @@ export function Nav() {
   return (
     <header className="nav">
       <div className="nav-inner">
-        <Link href="/" className="brand" onClick={close}>
+        <Link href="/" className="brand" onClick={close} aria-label="Aurea — home">
           <Image
             src="/logo.svg"
             alt="Aurea"
-            width={28}
-            height={28}
+            width={32}
+            height={32}
             className="brand-mark brand-mark-img"
             priority
           />
-          <span className="brand-text">Aurea</span>
         </Link>
 
         <nav className="nav-links" aria-label="Primary">

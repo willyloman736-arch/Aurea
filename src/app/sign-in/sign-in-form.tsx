@@ -27,16 +27,15 @@ export function SignInForm() {
 
   return (
     <main className="signin-shell aurea-dark">
-      <Link href="/" className="signin-brand">
+      <Link href="/" className="signin-brand" aria-label="Aurea — home">
         <Image
           src="/logo.svg"
           alt="Aurea"
-          width={36}
-          height={36}
+          width={48}
+          height={48}
           className="brand-mark brand-mark-img"
           priority
         />
-        <span className="brand-text">Aurea</span>
       </Link>
 
       <div className="signin-card">

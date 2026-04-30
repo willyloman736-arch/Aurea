@@ -45,15 +45,14 @@ export function Sidebar() {
 
   return (
     <aside className="dash-sidebar">
-      <Link href="/" className="dash-brand">
+      <Link href="/" className="dash-brand" aria-label="Aurea — home">
         <Image
           src="/logo.svg"
           alt="Aurea"
-          width={28}
-          height={28}
+          width={32}
+          height={32}
           className="brand-mark brand-mark-img"
         />
-        <span className="brand-text">Aurea</span>
         <span className="dash-brand-env">admin</span>
       </Link>
 

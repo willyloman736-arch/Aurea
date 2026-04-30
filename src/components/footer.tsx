@@ -14,15 +14,14 @@ export function Footer() {
     <footer className="footer-wrap" id="support">
       <div className="container-aurea footer-inner">
         <div className="footer-top">
-          <Link href="/" className="brand">
+          <Link href="/" className="brand" aria-label="Aurea — home">
             <Image
               src="/logo.svg"
               alt="Aurea"
-              width={32}
-              height={32}
+              width={40}
+              height={40}
               className="brand-mark brand-mark-img"
             />
-            <span className="brand-text">Aurea</span>
           </Link>
           <div className="footer-cols">
             <div>
