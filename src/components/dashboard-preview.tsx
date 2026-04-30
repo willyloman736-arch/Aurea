@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { ScrollReveal } from "./scroll-reveal";
 
 export function DashboardPreview() {
@@ -32,7 +33,15 @@ export function DashboardPreview() {
           <div className="dp-body">
             {/* Sidebar */}
             <aside className="dp-side">
-              <div className="dp-side-brand">◈ Aurea</div>
+              <div className="dp-side-brand">
+                <Image
+                  src="/logo.svg"
+                  alt=""
+                  width={22}
+                  height={22}
+                  className="dp-side-brand-mark"
+                />
+              </div>
               <div className="dp-side-nav">
                 <div className="dp-side-item active">Overview</div>
                 <div className="dp-side-item">Shipments</div>

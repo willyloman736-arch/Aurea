@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import {
   AlertCircle,
@@ -140,7 +141,13 @@ export function BookForm() {
                 </div>
               </div>
               <div className="receipt-brand">
-                <span className="receipt-brand-mark">◈</span>
+                <Image
+                  src="/logo.svg"
+                  alt=""
+                  width={22}
+                  height={22}
+                  className="receipt-brand-mark-img"
+                />
                 <span>Aurea Logistics</span>
               </div>
             </div>

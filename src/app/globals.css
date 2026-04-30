@@ -291,10 +291,16 @@ h1, h2, h3, h4 {
 .brand-mark { color: var(--accent); font-size: 18px; }
 .brand-mark-img {
     display: block;
-    width: auto;
-    height: auto;
     flex-shrink: 0;
+    object-fit: contain;
 }
+.dp-side-brand-mark,
+.receipt-brand-mark-img {
+    display: block;
+    flex-shrink: 0;
+    object-fit: contain;
+}
+.dp-side-brand { padding: 0 10px; }
 .nav-links { display: flex; gap: 2px; }
 .nav-links a {
     padding: 8px 14px;
