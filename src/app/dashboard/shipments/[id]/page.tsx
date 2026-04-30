@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { ArrowLeft, ArrowRight, ExternalLink, User } from "lucide-react";
+import { ArrowLeft, ArrowRight, ExternalLink, FileText, User } from "lucide-react";
 import { DashHeader } from "@/components/dashboard/header";
 import { StatusPill } from "@/components/dashboard/status-pill";
 import { getShipmentById } from "@/lib/dashboard-queries";
@@ -33,6 +33,13 @@ export default async function ShipmentDetailPage({
           <>
             <Link href="/dashboard/shipments" className="btn-ghost btn-sm">
               <ArrowLeft size={13} strokeWidth={1.5} /> Back
+            </Link>
+            <Link
+              href={`/receipt/${shipment.id}`}
+              className="btn-ghost btn-sm"
+              target="_blank"
+            >
+              <FileText size={13} strokeWidth={1.5} /> Print receipt
             </Link>
             <Link
               href={`/track/${shipment.trackingCode}`}
