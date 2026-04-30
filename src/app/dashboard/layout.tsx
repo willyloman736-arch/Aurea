@@ -14,7 +14,7 @@ export default function DashboardLayout({
 }) {
   const isDemo = !hasDatabase();
   return (
-    <div className="dash-shell">
+    <div className="dash-shell aurea-dark">
       <Sidebar />
       <div className="dash-main">
         {isDemo && (

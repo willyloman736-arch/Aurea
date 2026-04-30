@@ -26,7 +26,7 @@ export function SignInForm() {
   }
 
   return (
-    <main className="signin-shell">
+    <main className="signin-shell aurea-dark">
       <Link href="/" className="signin-brand">
         <Image
           src="/logo.svg"

@@ -5975,6 +5975,284 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 }
 
 /* =========================================================
+   .aurea-dark — DARK SCOPE for /dashboard/* and /sign-in
+   Marketing site stays USPS light. Dashboard + admin login
+   flip to dark navy so glassmorphism reads premium.
+   ========================================================= */
+.aurea-dark {
+    /* Token flip — dark navy bg, white text, brighter blue accent */
+    --bg:          #0a0e15;
+    --bg-2:        #0f1420;
+    --surface:     #131b2c;
+    --hairline:    rgba(255, 255, 255, 0.08);
+    --hairline-2:  rgba(255, 255, 255, 0.16);
+    --text-1:      #ffffff;
+    --text-2:      rgba(255, 255, 255, 0.72);
+    --text-3:      rgba(255, 255, 255, 0.50);
+    --text-4:      rgba(255, 255, 255, 0.30);
+    --accent:      #71bae5;
+    --accent-2:    #2079d5;
+    --accent-soft: rgba(113, 186, 229, 0.10);
+    --accent-hover:#a3d4f5;
+
+    background: var(--bg);
+    color: var(--text-1);
+    min-height: 100vh;
+    min-height: 100dvh;
+}
+
+/* Dashboard surfaces — flip the inverted glass pattern back to
+   "low-opacity white over dark" so cards float as proper frosted glass */
+.aurea-dark .dash-shell { background: var(--bg); }
+.aurea-dark .dash-sidebar {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)) !important;
+    border-right: 1px solid var(--hairline) !important;
+}
+.aurea-dark .dash-header {
+    background: rgba(10, 14, 21, 0.78) !important;
+    border-bottom: 1px solid var(--hairline) !important;
+    backdrop-filter: blur(20px) saturate(170%);
+    -webkit-backdrop-filter: blur(20px) saturate(170%);
+}
+.aurea-dark .dash-search {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-color: var(--hairline) !important;
+    color: var(--text-1) !important;
+}
+.aurea-dark .dash-search input { color: var(--text-1); }
+.aurea-dark .dash-search input::placeholder { color: var(--text-3); }
+.aurea-dark .dash-search-kbd {
+    background: rgba(255, 255, 255, 0.06) !important;
+    color: var(--text-2) !important;
+    border-color: var(--hairline-2) !important;
+}
+
+/* Cards everywhere inside dashboard get the original frosted-on-dark glass */
+.aurea-dark .dash-card,
+.aurea-dark .dash-card-form,
+.aurea-dark .dash-card-info,
+.aurea-dark .dash-card-tight {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)) !important;
+    border: 1px solid var(--hairline) !important;
+    backdrop-filter: blur(20px) saturate(160%);
+    -webkit-backdrop-filter: blur(20px) saturate(160%);
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.04) inset,
+        0 18px 40px rgba(0, 0, 0, 0.32) !important;
+    color: var(--text-1);
+}
+.aurea-dark .dash-card-accent {
+    background:
+        linear-gradient(135deg, rgba(113, 186, 229, 0.10), rgba(113, 186, 229, 0.02)) !important;
+    border-color: rgba(113, 186, 229, 0.22) !important;
+}
+
+/* Stat cards in dashboard overview */
+.aurea-dark [class*="stat-card"],
+.aurea-dark .dash-stat-card,
+.aurea-dark .dash-stats-grid > * {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)) !important;
+    border: 1px solid var(--hairline) !important;
+    color: var(--text-1);
+}
+
+/* Form inputs — dark glass with light text */
+.aurea-dark .ship-input,
+.aurea-dark .dash-input {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border: 1px solid var(--hairline) !important;
+    color: var(--text-1) !important;
+}
+.aurea-dark .ship-input::placeholder,
+.aurea-dark .dash-input::placeholder { color: var(--text-3) !important; }
+.aurea-dark .ship-input:hover,
+.aurea-dark .dash-input:hover { border-color: var(--hairline-2) !important; }
+.aurea-dark .ship-input:focus,
+.aurea-dark .dash-input:focus {
+    border-color: var(--accent) !important;
+    background: rgba(113, 186, 229, 0.05) !important;
+}
+
+/* Form section dividers */
+.aurea-dark .ship-section { border-bottom-color: var(--hairline); }
+.aurea-dark .ship-section-title { color: var(--text-1); }
+.aurea-dark .ship-section-title em { color: var(--accent); }
+
+/* Sticky summary panel + book-quote-preview */
+.aurea-dark .ship-summary-card {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)) !important;
+    border: 1px solid var(--hairline) !important;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.04) inset,
+        0 24px 48px rgba(0, 0, 0, 0.40) !important;
+}
+
+/* Segmented status control */
+.aurea-dark .ship-segmented {
+    background: rgba(255, 255, 255, 0.025) !important;
+    border-color: var(--hairline) !important;
+}
+.aurea-dark .ship-segment { color: var(--text-2); }
+.aurea-dark .ship-segment:hover {
+    color: var(--text-1);
+    background: rgba(255, 255, 255, 0.04);
+}
+.aurea-dark .ship-segment.is-active {
+    background: rgba(113, 186, 229, 0.16) !important;
+    color: var(--accent) !important;
+    border-color: rgba(113, 186, 229, 0.42) !important;
+}
+
+/* Icon buttons */
+.aurea-dark .ship-btn-icon {
+    background: rgba(255, 255, 255, 0.025) !important;
+    border-color: var(--hairline) !important;
+    color: var(--text-2) !important;
+}
+.aurea-dark .ship-btn-icon:hover {
+    color: var(--accent) !important;
+    border-color: var(--accent) !important;
+    background: rgba(113, 186, 229, 0.08) !important;
+}
+
+/* Buttons override — keep primary readable on dark */
+.aurea-dark .btn-primary {
+    background: #ffffff !important;
+    color: #0a0e15 !important;
+}
+.aurea-dark .btn-primary:hover { background: #f0f4fa !important; }
+.aurea-dark .btn-ghost {
+    background: rgba(255, 255, 255, 0.04) !important;
+    border-color: var(--hairline-2) !important;
+    color: var(--text-1) !important;
+}
+.aurea-dark .btn-ghost:hover {
+    background: rgba(255, 255, 255, 0.08) !important;
+    border-color: rgba(255, 255, 255, 0.30) !important;
+}
+.aurea-dark .btn-text { color: var(--text-2); }
+.aurea-dark .btn-text:hover { color: var(--text-1); }
+
+/* Demo banner — already amber-tinted, keep that energy on dark */
+.aurea-dark .demo-banner {
+    background: rgba(113, 186, 229, 0.10) !important;
+    border-bottom-color: rgba(113, 186, 229, 0.24) !important;
+    color: var(--text-2);
+}
+.aurea-dark .demo-banner strong { color: var(--accent); }
+
+/* Sidebar nav items */
+.aurea-dark .dash-nav-link {
+    color: var(--text-3);
+}
+.aurea-dark .dash-nav-link:hover {
+    color: var(--text-1);
+    background: rgba(255, 255, 255, 0.04);
+}
+.aurea-dark .dash-nav-link.active {
+    color: var(--accent);
+    background: rgba(113, 186, 229, 0.10);
+    border-left-color: var(--accent);
+}
+.aurea-dark .dash-brand-env {
+    background: rgba(113, 186, 229, 0.16);
+    color: var(--accent);
+    border-color: rgba(113, 186, 229, 0.32);
+}
+.aurea-dark .dash-avatar {
+    background: rgba(113, 186, 229, 0.16);
+    color: var(--accent);
+}
+.aurea-dark .dash-icon-btn {
+    background: rgba(255, 255, 255, 0.04);
+    border-color: var(--hairline);
+    color: var(--text-2);
+}
+.aurea-dark .dash-icon-btn:hover {
+    color: var(--accent);
+    background: rgba(113, 186, 229, 0.10);
+}
+
+/* Tables */
+.aurea-dark .dash-table-head,
+.aurea-dark .dash-shipments-table-head {
+    background: rgba(255, 255, 255, 0.025) !important;
+    color: var(--text-3) !important;
+    border-bottom-color: var(--hairline) !important;
+}
+.aurea-dark .dash-table-row,
+.aurea-dark .dash-shipments-table-row {
+    border-bottom-color: var(--hairline) !important;
+    color: var(--text-1);
+}
+.aurea-dark .dash-table-row:hover,
+.aurea-dark .dash-shipments-table-row:hover {
+    background: rgba(255, 255, 255, 0.025) !important;
+}
+
+/* Status pills inside dashboard — boost saturation for dark */
+.aurea-dark .status-badge {
+    background: rgba(113, 186, 229, 0.14);
+    color: var(--accent);
+    border: 1px solid rgba(113, 186, 229, 0.28);
+}
+
+/* Dashboard timeline */
+.aurea-dark .dash-timeline-dot {
+    background: rgba(255, 255, 255, 0.18);
+    box-shadow: 0 0 0 4px rgba(113, 186, 229, 0.10);
+}
+.aurea-dark .dash-timeline li.latest .dash-timeline-dot {
+    background: var(--accent);
+    box-shadow: 0 0 0 4px rgba(113, 186, 229, 0.20);
+}
+.aurea-dark .dash-timeline-content time { color: var(--text-3); }
+
+/* Confirm/receipt cards (used by /book on success) — these may also
+   render on dashboard in future. Keep dark-glass on the dark scope. */
+.aurea-dark .confirm-card {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)) !important;
+    border-color: var(--hairline-2) !important;
+}
+
+/* Dashboard alert */
+.aurea-dark .dash-alert {
+    background: rgba(213, 43, 30, 0.10) !important;
+    border-color: rgba(213, 43, 30, 0.32) !important;
+    color: #f5b3ad !important;
+}
+
+/* =========================================================
+   SIGN-IN dark scope — same dark navy backdrop as dashboard
+   so the operator entering credentials sees the same surface
+   they'll be working in.
+   ========================================================= */
+.signin-shell.aurea-dark {
+    background:
+        radial-gradient(ellipse at top, rgba(113, 186, 229, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at bottom, rgba(32, 121, 213, 0.06) 0%, transparent 50%),
+        linear-gradient(180deg, #0a0e15 0%, #0f1420 100%);
+}
+.aurea-dark .signin-card {
+    background:
+        linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)) !important;
+    border-color: var(--hairline-2) !important;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.06) inset,
+        0 30px 60px rgba(0, 0, 0, 0.50) !important;
+}
+.aurea-dark .signin-title { color: var(--text-1); }
+.aurea-dark .signin-title em { color: var(--accent); }
+.aurea-dark .signin-sub { color: var(--text-3); }
+.aurea-dark .signin-foot { border-top-color: var(--hairline); color: var(--text-3); }
+.aurea-dark .signin-foot a { color: var(--accent); }
+.aurea-dark .signin-brand { color: var(--text-1); }
+
+/* =========================================================
    SIGN-IN — premium login card centered on a soft navy gradient
    ========================================================= */
 .signin-shell {
