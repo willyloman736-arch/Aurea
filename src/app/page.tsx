@@ -1,7 +1,6 @@
 import { Ambient } from "@/components/ambient";
 import { Nav } from "@/components/nav";
 import { Hero } from "@/components/hero";
-import { HeroSlider } from "@/components/hero-slider";
 import { Metrics } from "@/components/metrics";
 import { TrustBadges } from "@/components/trust-badges";
 import { HowItWorks } from "@/components/how-it-works";
@@ -20,7 +19,6 @@ export default function HomePage() {
       <Nav />
       <main id="main-content">
         <Hero />
-        <HeroSlider />
         <Metrics />
         <TrustBadges />
         <HowItWorks />

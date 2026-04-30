@@ -5969,9 +5969,138 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 }
 
 /* =========================================================
-   HERO SLIDER — gentle full-width image carousel
-   Sits below the Hero, above Metrics. Auto-advances every
-   6.5s, pauses on hover, soft 1.2s crossfade.
+   HERO BG SLIDER — full-bleed cycling images BEHIND the hero
+   text. Replaces the old hero-arcs decorative SVG. Simpler
+   than the standalone hero-slider — no dots, no progress bar.
+   ========================================================= */
+.hero--with-bg-slider {
+    background: #0a1f3a; /* fallback while images load */
+}
+.hero--with-bg-slider .hero-bg,
+.hero--with-bg-slider .hero-arcs { display: none !important; }
+
+.hero-bg-slider {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+}
+.hero-bg-slide {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    transition: opacity 1.4s cubic-bezier(0.4, 0, 0.2, 1);
+    will-change: opacity;
+}
+.hero-bg-slide.is-active { opacity: 1; }
+.hero-bg-slide-img {
+    object-fit: cover;
+}
+
+/* Dark gradient overlay so the hero text remains readable on any photo */
+.hero-bg-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg,
+            rgba(10, 31, 58, 0.58) 0%,
+            rgba(10, 31, 58, 0.42) 35%,
+            rgba(10, 31, 58, 0.62) 80%,
+            rgba(10, 31, 58, 0.78) 100%),
+        linear-gradient(90deg,
+            rgba(10, 31, 58, 0.45) 0%,
+            rgba(10, 31, 58, 0.20) 50%,
+            rgba(10, 31, 58, 0.45) 100%);
+}
+
+/* On-photo text variants — flip from navy-on-light to white-on-dark */
+.eyebrow--on-photo {
+    color: rgba(255, 255, 255, 0.92);
+}
+.eyebrow--on-photo .eyebrow-dot {
+    background: var(--accent-hover, #2079d5);
+    box-shadow: 0 0 8px rgba(32, 121, 213, 0.6);
+}
+.hero-title--on-photo {
+    color: #ffffff;
+    text-shadow: 0 1px 24px rgba(0, 0, 0, 0.30);
+}
+.hero-title--on-photo em {
+    color: #4682bc;
+    background: linear-gradient(180deg, #cce0ff, #71bae5);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.hero-lede--on-photo {
+    color: rgba(255, 255, 255, 0.85);
+    text-shadow: 0 1px 16px rgba(0, 0, 0, 0.30);
+}
+.hero-credits--on-photo .hero-credits-label {
+    color: rgba(255, 255, 255, 0.72);
+}
+.hero-credits--on-photo .hero-credits-logos span {
+    color: rgba(255, 255, 255, 0.85);
+}
+
+/* Tracking form glass shifts to dark-glass-on-photo for premium contrast */
+.hero--with-bg-slider .track-card {
+    background:
+        linear-gradient(135deg, rgba(255, 255, 255, 0.14), rgba(255, 255, 255, 0.06)) !important;
+    border-color: rgba(255, 255, 255, 0.30) !important;
+    box-shadow:
+        0 1px 0 rgba(255, 255, 255, 0.20) inset,
+        0 24px 50px rgba(10, 30, 60, 0.30) !important;
+}
+.hero--with-bg-slider .track-card input,
+.hero--with-bg-slider .track-card .track-input {
+    background: rgba(255, 255, 255, 0.95) !important;
+    color: #0a1f3a !important;
+}
+.hero--with-bg-slider .track-card input::placeholder {
+    color: rgba(10, 31, 58, 0.50) !important;
+}
+.hero--with-bg-slider .track-tab {
+    color: rgba(255, 255, 255, 0.75) !important;
+}
+.hero--with-bg-slider .track-tab.is-active,
+.hero--with-bg-slider .track-tab[aria-selected="true"] {
+    color: #ffffff !important;
+}
+.hero--with-bg-slider .track-demo,
+.hero--with-bg-slider .demo-label {
+    color: rgba(255, 255, 255, 0.65) !important;
+}
+.hero--with-bg-slider .demo-chip {
+    background: rgba(255, 255, 255, 0.12) !important;
+    border-color: rgba(255, 255, 255, 0.25) !important;
+    color: rgba(255, 255, 255, 0.92) !important;
+}
+.hero--with-bg-slider .demo-chip:hover {
+    background: rgba(255, 255, 255, 0.20) !important;
+    border-color: rgba(255, 255, 255, 0.40) !important;
+}
+
+/* Mobile — preserve cropping, keep text legibility */
+@media (max-width: 720px) {
+    .hero-bg-overlay {
+        background:
+            linear-gradient(180deg,
+                rgba(10, 31, 58, 0.66) 0%,
+                rgba(10, 31, 58, 0.50) 30%,
+                rgba(10, 31, 58, 0.72) 100%);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .hero-bg-slide { transition: opacity 0.2s; }
+}
+
+/* =========================================================
+   HERO SLIDER — (deprecated, kept for legacy if needed)
    ========================================================= */
 .hero-slider {
     position: relative;
