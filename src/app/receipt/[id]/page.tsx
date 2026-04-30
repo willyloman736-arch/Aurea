@@ -29,6 +29,15 @@ function formatDate(d: Date): string {
   });
 }
 
+const STAMP_MONTHS = [
+  "JAN", "FEB", "MAR", "APR", "MAY", "JUN",
+  "JUL", "AUG", "SEP", "OCT", "NOV", "DEC",
+];
+
+function stampDate(d: Date): string {
+  return `${String(d.getDate()).padStart(2, "0")} ${STAMP_MONTHS[d.getMonth()]} ${d.getFullYear()}`;
+}
+
 export default async function ShipmentReceiptPage({
   params,
 }: {
@@ -41,6 +50,7 @@ export default async function ShipmentReceiptPage({
   const status = shipment.status;
   const issued = formatDate(shipment.createdAt);
   const updated = formatDate(shipment.updatedAt);
+  const today = stampDate(new Date());
 
   return (
     <main className="rcpt-shell">
@@ -50,6 +60,16 @@ export default async function ShipmentReceiptPage({
       />
 
       <article className="rcpt-doc">
+        {/* STAMP — generated at receipt issue */}
+        <div className="rcpt-stamp" aria-hidden="true">
+          <div className="rcpt-stamp-inner">
+            <div className="rcpt-stamp-arc-top">AUREA · LOGISTICS</div>
+            <div className="rcpt-stamp-date">{today}</div>
+            <div className="rcpt-stamp-label">RECEIVED</div>
+            <div className="rcpt-stamp-arc-bottom">OFFICIAL DOCUMENT</div>
+          </div>
+        </div>
+
         {/* HEADER */}
         <header className="rcpt-header">
           <div className="rcpt-header-brand">
