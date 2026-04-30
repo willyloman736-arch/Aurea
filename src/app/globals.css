@@ -5804,8 +5804,11 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
     .nav-inner { padding: 10px 14px; }
     .nav-drawer { left: 8px; right: 8px; padding: 20px; top: 60px; }
 
-    /* Footer stacks fully */
-    .footer-cols { grid-template-columns: 1fr; gap: 22px; }
+    /* Footer keeps 2 columns even on small phones — stacking made the
+       footer feel endless. Side-by-side reads more compact. */
+    .footer-cols { grid-template-columns: 1fr 1fr; gap: 20px 16px; }
+    .footer-cols h5 { font-size: 11px; margin-bottom: 12px; }
+    .footer-cols a { font-size: 13px; }
 
     /* Trust strip stays 2x2 but smaller tiles */
     .trust-badge { height: 54px; padding: 9px 12px; }
@@ -5960,7 +5963,9 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 @media (max-width: 480px) {
     .cs-grid { gap: 12px !important; }
     .dp-stats { grid-template-columns: 1fr !important; }
-    .footer-cols { grid-template-columns: 1fr !important; }
+    /* Footer kept side-by-side at 2 cols even on small phones —
+       single-column stacking made the footer feel endless. */
+    .footer-cols { grid-template-columns: 1fr 1fr !important; gap: 20px 16px !important; }
 }
 
 /* =========================================================
