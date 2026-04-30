@@ -64,7 +64,9 @@ export function TrackMapMapbox({
 
       map = new mapboxgl.Map({
         container: mapContainer.current,
-        style: "mapbox://styles/mapbox/light-v11",
+        // "streets-v12" is the standard Google-Maps-style colourful map —
+        // roads, labels, parks, water. Most universally familiar.
+        style: "mapbox://styles/mapbox/streets-v12",
         bounds,
         fitBoundsOptions: { padding: { top: 80, bottom: 120, left: 80, right: 80 } },
         attributionControl: false,
