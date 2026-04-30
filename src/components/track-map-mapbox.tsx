@@ -1,10 +1,52 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { Navigation } from "lucide-react";
+import { useEffect, useRef, useState } from "react";
+import { Navigation, MapPin } from "lucide-react";
 import "mapbox-gl/dist/mapbox-gl.css";
 import { lookupCityCoords } from "@/lib/city-coords";
 import type { ShipmentStatus } from "@/lib/types";
+
+type Coords = [number, number];
+
+// In-memory geocoding cache so repeated views don't re-fetch the same place.
+const geocodeCache = new Map<string, Coords | null>();
+
+/**
+ * Mapbox Geocoding API fallback. Used when the static city lookup fails
+ * (the operator typed a state, country, or place that isn't in our hub list).
+ * Free tier: 100K requests/month — included in the same MAPBOX_TOKEN.
+ */
+async function geocodeViaMapbox(
+  query: string,
+  token: string,
+): Promise<Coords | null> {
+  if (!query) return null;
+  const key = query.trim().toLowerCase();
+  if (geocodeCache.has(key)) return geocodeCache.get(key) ?? null;
+
+  try {
+    const url =
+      `https://api.mapbox.com/geocoding/v5/mapbox.places/${encodeURIComponent(query)}.json` +
+      `?access_token=${token}&limit=1` +
+      `&types=country,region,district,place,locality,neighborhood,address`;
+    const res = await fetch(url);
+    if (!res.ok) {
+      geocodeCache.set(key, null);
+      return null;
+    }
+    const data = await res.json();
+    const feature = data?.features?.[0];
+    if (feature?.center && Array.isArray(feature.center)) {
+      const coords: Coords = [feature.center[0], feature.center[1]];
+      geocodeCache.set(key, coords);
+      return coords;
+    }
+    geocodeCache.set(key, null);
+    return null;
+  } catch {
+    return null;
+  }
+}
 
 interface Props {
   origin: { city: string };
@@ -34,16 +76,56 @@ export function TrackMapMapbox({
   const mapContainer = useRef<HTMLDivElement>(null);
 
   const token = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
-  const o = lookupCityCoords(origin.city);
-  const d = lookupCityCoords(destination.city);
-  const c = lookupCityCoords(currentLoc) ?? o;
   const accent = STATUS_COLOR[status];
   const isDelivered = status === "Delivered";
+
+  // Static lookup is the fast-path — if it hits, no API call needed.
+  const staticO = lookupCityCoords(origin.city);
+  const staticD = lookupCityCoords(destination.city);
+  const staticC = lookupCityCoords(currentLoc);
+
+  // Resolved coords, possibly via Mapbox geocoding fallback
+  const [o, setO] = useState<Coords | null>(staticO);
+  const [d, setD] = useState<Coords | null>(staticD);
+  const [c, setC] = useState<Coords | null>(staticC);
+  const [geocoding, setGeocoding] = useState(false);
+
+  // Trigger Mapbox geocoding for any locations the static lookup missed
+  useEffect(() => {
+    if (!token) return;
+
+    const tasks: Promise<void>[] = [];
+    if (!staticO && origin.city) {
+      tasks.push(
+        geocodeViaMapbox(origin.city, token).then((res) => setO(res)),
+      );
+    }
+    if (!staticD && destination.city) {
+      tasks.push(
+        geocodeViaMapbox(destination.city, token).then((res) => setD(res)),
+      );
+    }
+    if (!staticC && currentLoc) {
+      tasks.push(
+        geocodeViaMapbox(currentLoc, token).then((res) => setC(res)),
+      );
+    }
+
+    if (tasks.length === 0) return;
+    // setGeocoding flips the loading flag; rule is intentional here —
+    // we want the spinner to appear synchronously while async tasks run.
+    // eslint-disable-next-line react-hooks/set-state-in-effect
+    setGeocoding(true);
+    Promise.all(tasks).finally(() => setGeocoding(false));
+  }, [token, staticO, staticD, staticC, origin.city, destination.city, currentLoc]);
+
+  // Effective current — fall back to origin if no current location available
+  const effectiveC = c ?? o;
 
   // Stringify coords for stable primitive deps in useEffect
   const oKey = o ? `${o[0]},${o[1]}` : "";
   const dKey = d ? `${d[0]},${d[1]}` : "";
-  const cKey = c ? `${c[0]},${c[1]}` : "";
+  const cKey = effectiveC ? `${effectiveC[0]},${effectiveC[1]}` : "";
 
   useEffect(() => {
     if (!token || !o || !d || !mapContainer.current) return;
@@ -57,16 +139,18 @@ export function TrackMapMapbox({
 
       if (cancelled || !mapContainer.current) return;
 
+      if (!o || !d) return; // Wait for both endpoints to be resolved
+
       const bounds = new mapboxgl.LngLatBounds();
       bounds.extend(o);
       bounds.extend(d);
-      if (c) bounds.extend(c);
+      if (effectiveC) bounds.extend(effectiveC);
 
       map = new mapboxgl.Map({
         container: mapContainer.current,
-        // "streets-v12" is the standard Google-Maps-style colourful map —
-        // roads, labels, parks, water. Most universally familiar.
-        style: "mapbox://styles/mapbox/streets-v12",
+        // Satellite hybrid: aerial imagery + street labels overlay.
+        // Same look as Google Maps "Hybrid" view.
+        style: "mapbox://styles/mapbox/satellite-streets-v12",
         bounds,
         fitBoundsOptions: { padding: { top: 80, bottom: 120, left: 80, right: 80 } },
         attributionControl: false,
@@ -145,7 +229,7 @@ export function TrackMapMapbox({
           .addTo(map);
 
         // Current location marker — large, pulsing, status-coloured
-        if (c) {
+        if (effectiveC) {
           const currEl = document.createElement("div");
           currEl.className = "mb-marker mb-marker-current";
           currEl.style.setProperty("--mb-current-color", accent);
@@ -155,7 +239,7 @@ export function TrackMapMapbox({
             <div class="mb-marker-core"></div>
           `;
           new mapboxgl.Marker({ element: currEl, anchor: "center" })
-            .setLngLat(c)
+            .setLngLat(effectiveC)
             .setPopup(
               new mapboxgl.Popup({ offset: 18, closeButton: false }).setHTML(
                 `<div class="mb-popup"><div class="mb-popup-label">${isDelivered ? "Delivered at" : "Now at"}</div><div class="mb-popup-name">${escapeHtml(currentLoc ?? origin.city)}</div></div>`,
@@ -185,7 +269,33 @@ export function TrackMapMapbox({
     currentLoc,
   ]);
 
-  if (!token || !o || !d) return null;
+  if (!token) return null;
+
+  // Geocoding is still in flight, or it failed for one of the endpoints
+  if (!o || !d) {
+    return (
+      <div className="track-map">
+        <div className="track-map-frame track-map-frame-loading">
+          <div className="track-map-loading">
+            {geocoding ? (
+              <>
+                <div className="track-map-loading-spinner" aria-hidden="true" />
+                <span>Locating shipment on map…</span>
+              </>
+            ) : (
+              <>
+                <MapPin size={16} strokeWidth={1.6} />
+                <span>
+                  Couldn&rsquo;t pin {!o ? `"${origin.city}"` : `"${destination.city}"`}
+                  {" "}on the map. The route is shown below.
+                </span>
+              </>
+            )}
+          </div>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="track-map">
