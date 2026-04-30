@@ -289,6 +289,12 @@ h1, h2, h3, h4 {
     text-decoration: none;
 }
 .brand-mark { color: var(--accent); font-size: 18px; }
+.brand-mark-img {
+    display: block;
+    width: auto;
+    height: auto;
+    flex-shrink: 0;
+}
 .nav-links { display: flex; gap: 2px; }
 .nav-links a {
     padding: 8px 14px;

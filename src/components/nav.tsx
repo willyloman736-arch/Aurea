@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { NavGlobeMount } from "./nav-globe-mount";
 
@@ -36,7 +37,14 @@ export function Nav() {
     <header className="nav">
       <div className="nav-inner">
         <Link href="/" className="brand" onClick={close}>
-          <span className="brand-mark">◈</span>
+          <Image
+            src="/logo.svg"
+            alt="Aurea"
+            width={28}
+            height={28}
+            className="brand-mark brand-mark-img"
+            priority
+          />
           <span className="brand-text">Aurea</span>
         </Link>
 

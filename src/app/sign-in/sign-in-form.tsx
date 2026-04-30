@@ -2,6 +2,7 @@
 
 import { useState, useTransition } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useSearchParams } from "next/navigation";
 import { AlertCircle, ArrowRight } from "lucide-react";
 import { signInAction } from "./actions";
@@ -27,7 +28,14 @@ export function SignInForm() {
   return (
     <main className="signin-shell">
       <Link href="/" className="signin-brand">
-        <span className="brand-mark">◈</span>
+        <Image
+          src="/logo.svg"
+          alt="Aurea"
+          width={36}
+          height={36}
+          className="brand-mark brand-mark-img"
+          priority
+        />
         <span className="brand-text">Aurea</span>
       </Link>
 

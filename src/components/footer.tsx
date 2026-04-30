@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 
+
 const FOOTER_PARTNERS = [
   { name: "FedEx", src: "/badges/fedex.png" },
   { name: "USPS", src: "/badges/usps.png" },
@@ -14,7 +15,13 @@ export function Footer() {
       <div className="container-aurea footer-inner">
         <div className="footer-top">
           <Link href="/" className="brand">
-            <span className="brand-mark">◈</span>
+            <Image
+              src="/logo.svg"
+              alt="Aurea"
+              width={32}
+              height={32}
+              className="brand-mark brand-mark-img"
+            />
             <span className="brand-text">Aurea</span>
           </Link>
           <div className="footer-cols">

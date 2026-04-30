@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useTransition } from "react";
 import {
@@ -45,7 +46,13 @@ export function Sidebar() {
   return (
     <aside className="dash-sidebar">
       <Link href="/" className="dash-brand">
-        <span className="brand-mark">◈</span>
+        <Image
+          src="/logo.svg"
+          alt="Aurea"
+          width={28}
+          height={28}
+          className="brand-mark brand-mark-img"
+        />
         <span className="brand-text">Aurea</span>
         <span className="dash-brand-env">admin</span>
       </Link>
