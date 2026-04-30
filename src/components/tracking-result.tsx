@@ -3,10 +3,12 @@ import { ArrowRight } from "lucide-react";
 import type { Shipment } from "@/lib/types";
 import { STEP_LABELS } from "@/lib/types";
 import { TrackMap } from "./track-map";
+import { TrackMapMapbox } from "./track-map-mapbox";
 import { TrackingActions } from "./tracking-actions";
 
 export function TrackingResult({ shipment }: { shipment: Shipment }) {
   const pct = ((shipment.progress - 1) / (STEP_LABELS.length - 1)) * 100;
+  const useMapbox = Boolean(process.env.NEXT_PUBLIC_MAPBOX_TOKEN);
 
   return (
     <section className="result-section">
@@ -28,15 +30,27 @@ export function TrackingResult({ shipment }: { shipment: Shipment }) {
             />
           </div>
 
-          <TrackMap
-            origin={shipment.origin}
-            destination={shipment.destination}
-            currentLoc={shipment.events[0]?.loc}
-            status={shipment.status}
-            progressFraction={
-              (shipment.progress - 1) / (STEP_LABELS.length - 1)
-            }
-          />
+          {useMapbox ? (
+            <TrackMapMapbox
+              origin={shipment.origin}
+              destination={shipment.destination}
+              currentLoc={shipment.events[0]?.loc}
+              status={shipment.status}
+              progressFraction={
+                (shipment.progress - 1) / (STEP_LABELS.length - 1)
+              }
+            />
+          ) : (
+            <TrackMap
+              origin={shipment.origin}
+              destination={shipment.destination}
+              currentLoc={shipment.events[0]?.loc}
+              status={shipment.status}
+              progressFraction={
+                (shipment.progress - 1) / (STEP_LABELS.length - 1)
+              }
+            />
+          )}
 
           <div className="result-route">
             <div className="route-point">

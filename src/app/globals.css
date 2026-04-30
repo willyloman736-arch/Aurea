@@ -5981,6 +5981,119 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 }
 
 /* =========================================================
+   TRACK MAP — Mapbox real-tile variant
+   ========================================================= */
+.track-map-frame-mb {
+    /* Ditch the placeholder gradient — real tiles fill it */
+    background: #f4f6fa;
+    aspect-ratio: 16 / 8;
+    overflow: hidden;
+}
+.track-map-mb-canvas {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+}
+.track-map-mb-canvas .mapboxgl-map { font-family: var(--font-public-sans), sans-serif; }
+.track-map-mb-canvas .mapboxgl-canvas { outline: none; }
+
+/* Custom marker base — anchor centred */
+.mb-marker {
+    position: relative;
+    width: 0;
+    height: 0;
+    pointer-events: auto;
+    cursor: pointer;
+}
+
+/* Origin/dest halo — soft accent ring */
+.mb-marker-halo {
+    position: absolute;
+    top: -10px; left: -10px;
+    width: 20px; height: 20px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(26, 68, 128, 0.18), rgba(26, 68, 128, 0));
+}
+.mb-marker-dot {
+    position: absolute;
+    top: -5px; left: -5px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    box-shadow: 0 1px 3px rgba(10, 30, 60, 0.35);
+}
+.mb-marker-dot-filled { background: #1a4480; }
+.mb-marker-dot-ringed {
+    background: #ffffff;
+    border: 2px solid #1a4480;
+}
+
+/* Current location — large pulsing pin */
+.mb-marker-current { --mb-current-color: #1a4480; }
+.mb-marker-pulse {
+    position: absolute;
+    top: -16px; left: -16px;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    background: var(--mb-current-color);
+    opacity: 0.4;
+    animation: mb-pulse 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+.mb-marker-pulse-2 { animation-delay: 1.2s; }
+.mb-marker-core {
+    position: absolute;
+    top: -7px; left: -7px;
+    width: 14px; height: 14px;
+    border-radius: 50%;
+    background: var(--mb-current-color);
+    border: 2.5px solid #ffffff;
+    box-shadow:
+        0 0 0 1px var(--mb-current-color),
+        0 4px 12px rgba(10, 30, 60, 0.40);
+    z-index: 1;
+}
+@keyframes mb-pulse {
+    0%   { transform: scale(0.6); opacity: 0.6; }
+    80%  { transform: scale(1.8); opacity: 0; }
+    100% { transform: scale(1.8); opacity: 0; }
+}
+
+/* Popups — match Aurea aesthetic */
+.mapboxgl-popup-content {
+    padding: 10px 14px !important;
+    border-radius: var(--r-md) !important;
+    box-shadow: 0 8px 24px rgba(10, 30, 60, 0.18) !important;
+    font-family: var(--font-public-sans), sans-serif !important;
+}
+.mapboxgl-popup-tip { display: none !important; }
+.mb-popup-label {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--text-3);
+    margin-bottom: 2px;
+}
+.mb-popup-name {
+    font-size: 13.5px;
+    font-weight: 600;
+    color: var(--text-1);
+}
+
+/* Mapbox controls — tone down to match site */
+.mapboxgl-ctrl-group {
+    border-radius: var(--r-md) !important;
+    box-shadow: 0 4px 12px rgba(10, 30, 60, 0.10) !important;
+    border: 1px solid var(--hairline) !important;
+}
+.mapboxgl-ctrl-group button { background: rgba(255, 255, 255, 0.95) !important; }
+.mapboxgl-ctrl-attrib { background: rgba(255, 255, 255, 0.85) !important; }
+
+@media (max-width: 720px) {
+    .track-map-frame-mb { aspect-ratio: 4 / 3.5; }
+}
+
+/* =========================================================
    TRACK MAP — public /track/[id] location visualization
    ========================================================= */
 .track-map {
