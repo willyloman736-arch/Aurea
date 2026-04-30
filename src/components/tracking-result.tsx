@@ -5,10 +5,14 @@ import { STEP_LABELS } from "@/lib/types";
 import { TrackMap } from "./track-map";
 import { TrackMapMapbox } from "./track-map-mapbox";
 import { TrackingActions } from "./tracking-actions";
+import { TrackingPoll } from "./tracking-poll";
+
+const TERMINAL_STATUSES = new Set(["Delivered", "Exception"]);
 
 export function TrackingResult({ shipment }: { shipment: Shipment }) {
   const pct = ((shipment.progress - 1) / (STEP_LABELS.length - 1)) * 100;
   const useMapbox = Boolean(process.env.NEXT_PUBLIC_MAPBOX_TOKEN);
+  const isLive = !TERMINAL_STATUSES.has(shipment.status);
 
   return (
     <section className="result-section">
@@ -22,6 +26,12 @@ export function TrackingResult({ shipment }: { shipment: Shipment }) {
               <h2 className="result-title">
                 {shipment.status === "Delivered" ? "Delivered" : "In motion"}
                 <span className="status-badge">{shipment.status}</span>
+                {isLive && (
+                  <span className="result-live" aria-label="Live updating">
+                    <span className="result-live-dot" aria-hidden="true" />
+                    Live
+                  </span>
+                )}
               </h2>
             </div>
             <TrackingActions
@@ -129,6 +139,8 @@ export function TrackingResult({ shipment }: { shipment: Shipment }) {
           <div style={{ marginTop: 28, textAlign: "center" }}>
             <Link href="/#track" className="btn-ghost">Track another shipment</Link>
           </div>
+
+          <TrackingPoll enabled={isLive} />
         </div>
       </div>
     </section>

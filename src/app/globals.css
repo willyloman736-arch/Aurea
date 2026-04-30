@@ -5981,6 +5981,51 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 }
 
 /* =========================================================
+   TRACK PAGE — Live indicator pill (auto-refresh active)
+   ========================================================= */
+.result-live {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 4px 10px;
+    margin-left: 6px;
+    font-size: 10.5px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    background: rgba(26, 68, 128, 0.08);
+    border: 1px solid rgba(26, 68, 128, 0.20);
+    border-radius: var(--r-pill);
+    vertical-align: middle;
+}
+.result-live-dot {
+    position: relative;
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--accent);
+    box-shadow: 0 0 6px rgba(26, 68, 128, 0.7);
+}
+.result-live-dot::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: 50%;
+    background: var(--accent);
+    animation: result-live-ping 1.6s cubic-bezier(0, 0, 0.2, 1) infinite;
+}
+@keyframes result-live-ping {
+    0%   { transform: scale(1);   opacity: 0.7; }
+    80%  { transform: scale(2.6); opacity: 0; }
+    100% { transform: scale(2.6); opacity: 0; }
+}
+
+@media print {
+    .result-live { display: none !important; }
+}
+
+/* =========================================================
    TRACK MAP — Mapbox real-tile variant
    ========================================================= */
 .track-map-frame-mb {
