@@ -18,12 +18,12 @@ function formatTime(d: Date): string {
 }
 
 const STATUS_DOT_COLOR: Record<PortalEvent["status"], string> = {
-  "Picked up": "#a8c4e0",
-  "In Transit": "#d9a56a",
-  "Out for delivery": "#f5d4a5",
-  "On hold": "#b3a8c4",
-  Delivered: "#9ae0b8",
-  Exception: "#e08a7a",
+  "Picked up": "#4682bc",
+  "In Transit": "#1a4480",
+  "Out for delivery": "#2079d5",
+  "On hold": "#6b7280",
+  Delivered: "#2e8b57",
+  Exception: "#d52b1e",
 };
 
 const SEED: PortalEvent[] = [

@@ -26,12 +26,12 @@ function continentToPoints(coords: [number, number][]): string {
 }
 
 const STATUS_COLOR: Record<ActiveShipment["status"], string> = {
-  "Picked up": "#a8c4e0",
-  "In Transit": "#d9a56a",
-  "Out for delivery": "#f5d4a5",
-  "On hold": "#b3a8c4",
-  Delivered: "#9ae0b8",
-  Exception: "#e08a7a",
+  "Picked up": "#4682bc",
+  "In Transit": "#1a4480",
+  "Out for delivery": "#2079d5",
+  "On hold": "#6b7280",
+  Delivered: "#2e8b57",
+  Exception: "#d52b1e",
 };
 
 interface LiveMapProps {
@@ -99,21 +99,21 @@ export function LiveMap({
     >
       <defs>
         <radialGradient id="hub-glow" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="rgba(217, 165, 106, 0.6)" />
-          <stop offset="60%" stopColor="rgba(217, 165, 106, 0.10)" />
-          <stop offset="100%" stopColor="rgba(217, 165, 106, 0)" />
+          <stop offset="0%" stopColor="rgba(26, 68, 128, 0.6)" />
+          <stop offset="60%" stopColor="rgba(26, 68, 128, 0.10)" />
+          <stop offset="100%" stopColor="rgba(26, 68, 128, 0)" />
         </radialGradient>
         <radialGradient id="hub-glow-active" cx="50%" cy="50%" r="50%">
-          <stop offset="0%" stopColor="rgba(255, 232, 196, 0.95)" />
-          <stop offset="60%" stopColor="rgba(217, 165, 106, 0.18)" />
-          <stop offset="100%" stopColor="rgba(217, 165, 106, 0)" />
+          <stop offset="0%" stopColor="rgba(232, 241, 255, 0.95)" />
+          <stop offset="60%" stopColor="rgba(26, 68, 128, 0.18)" />
+          <stop offset="100%" stopColor="rgba(26, 68, 128, 0)" />
         </radialGradient>
         <filter id="map-soft" x="-20%" y="-20%" width="140%" height="140%">
           <feGaussianBlur stdDeviation="0.5" />
         </filter>
         <linearGradient id="continent-fill" x1="0" y1="0" x2="0" y2="1">
-          <stop offset="0%" stopColor="rgba(217, 165, 106, 0.05)" />
-          <stop offset="100%" stopColor="rgba(217, 165, 106, 0.02)" />
+          <stop offset="0%" stopColor="rgba(26, 68, 128, 0.05)" />
+          <stop offset="100%" stopColor="rgba(26, 68, 128, 0.02)" />
         </linearGradient>
       </defs>
 
@@ -158,7 +158,7 @@ export function LiveMap({
             key={c.id}
             points={continentToPoints(c.points)}
             fill="url(#continent-fill)"
-            stroke="rgba(217, 165, 106, 0.18)"
+            stroke="rgba(26, 68, 128, 0.18)"
             strokeWidth={0.6}
             strokeLinejoin="round"
           />
@@ -196,7 +196,7 @@ export function LiveMap({
               {r.status !== "Delivered" && r.status !== "Exception" && (
                 <circle
                   r={active ? 3.4 : 2.6}
-                  fill="#fff5e0"
+                  fill="#1a4480"
                   filter="url(#map-soft)"
                 >
                   <animateMotion
@@ -249,7 +249,7 @@ export function LiveMap({
               />
               <circle
                 r={isInActiveRoute || isHovered ? 2.8 : 2.0}
-                fill={isInActiveRoute || isHovered ? "#fff5e0" : "#e9b981"}
+                fill={isInActiveRoute || isHovered ? "#fff5e0" : "#2079d5"}
               />
               {isLabeled && (
                 <g className="map-hub-label-group">

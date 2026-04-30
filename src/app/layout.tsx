@@ -1,5 +1,5 @@
 import type { Metadata, Viewport } from "next";
-import { Inter, Instrument_Serif } from "next/font/google";
+import { Public_Sans } from "next/font/google";
 import { SmoothScroll } from "@/components/smooth-scroll";
 import { CursorGlow } from "@/components/cursor-glow";
 import { ScrollProgress } from "@/components/scroll-progress";
@@ -7,19 +7,16 @@ import { CommandPalette } from "@/components/command-palette";
 import { MagneticEffects } from "@/components/magnetic-effects";
 import "./globals.css";
 
-const inter = Inter({
-  variable: "--font-inter",
+const publicSans = Public_Sans({
+  variable: "--font-public-sans",
+  weight: ["400", "500", "600", "700", "800"],
   subsets: ["latin"],
   display: "swap",
 });
 
-const serif = Instrument_Serif({
-  variable: "--font-serif-display",
-  weight: "400",
-  style: ["normal", "italic"],
-  subsets: ["latin"],
-  display: "swap",
-});
+// Both old token names map to Public Sans now — keeps existing CSS working
+// while we deprecate references to --font-serif-display.
+const fontVars = `${publicSans.variable}`;
 
 export const metadata: Metadata = {
   title: "Aurea — Global shipment visibility",
@@ -41,7 +38,7 @@ export default function RootLayout({
   children,
 }: Readonly<{ children: React.ReactNode }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${serif.variable}`}>
+    <html lang="en" className={fontVars}>
       <head>
         <noscript>
           <style>{`.reveal{opacity:1!important;transform:none!important;}`}</style>
