@@ -9,6 +9,8 @@ import {
   Copy,
   Calendar,
   Package,
+  Printer,
+  ArrowRight,
 } from "lucide-react";
 import { submitBookingAction, type BookingResult } from "./actions";
 
@@ -17,6 +19,12 @@ const TIME_WINDOWS = [
   { id: "afternoon", label: "Afternoon · 12pm–4pm" },
   { id: "evening", label: "Evening · 4pm–8pm" },
 ];
+
+const SERVICE_LABELS: Record<string, string> = {
+  express: "Express parcel",
+  freight: "Freight",
+  sameDay: "Same-day",
+};
 
 function todayIsoDate(): string {
   const d = new Date();
@@ -27,6 +35,23 @@ function maxIsoDate(daysAhead = 90): string {
   const d = new Date();
   d.setDate(d.getDate() + daysAhead);
   return d.toISOString().slice(0, 10);
+}
+
+function formatIssued(iso: string): string {
+  const d = new Date(iso);
+  return d.toLocaleString("en-US", {
+    month: "short",
+    day: "numeric",
+    year: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+}
+
+function formatEta(min: string, max: string): string {
+  if (min === "0" && max === "0") return "Same day";
+  if (min === max) return `${min} business day${min === "1" ? "" : "s"}`;
+  return `${min}–${max} business days`;
 }
 
 export function BookForm() {
@@ -43,6 +68,16 @@ export function BookForm() {
   const service = params.get("service") ?? "express";
   const [pickupDate, setPickupDate] = useState(todayIsoDate());
   const [pickupWindow, setPickupWindow] = useState("morning");
+
+  // Price + ETA carried over from /quote
+  const total = params.get("total");
+  const base = params.get("base");
+  const weightFee = params.get("weightFee");
+  const serviceFee = params.get("serviceFee");
+  const etaMin = params.get("etaMin");
+  const etaMax = params.get("etaMax");
+  const zoneLabel = params.get("zoneLabel");
+  const hasQuote = Boolean(total && base && etaMin && etaMax);
 
   async function onSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -65,8 +100,9 @@ export function BookForm() {
   }
 
   if (result?.ok && result.reference) {
+    const r = result.receipt;
     return (
-      <div className="confirm-card">
+      <div className="confirm-card receipt-card">
         <div className="confirm-icon">
           <CheckCircle2 size={20} strokeWidth={1.5} />
         </div>
@@ -84,7 +120,7 @@ export function BookForm() {
             <span className="confirm-ref-code">{result.reference}</span>
             <button
               type="button"
-              className="ship-btn-icon"
+              className="ship-btn-icon receipt-no-print"
               onClick={copyReference}
               aria-label="Copy reference"
             >
@@ -94,7 +130,106 @@ export function BookForm() {
           {copied && <div className="confirm-ref-copied">Copied</div>}
         </div>
 
-        <div className="confirm-next">
+        {r && (
+          <div className="receipt">
+            <div className="receipt-head">
+              <div>
+                <div className="receipt-eyebrow">Receipt</div>
+                <div className="receipt-issued">
+                  Issued {formatIssued(r.issuedAt)}
+                </div>
+              </div>
+              <div className="receipt-brand">
+                <span className="receipt-brand-mark">◈</span>
+                <span>Aurea Logistics</span>
+              </div>
+            </div>
+
+            <div className="receipt-parties">
+              <div className="receipt-party">
+                <div className="receipt-party-label">From</div>
+                <div className="receipt-party-name">{r.senderName}</div>
+                <div className="receipt-party-meta">{r.senderCity}</div>
+                <div className="receipt-party-meta">{r.senderEmail}</div>
+              </div>
+              <div className="receipt-arrow" aria-hidden="true">
+                <ArrowRight size={14} strokeWidth={1.4} />
+              </div>
+              <div className="receipt-party">
+                <div className="receipt-party-label">To</div>
+                <div className="receipt-party-name">{r.receiverName}</div>
+                <div className="receipt-party-meta">{r.receiverCity}</div>
+              </div>
+            </div>
+
+            <div className="receipt-meta-grid">
+              <div>
+                <small>Pickup</small>
+                <strong>{r.pickupDate}</strong>
+                <span className="receipt-meta-sub">
+                  {TIME_WINDOWS.find((w) => w.id === r.pickupWindow)?.label}
+                </span>
+              </div>
+              <div>
+                <small>Service</small>
+                <strong>{SERVICE_LABELS[r.service] ?? r.service}</strong>
+                <span className="receipt-meta-sub">{r.zoneLabel}</span>
+              </div>
+              <div>
+                <small>ETA</small>
+                <strong>{formatEta(r.etaMin, r.etaMax)}</strong>
+              </div>
+              <div>
+                <small>Cargo</small>
+                <strong>
+                  {r.weight !== "—" ? `${r.weight} kg` : "—"}
+                  {r.pieces !== "1" && ` × ${r.pieces}`}
+                </strong>
+                <span className="receipt-meta-sub">{r.description}</span>
+              </div>
+            </div>
+
+            {hasQuote && (
+              <>
+                <div className="receipt-lines">
+                  <div className="receipt-line">
+                    <span>Base · {r.zoneLabel.toLowerCase()}</span>
+                    <span>${r.base}</span>
+                  </div>
+                  <div className="receipt-line">
+                    <span>
+                      Weight · {r.weight} kg
+                      {r.pieces !== "1" && ` × ${r.pieces}`}
+                    </span>
+                    <span>${r.weightFee}</span>
+                  </div>
+                  {r.serviceFee !== "0.00" && parseFloat(r.serviceFee) !== 0 && (
+                    <div className="receipt-line">
+                      <span>
+                        Service · {SERVICE_LABELS[r.service] ?? r.service}
+                      </span>
+                      <span>
+                        {parseFloat(r.serviceFee) > 0 ? "+" : ""}
+                        ${r.serviceFee}
+                      </span>
+                    </div>
+                  )}
+                  <div className="receipt-line receipt-total">
+                    <span>Total billed</span>
+                    <span>${r.total}</span>
+                  </div>
+                </div>
+
+                <div className="receipt-foot">
+                  <span>Insurance</span>
+                  <span>Included up to declared value</span>
+                </div>
+              </>
+            )}
+          </div>
+        )}
+
+        <div className="confirm-next receipt-no-print">
           <h4>What happens next</h4>
           <ol>
             <li>
@@ -112,7 +247,15 @@ export function BookForm() {
           </ol>
         </div>
 
-        <div className="confirm-actions">
+        <div className="confirm-actions receipt-no-print">
+          <button
+            type="button"
+            className="btn-ghost"
+            onClick={() => window.print()}
+          >
+            <Printer size={13} strokeWidth={1.6} />
+            Print or save PDF
+          </button>
           <Link href="/" className="btn-ghost">
             Back to home
           </Link>
@@ -396,7 +539,15 @@ export function BookForm() {
             </div>
           )}
 
+          {/* Hidden inputs — carried from /quote, sent back in receipt */}
           <input type="hidden" name="service" value={service} />
+          {total && <input type="hidden" name="total" value={total} />}
+          {base && <input type="hidden" name="base" value={base} />}
+          {weightFee && <input type="hidden" name="weightFee" value={weightFee} />}
+          {serviceFee && <input type="hidden" name="serviceFee" value={serviceFee} />}
+          {zoneLabel && <input type="hidden" name="zoneLabel" value={zoneLabel} />}
+          {etaMin && <input type="hidden" name="etaMin" value={etaMin} />}
+          {etaMax && <input type="hidden" name="etaMax" value={etaMax} />}
         </div>
 
         {/* SUMMARY */}
@@ -406,6 +557,18 @@ export function BookForm() {
               <Calendar size={12} strokeWidth={1.6} />
               <span>Booking summary</span>
             </div>
+
+            {hasQuote && (
+              <div className="book-quote-preview">
+                <div className="book-quote-amount">
+                  <span className="book-quote-currency">$</span>
+                  <span className="book-quote-total">{total}</span>
+                </div>
+                <div className="book-quote-eta">
+                  ETA · {formatEta(etaMin!, etaMax!)}
+                </div>
+              </div>
+            )}
 
             <div className="ship-summary-code-label">Pickup</div>
             <div className="ship-summary-code" style={{ fontSize: 16 }}>

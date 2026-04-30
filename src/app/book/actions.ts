@@ -6,6 +6,29 @@ export interface BookingResult {
   ok: boolean;
   reference?: string;
   error?: string;
+  // Echoed back for the receipt rendering
+  receipt?: {
+    total: string;
+    base: string;
+    weightFee: string;
+    serviceFee: string;
+    zoneLabel: string;
+    etaMin: string;
+    etaMax: string;
+    senderName: string;
+    senderCity: string;
+    senderEmail: string;
+    receiverName: string;
+    receiverCity: string;
+    pickupDate: string;
+    pickupWindow: string;
+    description: string;
+    weight: string;
+    pieces: string;
+    service: string;
+    declaredValue: string;
+    issuedAt: string;
+  };
 }
 
 function s(formData: FormData, key: string): string | undefined {
@@ -37,8 +60,32 @@ export async function submitBookingAction(
     return { ok: false, error: "Tell us what you're shipping (one line is enough)." };
   }
 
-  // In production this would write to the DB and notify ops. For now we
-  // generate a confirmation reference — a real ops lead picks it up from there.
   const reference = generateReference("BK");
-  return { ok: true, reference };
+
+  return {
+    ok: true,
+    reference,
+    receipt: {
+      total: s(formData, "total") ?? "0.00",
+      base: s(formData, "base") ?? "0.00",
+      weightFee: s(formData, "weightFee") ?? "0.00",
+      serviceFee: s(formData, "serviceFee") ?? "0.00",
+      zoneLabel: s(formData, "zoneLabel") ?? "—",
+      etaMin: s(formData, "etaMin") ?? "—",
+      etaMax: s(formData, "etaMax") ?? "—",
+      senderName,
+      senderCity,
+      senderEmail,
+      receiverName,
+      receiverCity,
+      pickupDate,
+      pickupWindow: s(formData, "pickupWindow") ?? "—",
+      description,
+      weight: s(formData, "weight") ?? "—",
+      pieces: s(formData, "pieces") ?? "1",
+      service: s(formData, "service") ?? "express",
+      declaredValue: s(formData, "declaredValue") ?? "—",
+      issuedAt: new Date().toISOString(),
+    },
+  };
 }
