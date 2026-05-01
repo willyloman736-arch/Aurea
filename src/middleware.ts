@@ -1,7 +1,7 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-const AUTH_COOKIE = "aurea_dash_auth";
+const AUTH_COOKIE = "usps_s_dash_auth";
 
 /**
  * Edge-runtime expected-token computation. Mirrors lib/auth.ts but

@@ -11,7 +11,7 @@ const PARTNERS = [
 export function TrustBadges() {
   return (
     <section className="trust" aria-label="Last-mile carrier partners">
-      <ScrollReveal className="container-aurea trust-inner">
+      <ScrollReveal className="container-USPS-S trust-inner">
         <span className="trust-label">
           Last-mile partners on every continent
         </span>

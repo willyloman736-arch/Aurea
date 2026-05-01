@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
-  title: "Services · Aurea",
+  title: "Services · USPS-S",
   description:
     "Express parcel, international freight, and same-day pickup. Three lanes, one custody chain.",
 };

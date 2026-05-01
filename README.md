@@ -1,4 +1,4 @@
-# Aurea
+# USPS-S
 
 Premium global shipment tracking. Marketing site + public tracking lookup + (coming) customer dashboard.
 
@@ -48,8 +48,8 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000). Try these tracking numbers:
 
-- `AUR-2847-JK3921` — in transit, Singapore → Amsterdam
-- `AUR-9931-LM7740` — out for delivery, Rotterdam → Berlin
+- `USPS-S-2847-JK3921` — in transit, Singapore → Amsterdam
+- `USPS-S-9931-LM7740` — out for delivery, Rotterdam → Berlin
 
 ## Structure
 
@@ -97,4 +97,4 @@ npm run lint
 git push origin main
 ```
 
-Vercel auto-deploys. Connect `aurea.yourdomain.com` via Hostinger DNS → CNAME to `cname.vercel-dns.com`.
+Vercel auto-deploys. Connect `USPS-S.yourdomain.com` via Hostinger DNS → CNAME to `cname.vercel-dns.com`.

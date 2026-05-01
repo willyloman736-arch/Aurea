@@ -3,7 +3,7 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
-  title: "Contact · Aurea",
+  title: "Contact · USPS-S",
   description:
     "Quotes, partnerships, account questions — we answer same day, weekdays.",
 };
@@ -11,27 +11,27 @@ export const metadata: Metadata = {
 const CHANNELS = [
   {
     label: "Quotes & ops",
-    detail: "hello@aurealogistics.com",
+    detail: "hello@usps-s.com",
     sub: "Replies within an hour, weekdays. Quote requests go to a real ops lead, not a queue.",
-    href: "mailto:hello@aurealogistics.com",
+    href: "mailto:hello@usps-s.com",
   },
   {
     label: "Existing accounts",
-    detail: "support@aurealogistics.com",
+    detail: "support@usps-s.com",
     sub: "Account questions, claims, anything stuck in transit. Tell us your tracking code in the first line.",
-    href: "mailto:support@aurealogistics.com",
+    href: "mailto:support@usps-s.com",
   },
   {
     label: "Partnerships",
-    detail: "partners@aurealogistics.com",
+    detail: "partners@usps-s.com",
     sub: "Carrier partnerships, hub agreements, integrations. We move slowly here on purpose.",
-    href: "mailto:partners@aurealogistics.com",
+    href: "mailto:partners@usps-s.com",
   },
   {
     label: "Press",
-    detail: "press@aurealogistics.com",
+    detail: "press@usps-s.com",
     sub: "Coverage, comment requests, brand assets.",
-    href: "mailto:press@aurealogistics.com",
+    href: "mailto:press@usps-s.com",
   },
 ];
 
@@ -117,10 +117,10 @@ export default function ContactPage() {
         </p>
         <div className="page-cta-actions">
           <Link
-            href="mailto:hello@aurealogistics.com?subject=Quote%20request"
+            href="mailto:hello@usps-s.com?subject=Quote%20request"
             className="btn-primary" data-magnetic
           >
-            Email hello@aurealogistics.com
+            Email hello@usps-s.com
           </Link>
         </div>
       </div>

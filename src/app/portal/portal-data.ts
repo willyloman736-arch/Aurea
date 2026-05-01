@@ -65,7 +65,7 @@ export const HUBS: Hub[] = [
 export const SHIPMENTS: ActiveShipment[] = [
   {
     id: "s1",
-    trackingCode: "AUR-K7M9Q3P",
+    trackingCode: "USPS-S-K7M9Q3P",
     fromHub: "lagos",
     toHub: "amsterdam",
     status: "In Transit",
@@ -77,7 +77,7 @@ export const SHIPMENTS: ActiveShipment[] = [
   },
   {
     id: "s2",
-    trackingCode: "AUR-J2X8R4N",
+    trackingCode: "USPS-S-J2X8R4N",
     fromHub: "singapore",
     toHub: "tokyo",
     status: "Out for delivery",
@@ -89,7 +89,7 @@ export const SHIPMENTS: ActiveShipment[] = [
   },
   {
     id: "s3",
-    trackingCode: "AUR-M5T2Y9F",
+    trackingCode: "USPS-S-M5T2Y9F",
     fromHub: "dubai",
     toHub: "mumbai",
     status: "Picked up",
@@ -101,7 +101,7 @@ export const SHIPMENTS: ActiveShipment[] = [
   },
   {
     id: "s4",
-    trackingCode: "AUR-Q9N4D7B",
+    trackingCode: "USPS-S-Q9N4D7B",
     fromHub: "ny",
     toHub: "la",
     status: "In Transit",
@@ -113,7 +113,7 @@ export const SHIPMENTS: ActiveShipment[] = [
   },
   {
     id: "s5",
-    trackingCode: "AUR-W3F6L8H",
+    trackingCode: "USPS-S-W3F6L8H",
     fromHub: "hongkong",
     toHub: "berlin",
     status: "In Transit",
@@ -125,7 +125,7 @@ export const SHIPMENTS: ActiveShipment[] = [
   },
   {
     id: "s6",
-    trackingCode: "AUR-G4K7P2J",
+    trackingCode: "USPS-S-G4K7P2J",
     fromHub: "rotterdam",
     toHub: "london",
     status: "Out for delivery",
@@ -137,7 +137,7 @@ export const SHIPMENTS: ActiveShipment[] = [
   },
   {
     id: "s7",
-    trackingCode: "AUR-V1R5C8X",
+    trackingCode: "USPS-S-V1R5C8X",
     fromHub: "joburg",
     toHub: "sao-paulo",
     status: "Exception",
@@ -149,7 +149,7 @@ export const SHIPMENTS: ActiveShipment[] = [
   },
   {
     id: "s8",
-    trackingCode: "AUR-Z8B3M6S",
+    trackingCode: "USPS-S-Z8B3M6S",
     fromHub: "amsterdam",
     toHub: "tokyo",
     status: "In Transit",

@@ -94,7 +94,7 @@ export async function registerTracker(
     body: JSON.stringify({
       carrier: carrier.toLowerCase(),
       tracking_number: trackingNumber,
-      metadata: `aurea`,
+      metadata: `USPS-S`,
     }),
   });
   if (!res.ok) {

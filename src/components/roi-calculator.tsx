@@ -4,7 +4,7 @@ import { useState } from "react";
 import { TrendingDown, Clock } from "lucide-react";
 import { ScrollReveal } from "./scroll-reveal";
 
-// Aurea: $0.003/tracker, Growth plan $49/mo base for up to 10k
+// USPS-S: $0.003/tracker, Growth plan $49/mo base for up to 10k
 // Competitor average: $0.01/tracker
 // Support time: 30 seconds saved per tracker in ops hours
 function calculate(volume: number) {
@@ -28,11 +28,11 @@ export function RoiCalculator() {
 
   return (
     <section className="roi" id="roi">
-      <div className="container-aurea">
+      <div className="container-USPS-S">
         <ScrollReveal className="section-head section-head-centered">
           <span className="eyebrow-inline">ROI</span>
           <h2 className="section-title">
-            See what <em>Aurea saves you.</em>
+            See what <em>USPS-S saves you.</em>
           </h2>
           <p className="section-sub-centered">
             Drag the slider. We&rsquo;ll show you the cost vs. generic carrier APIs and
@@ -76,7 +76,7 @@ export function RoiCalculator() {
 
           <div className="roi-grid">
             <div className="roi-cell">
-              <div className="roi-label">With Aurea</div>
+              <div className="roi-label">With USPS-S</div>
               <div className="roi-value">
                 {formatCurrency(aureaCost)}
                 <span>/mo</span>
@@ -105,7 +105,7 @@ export function RoiCalculator() {
           </div>
 
           <div className="roi-assumptions">
-            Based on $0.003 / tracker on Aurea Growth ($49/mo + overage) vs.
+            Based on $0.003 / tracker on USPS-S Growth ($49/mo + overage) vs.
             $0.01 / tracker carrier-direct average, plus 30 seconds of support
             time saved per customer inquiry eliminated by live tracking.
           </div>

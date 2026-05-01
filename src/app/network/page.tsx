@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
-  title: "Network · Aurea",
+  title: "Network · USPS-S",
   description:
-    "How the Aurea network holds — owned hubs, real-time custody, audited handoffs, and last-mile partners on every continent.",
+    "How the USPS-S network holds — owned hubs, real-time custody, audited handoffs, and last-mile partners on every continent.",
 };
 
 export default function NetworkPage() {
@@ -24,7 +24,7 @@ export default function NetworkPage() {
           Owned hubs, <em>owned trucks</em>
         </h2>
         <p>
-          Ten regional hubs run by Aurea staff, twenty-four hours a day. Our
+          Ten regional hubs run by USPS-S staff, twenty-four hours a day. Our
           couriers wear our uniform, drive our vehicles, and report to a regional
           ops lead — not a contractor pool. That&rsquo;s the difference between a
           shipment going right and a shipment going through the cracks.

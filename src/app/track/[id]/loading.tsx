@@ -9,12 +9,12 @@ export default function Loading() {
       <Nav />
       <main style={{ paddingTop: 60 }}>
         <section className="result-section">
-          <div className="container-aurea">
+          <div className="container-USPS-S">
             <div className="result-shell">
               <div className="result-loading">
                 <div className="spinner" />
                 <div style={{ color: "var(--text-2)", fontSize: 14 }}>
-                  Querying the Aurea network…
+                  Querying the USPS-S network…
                 </div>
               </div>
             </div>

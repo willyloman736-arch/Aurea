@@ -36,10 +36,10 @@ export function Nav() {
   return (
     <header className="nav">
       <div className="nav-inner">
-        <Link href="/" className="brand" onClick={close} aria-label="Aurea — home">
+        <Link href="/" className="brand" onClick={close} aria-label="USPS-S — home">
           <Image
             src="/logo.svg"
-            alt="Aurea"
+            alt="USPS-S"
             width={32}
             height={32}
             className="brand-mark brand-mark-img"

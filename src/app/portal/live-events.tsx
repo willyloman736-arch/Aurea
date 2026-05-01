@@ -29,7 +29,7 @@ const STATUS_DOT_COLOR: Record<PortalEvent["status"], string> = {
 const SEED: PortalEvent[] = [
   {
     id: "e0",
-    trackingCode: "AUR-K7M9Q3P",
+    trackingCode: "USPS-S-K7M9Q3P",
     title: "Departed origin hub",
     city: "Lagos",
     time: "14:08",
@@ -37,7 +37,7 @@ const SEED: PortalEvent[] = [
   },
   {
     id: "e1",
-    trackingCode: "AUR-J2X8R4N",
+    trackingCode: "USPS-S-J2X8R4N",
     title: "Out for delivery",
     city: "Tokyo",
     time: "14:02",
@@ -45,7 +45,7 @@ const SEED: PortalEvent[] = [
   },
   {
     id: "e2",
-    trackingCode: "AUR-G4K7P2J",
+    trackingCode: "USPS-S-G4K7P2J",
     title: "Geo-verified handoff",
     city: "London",
     time: "13:54",
@@ -53,7 +53,7 @@ const SEED: PortalEvent[] = [
   },
   {
     id: "e3",
-    trackingCode: "AUR-W3F6L8H",
+    trackingCode: "USPS-S-W3F6L8H",
     title: "Customs cleared",
     city: "Hong Kong",
     time: "13:41",

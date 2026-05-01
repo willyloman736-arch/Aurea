@@ -1,9 +1,9 @@
-// Generates an Aurea tracking code: AUR-XXXXXXX (7 alphanumeric chars,
+// Generates an USPS-S tracking code: USPS-S-XXXXXXX (7 alphanumeric chars,
 // uppercase, no ambiguous 0/O/1/I).
 const ALPHABET = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
 
 export function generateTrackingCode(): string {
-  let code = "AUR-";
+  let code = "USPS-S-";
   for (let i = 0; i < 7; i++) {
     code += ALPHABET[Math.floor(Math.random() * ALPHABET.length)];
   }

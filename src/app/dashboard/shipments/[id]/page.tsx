@@ -10,6 +10,13 @@ import { UpdateEventCard } from "./update-event";
 
 export const dynamic = "force-dynamic";
 
+type TimelineEvent = {
+  id: string;
+  time: Date;
+  title: string;
+  location: string | null;
+};
+
 export default async function ShipmentDetailPage({
   params,
 }: {
@@ -128,7 +135,7 @@ export default async function ShipmentDetailPage({
                 </p>
               ) : (
                 <ol className="dash-timeline">
-                  {shipment.events.map((ev, i) => (
+                  {shipment.events.map((ev: TimelineEvent, i: number) => (
                     <li key={ev.id} className={i === 0 ? "latest" : ""}>
                       <div className="dash-timeline-dot" />
                       <div className="dash-timeline-content">

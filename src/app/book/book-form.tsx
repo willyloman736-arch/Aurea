@@ -148,7 +148,7 @@ export function BookForm() {
                   height={22}
                   className="receipt-brand-mark-img"
                 />
-                <span>Aurea Logistics</span>
+                <span>USPS-S</span>
               </div>
             </div>
 

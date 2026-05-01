@@ -95,7 +95,7 @@ export function LiveMap({
       viewBox={`0 0 ${VIEW_W} ${VIEW_H}`}
       preserveAspectRatio="xMidYMid meet"
       role="img"
-      aria-label="Live tracking map of active Aurea shipments"
+      aria-label="Live tracking map of active USPS-S shipments"
     >
       <defs>
         <radialGradient id="hub-glow" cx="50%" cy="50%" r="50%">

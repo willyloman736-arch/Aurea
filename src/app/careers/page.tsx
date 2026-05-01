@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
-  title: "Careers · Aurea",
+  title: "Careers · USPS-S",
   description:
-    "Build the network. Open roles for couriers, dispatchers, and operators across every Aurea hub.",
+    "Build the network. Open roles for couriers, dispatchers, and operators across every USPS-S hub.",
 };
 
 const ROLES = [
@@ -44,7 +44,7 @@ export default function CareersPage() {
           Build the <em>network.</em>
         </>
       }
-      lede="We're hiring couriers, dispatchers, brokers, and operators across every Aurea hub. The work is tangible — cargo goes in, cargo comes out — and we move quickly when we hire."
+      lede="We're hiring couriers, dispatchers, brokers, and operators across every USPS-S hub. The work is tangible — cargo goes in, cargo comes out — and we move quickly when we hire."
     >
       <article className="page-section">
         <h2>
@@ -84,7 +84,7 @@ export default function CareersPage() {
         </div>
         <p style={{ marginTop: 12 }}>
           Don&rsquo;t see your role?{" "}
-          <Link href="mailto:careers@aurealogistics.com">
+          <Link href="mailto:careers@usps-s.com">
             Send us a note
           </Link>{" "}
           — we open positions as the network grows.
@@ -101,10 +101,10 @@ export default function CareersPage() {
         </p>
         <div className="page-cta-actions">
           <Link
-            href="mailto:careers@aurealogistics.com?subject=Application"
+            href="mailto:careers@usps-s.com?subject=Application"
             className="btn-primary" data-magnetic
           >
-            careers@aurealogistics.com
+            careers@usps-s.com
           </Link>
         </div>
       </div>

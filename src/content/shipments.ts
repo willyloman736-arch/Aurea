@@ -5,10 +5,10 @@ import type { Shipment } from "@/lib/types";
  * These IDs are advertised in the hero as demo chips.
  */
 export const DEMO_SHIPMENTS: Record<string, Shipment> = {
-  "AUR-2847-JK3921": {
-    id: "AUR-2847-JK3921",
+  "USPS-S-2847-JK3921": {
+    id: "USPS-S-2847-JK3921",
     status: "In Transit",
-    service: "Aurea Air Priority",
+    service: "USPS-S Air Priority",
     weight: "2.4 kg",
     pieces: 1,
     dimensions: "32 × 24 × 8 cm",
@@ -20,15 +20,15 @@ export const DEMO_SHIPMENTS: Record<string, Shipment> = {
     events: [
       { time: "Apr 20 · 14:22 CET", title: "Departed customs — international flight AU441", loc: "Singapore Changi (SIN)", latest: true },
       { time: "Apr 20 · 11:08 SGT", title: "Cleared origin customs", loc: "Singapore Changi Freight" },
-      { time: "Apr 20 · 08:40 SGT", title: "Arrived at origin sort facility", loc: "Aurea Hub, SG-03" },
+      { time: "Apr 20 · 08:40 SGT", title: "Arrived at origin sort facility", loc: "USPS-S Hub, SG-03" },
       { time: "Apr 19 · 22:15 SGT", title: "Picked up from shipper", loc: "Marina Bay, Singapore" },
       { time: "Apr 19 · 18:02 SGT", title: "Label created — awaiting pickup", loc: "Shipper portal" },
     ],
   },
-  "AUR-9931-LM7740": {
-    id: "AUR-9931-LM7740",
+  "USPS-S-9931-LM7740": {
+    id: "USPS-S-9931-LM7740",
     status: "Out for delivery",
-    service: "Aurea Ground Express",
+    service: "USPS-S Ground Express",
     weight: "5.8 kg",
     pieces: 2,
     dimensions: "40 × 30 × 22 cm",

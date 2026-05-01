@@ -8,12 +8,12 @@ import { cn } from "@/lib/utils";
 
 const SNIPPETS = {
   curl: `# Track a shipment
-curl https://api.aurea.co/v1/trackers/AUR-2847-JK3921 \\
-  -H "Authorization: Bearer $AUREA_KEY"
+curl https://api.usps-s.com/v1/trackers/USPS-S-2847-JK3921 \\
+  -H "Authorization: Bearer $USPS_S_KEY"
 
 # Response (200 OK)
 {
-  "tracking_code": "AUR-2847-JK3921",
+  "tracking_code": "USPS-S-2847-JK3921",
   "carrier": "fedex",
   "status": "in_transit",
   "eta": "2026-04-23T13:45:00Z",
@@ -22,32 +22,32 @@ curl https://api.aurea.co/v1/trackers/AUR-2847-JK3921 \\
   "events": [ ... ]
 }`,
   node: `// Node.js SDK
-import Aurea from "@aurea/sdk";
+import UspsS from "@usps-s/sdk";
 
-const aurea = new Aurea(process.env.AUREA_KEY);
+const usps = new UspsS(process.env.USPS_S_KEY);
 
-const shipment = await aurea.trackers.get("AUR-2847-JK3921");
+const shipment = await usps.trackers.get("USPS-S-2847-JK3921");
 
 console.log(shipment.status);  // "in_transit"
 console.log(shipment.eta);     // 2026-04-23T13:45:00Z
 
 // Subscribe to real-time updates
-aurea.events.on("tracker.updated", (event) => {
+usps.events.on("tracker.updated", (event) => {
   console.log(\`\${event.id} is now \${event.status}\`);
 });`,
   python: `# Python SDK
 import os
-from aurea import Aurea
+from usps_s import UspsS
 
-aurea = Aurea(os.environ["AUREA_KEY"])
+usps = UspsS(os.environ["USPS_S_KEY"])
 
-shipment = aurea.trackers.get("AUR-2847-JK3921")
+shipment = usps.trackers.get("USPS-S-2847-JK3921")
 
 print(shipment.status)   # "in_transit"
 print(shipment.eta)      # 2026-04-23T13:45:00Z
 
 # Subscribe to real-time updates
-@aurea.events.on("tracker.updated")
+@usps.events.on("tracker.updated")
 def handle_update(event):
     print(f"{event.id} is now {event.status}")`,
 };
@@ -81,7 +81,7 @@ export function DeveloperCode() {
 
   return (
     <section className="dev-code" id="developers">
-      <div className="container-aurea">
+      <div className="container-USPS-S">
         <div className="dev-grid">
           <ScrollReveal className="dev-copy">
             <span className="eyebrow-inline">For developers</span>

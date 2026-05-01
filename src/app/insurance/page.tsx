@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
-  title: "Insurance · Aurea",
+  title: "Insurance · USPS-S",
   description:
-    "Every Aurea shipment is insured up to its declared value. Here's how it works.",
+    "Every USPS-S shipment is insured up to its declared value. Here's how it works.",
 };
 
 export default function InsurancePage() {
@@ -30,7 +30,7 @@ export default function InsurancePage() {
           Standard <em>cover</em>
         </h2>
         <p>
-          Every shipment booked through Aurea includes insurance up to the value
+          Every shipment booked through USPS-S includes insurance up to the value
           you declare at booking, capped at five thousand US dollars (or local
           equivalent). There&rsquo;s no separate premium — it&rsquo;s built into
           the shipping rate. Cover begins the moment our courier scans the cargo
@@ -64,7 +64,7 @@ export default function InsurancePage() {
           <li>Damage occurring while in our custody</li>
           <li>Theft from a sealed truck or sealed hub area</li>
           <li>
-            Customs seizure, where the seizure was caused by an Aurea
+            Customs seizure, where the seizure was caused by an USPS-S
             misclassification (we cover the duty plus the cargo value)
           </li>
         </ul>
@@ -90,8 +90,8 @@ export default function InsurancePage() {
         <ol>
           <li>
             Email{" "}
-            <Link href="mailto:claims@aurealogistics.com">
-              claims@aurealogistics.com
+            <Link href="mailto:claims@usps-s.com">
+              claims@usps-s.com
             </Link>{" "}
             within seven days of the delivery window
           </li>
@@ -122,7 +122,7 @@ export default function InsurancePage() {
         <p>
           Excess cover is underwritten through our marine cargo broker (named in
           your insurance certificate at booking). The standard cover is
-          self-funded by Aurea, which is why we can move so quickly on small
+          self-funded by USPS-S, which is why we can move so quickly on small
           claims — there&rsquo;s nobody to defer to.
         </p>
       </article>

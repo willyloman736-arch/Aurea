@@ -4,7 +4,7 @@ import { PageShell } from "@/components/page-shell";
 import { BookForm } from "./book-form";
 
 export const metadata: Metadata = {
-  title: "Book a pickup · Aurea",
+  title: "Book a pickup · USPS-S",
   description:
     "Schedule a pickup in two minutes. Tell us when, where, and what — a courier arrives in your booked window.",
 };

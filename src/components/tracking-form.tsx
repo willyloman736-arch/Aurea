@@ -8,12 +8,12 @@ import { cn, formatTrackingId } from "@/lib/utils";
 type Tab = "tracking" | "reference" | "order";
 
 const PLACEHOLDERS: Record<Tab, string> = {
-  tracking: "Enter tracking number — e.g. AUR-2847-JK3921",
+  tracking: "Enter tracking number — e.g. USPS-S-2847-JK3921",
   reference: "Enter reference — PO, BOL, invoice",
   order: "Enter order ID — e.g. ORD-882901",
 };
 
-const DEMO_IDS = ["AUR-2847-JK3921", "AUR-9931-LM7740"];
+const DEMO_IDS = ["USPS-S-2847-JK3921", "USPS-S-9931-LM7740"];
 
 export function TrackingForm() {
   const [tab, setTab] = useState<Tab>("tracking");

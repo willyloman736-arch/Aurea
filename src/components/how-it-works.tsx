@@ -24,7 +24,7 @@ const STEPS = [
 export function HowItWorks() {
   return (
     <section className="how-it-works" id="how">
-      <div className="container-aurea">
+      <div className="container-USPS-S">
         <ScrollReveal className="section-head">
           <span className="eyebrow-inline">How it works</span>
           <h2 className="section-title">

@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
-  title: "Terms · Aurea",
+  title: "Terms · USPS-S",
   description:
-    "Terms of service for Aurea Logistics — what we promise, what we charge for, and how disputes work.",
+    "Terms of service for USPS-S — what we promise, what we charge for, and how disputes work.",
 };
 
 export default function TermsPage() {
@@ -29,7 +29,7 @@ export default function TermsPage() {
       <article className="page-section">
         <h2>1. Who&rsquo;s agreeing to what</h2>
         <p>
-          These terms govern your use of Aurea Logistics services — booking
+          These terms govern your use of USPS-S services — booking
           shipments, the dashboard, the public tracking page, and our APIs (where
           applicable). By booking a shipment you accept these terms on behalf of
           yourself or the entity you represent.
@@ -88,8 +88,8 @@ export default function TermsPage() {
           Every shipment is insured up to its declared value at no extra cost.
           For higher-value cargo, additional cover is available at booking.
           Claims are filed by emailing{" "}
-          <Link href="mailto:claims@aurealogistics.com">
-            claims@aurealogistics.com
+          <Link href="mailto:claims@usps-s.com">
+            claims@usps-s.com
           </Link>{" "}
           with the tracking code and a description of what happened. Most claims
           resolve in under forty-eight hours.
@@ -133,8 +133,8 @@ export default function TermsPage() {
         <h2>10. Disputes</h2>
         <p>
           We try to resolve disputes through{" "}
-          <Link href="mailto:hello@aurealogistics.com">
-            hello@aurealogistics.com
+          <Link href="mailto:hello@usps-s.com">
+            hello@usps-s.com
           </Link>{" "}
           first — most are misunderstandings that an ops lead can fix in an
           afternoon. Failing that, disputes go to binding arbitration in the

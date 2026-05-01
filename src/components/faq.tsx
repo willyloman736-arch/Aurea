@@ -37,7 +37,7 @@ export function Faq() {
 
   return (
     <section className="faq" id="faq">
-      <div className="container-aurea faq-grid">
+      <div className="container-USPS-S faq-grid">
         <ScrollReveal className="faq-head">
           <span className="eyebrow-inline">FAQ</span>
           <h2 className="section-title">
@@ -45,7 +45,7 @@ export function Faq() {
           </h2>
           <p className="section-sub">
             Can&rsquo;t find what you&rsquo;re looking for? Ping us at{" "}
-            <a href="mailto:hello@aurealogistics.com">hello@aurealogistics.com</a>
+            <a href="mailto:hello@usps-s.com">hello@usps-s.com</a>
             {" "}— replies within an hour during business days.
           </p>
         </ScrollReveal>

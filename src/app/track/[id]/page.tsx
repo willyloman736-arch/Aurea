@@ -16,9 +16,9 @@ export const revalidate = 0;
 export async function generateMetadata({ params }: Params): Promise<Metadata> {
   const { id } = await params;
   const shipment = await lookupShipment(decodeURIComponent(id));
-  if (!shipment) return { title: "Tracking not found — Aurea" };
+  if (!shipment) return { title: "Tracking not found — USPS-S" };
   return {
-    title: `${shipment.id} · ${shipment.status} — Aurea`,
+    title: `${shipment.id} · ${shipment.status} — USPS-S`,
     description: `Tracking ${shipment.id} from ${shipment.origin.city} to ${shipment.destination.city}.`,
   };
 }

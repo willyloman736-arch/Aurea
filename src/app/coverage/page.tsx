@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
-  title: "Coverage · Aurea",
+  title: "Coverage · USPS-S",
   description:
-    "Ten regional hubs, 220 countries. Where Aurea moves cargo and how the lanes connect.",
+    "Ten regional hubs, 220 countries. Where USPS-S moves cargo and how the lanes connect.",
 };
 
 const HUBS = [
@@ -27,7 +27,7 @@ export default function CoveragePage() {
       eyebrow="Coverage"
       title={
         <>
-          Where <em>Aurea</em> moves.
+          Where <em>USPS-S</em> moves.
         </>
       }
       lede="Ten regional hubs, two-hundred-and-twenty countries served, and the lanes that connect them — the same custody discipline whether your cargo moves twenty kilometres or two continents."

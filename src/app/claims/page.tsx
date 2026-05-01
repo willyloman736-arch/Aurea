@@ -3,7 +3,7 @@ import { PageShell } from "@/components/page-shell";
 import { ClaimForm } from "./claim-form";
 
 export const metadata: Metadata = {
-  title: "File a claim · Aurea",
+  title: "File a claim · USPS-S",
   description:
     "File a claim in three minutes. Damaged, lost, delayed, incomplete — most resolve inside 48 hours.",
 };

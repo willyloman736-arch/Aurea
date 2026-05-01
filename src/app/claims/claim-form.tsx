@@ -126,7 +126,7 @@ export function ClaimForm() {
                 required
                 spellCheck={false}
                 autoComplete="off"
-                placeholder="AUR-K7M9Q3P"
+                placeholder="USPS-S-K7M9Q3P"
                 className="ship-input ship-input-mono"
                 disabled={pending}
               />
