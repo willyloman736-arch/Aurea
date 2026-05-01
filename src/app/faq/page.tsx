@@ -4,7 +4,7 @@ import { ChevronDown } from "lucide-react";
 import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
-  title: "FAQ · Aurea",
+  title: "FAQ · USPS-S",
   description:
     "Pickup, claims, customs, billing — everything we get asked, with the real answers.",
 };
@@ -51,7 +51,7 @@ const CARGO: QA[] = [
 const TRACKING: QA[] = [
   {
     q: "How does tracking work?",
-    a: "Every shipment has a public tracking page (e.g. /track/AUR-K7M9Q3P) that updates the moment a checkpoint scans. Recipients don't need an account or password — share the link and they see live status.",
+    a: "Every shipment has a public tracking page (e.g. /track/USPS-S-K7M9Q3P) that updates the moment a checkpoint scans. Recipients don't need an account or password — share the link and they see live status.",
   },
   {
     q: "How accurate is the ETA?",
@@ -70,7 +70,7 @@ const INSURANCE: QA[] = [
   },
   {
     q: "How do I file a claim?",
-    a: "Email claims@aurealogistics.com within seven days of the delivery window with your tracking code, a description of what happened, and photos if there's damage. Most claims resolve in under forty-eight hours.",
+    a: "Email claims@usps-s.com within seven days of the delivery window with your tracking code, a description of what happened, and photos if there's damage. Most claims resolve in under forty-eight hours.",
   },
   {
     q: "What's NOT covered?",
@@ -104,7 +104,7 @@ const BILLING: QA[] = [
   },
   {
     q: "Can I get a custom contract?",
-    a: "For volumes above two thousand shipments per month or with bespoke insurance/customs requirements, yes. Email partners@aurealogistics.com to start the conversation.",
+    a: "For volumes above two thousand shipments per month or with bespoke insurance/customs requirements, yes. Email partners@usps-s.com to start the conversation.",
   },
 ];
 
@@ -126,7 +126,7 @@ export default function FaqPage() {
           Questions, <em>answered.</em>
         </>
       }
-      lede="Pickup, cargo, claims, customs, billing — everything we get asked, with the real answers. Can't find what you're looking for? Ping us at hello@aurealogistics.com."
+      lede="Pickup, cargo, claims, customs, billing — everything we get asked, with the real answers. Can't find what you're looking for? Ping us at hello@usps-s.com."
     >
       {SECTIONS.map((section) => (
         <article key={section.id} id={section.id} className="page-section faq-section">
@@ -157,10 +157,10 @@ export default function FaqPage() {
         </p>
         <div className="page-cta-actions">
           <Link
-            href="mailto:hello@aurealogistics.com"
+            href="mailto:hello@usps-s.com"
             className="btn-primary" data-magnetic
           >
-            Email hello@aurealogistics.com
+            Email hello@usps-s.com
           </Link>
           <Link href="/contact" className="btn-ghost">
             See all channels

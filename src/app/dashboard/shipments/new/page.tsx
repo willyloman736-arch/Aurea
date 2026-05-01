@@ -8,7 +8,7 @@ export default function NewShipmentPage() {
     <>
       <DashHeader
         title="New shipment"
-        subtitle="Log a package, tag a recipient, hand it off — Aurea generates the tracking code."
+        subtitle="Log a package, tag a recipient, hand it off — USPS-S generates the tracking code."
         actions={
           <Link href="/dashboard/shipments" className="btn-ghost btn-sm">
             <ArrowLeft size={13} strokeWidth={1.5} />

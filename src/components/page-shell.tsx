@@ -19,7 +19,7 @@ export function PageShell({ eyebrow, title, lede, children }: PageShellProps) {
       <Nav />
       <main id="main-content" className="static-main">
         <section className="page-hero">
-          <div className="container-aurea">
+          <div className="container-USPS-S">
             <Link href="/" className="page-back">
               <ArrowLeft size={13} strokeWidth={1.5} />
               <span>Back to home</span>
@@ -30,7 +30,7 @@ export function PageShell({ eyebrow, title, lede, children }: PageShellProps) {
           </div>
         </section>
         <section className="page-content">
-          <div className="container-aurea page-content-inner">
+          <div className="container-USPS-S page-content-inner">
             {children}
           </div>
         </section>

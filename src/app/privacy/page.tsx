@@ -3,8 +3,8 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
-  title: "Privacy · Aurea",
-  description: "How Aurea Logistics handles personal data, in plain language.",
+  title: "Privacy · USPS-S",
+  description: "How USPS-S handles personal data, in plain language.",
 };
 
 export default function PrivacyPage() {
@@ -60,7 +60,7 @@ export default function PrivacyPage() {
       <article className="page-section">
         <h2>Who sees it</h2>
         <p>
-          Aurea staff who need it to do their jobs (couriers see destination
+          USPS-S staff who need it to do their jobs (couriers see destination
           addresses, finance sees billing). Last-mile carriers see the recipient
           name and address only. Customs brokers see what the destination customs
           authority requires. We don&rsquo;t share, sell, or rent your data to
@@ -86,7 +86,7 @@ export default function PrivacyPage() {
           </li>
         </ul>
         <p>
-          Email <Link href="mailto:privacy@aurealogistics.com">privacy@aurealogistics.com</Link>{" "}
+          Email <Link href="mailto:privacy@usps-s.com">privacy@usps-s.com</Link>{" "}
           — replies within fourteen days, usually faster.
         </p>
       </article>

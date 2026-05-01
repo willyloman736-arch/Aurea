@@ -4,7 +4,7 @@ import { ScrollReveal } from "./scroll-reveal";
 export function DashboardPreview() {
   return (
     <section className="dash-preview-section" id="platform">
-      <div className="container-aurea">
+      <div className="container-USPS-S">
         <ScrollReveal className="section-head">
           <span className="eyebrow-inline">The operator console</span>
           <h2 className="section-title">
@@ -24,7 +24,7 @@ export function DashboardPreview() {
             </div>
             <div className="dp-url">
               <span className="dp-url-lock">⌐</span>
-              app.aurealogistics.com/dashboard
+              app.usps-s.com/dashboard
             </div>
             <div className="dp-chrome-spacer" />
           </div>
@@ -96,31 +96,31 @@ export function DashboardPreview() {
                   <span className="right">Updated</span>
                 </div>
                 <div className="dp-row">
-                  <span className="mono">AUR-2847-JK3921</span>
+                  <span className="mono">USPS-S-2847-JK3921</span>
                   <span>Singapore → Amsterdam</span>
                   <span><em className="dp-pill transit">In transit</em></span>
                   <span className="right">2m ago</span>
                 </div>
                 <div className="dp-row">
-                  <span className="mono">AUR-9931-LM7740</span>
+                  <span className="mono">USPS-S-9931-LM7740</span>
                   <span>Rotterdam → Berlin</span>
                   <span><em className="dp-pill delivery">Out for delivery</em></span>
                   <span className="right">4m ago</span>
                 </div>
                 <div className="dp-row">
-                  <span className="mono">AUR-4421-KP8823</span>
+                  <span className="mono">USPS-S-4421-KP8823</span>
                   <span>Tokyo → LA</span>
                   <span><em className="dp-pill transit">In transit</em></span>
                   <span className="right">6m ago</span>
                 </div>
                 <div className="dp-row">
-                  <span className="mono">AUR-7765-QR2214</span>
+                  <span className="mono">USPS-S-7765-QR2214</span>
                   <span>Dubai → London</span>
                   <span><em className="dp-pill delivered">Delivered</em></span>
                   <span className="right">11m ago</span>
                 </div>
                 <div className="dp-row">
-                  <span className="mono">AUR-1198-MN5567</span>
+                  <span className="mono">USPS-S-1198-MN5567</span>
                   <span>São Paulo → Madrid</span>
                   <span><em className="dp-pill exception">Exception</em></span>
                   <span className="right">14m ago</span>
@@ -134,7 +134,7 @@ export function DashboardPreview() {
             <div className="dp-toast-dot" />
             <div>
               <strong>Event received</strong>
-              <span>AUR-2847-JK3921 · Departed SIN</span>
+              <span>USPS-S-2847-JK3921 · Departed SIN</span>
             </div>
           </div>
         </ScrollReveal>

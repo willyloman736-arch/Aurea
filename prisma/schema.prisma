@@ -1,4 +1,4 @@
-// Aurea — shipment tracking schema
+// USPS-S — shipment tracking schema
 // Phase 2: real shipments cached from EasyPost
 
 generator client {

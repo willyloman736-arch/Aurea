@@ -7,11 +7,18 @@ import { getShipmentById } from "@/lib/dashboard-queries";
 import { ReceiptActions } from "./receipt-actions";
 
 export const metadata: Metadata = {
-  title: "Shipment receipt · Aurea",
+  title: "Shipment receipt · USPS-S",
   robots: { index: false, follow: false },
 };
 
 export const dynamic = "force-dynamic";
+
+type ReceiptEvent = {
+  id: string;
+  time: Date;
+  title: string;
+  location: string | null;
+};
 
 const SERVICE_LABELS: Record<string, string> = {
   express: "Express parcel",
@@ -110,7 +117,7 @@ export default async function ShipmentReceiptPage({
                 startOffset="50%"
                 textAnchor="middle"
               >
-                ★ AUREA LOGISTICS ★
+                ★ USPS-S ★
               </textPath>
             </text>
 
@@ -182,13 +189,13 @@ export default async function ShipmentReceiptPage({
           <div className="rcpt-header-brand">
             <Image
               src="/logo.svg"
-              alt="Aurea"
+              alt="USPS-S"
               width={56}
               height={56}
               className="rcpt-logo"
             />
             <div>
-              <div className="rcpt-brand-name">Aurea Logistics</div>
+              <div className="rcpt-brand-name">USPS-S</div>
               <div className="rcpt-brand-tag">
                 Shipment Receipt &amp; Bill of Carriage
               </div>
@@ -343,7 +350,7 @@ export default async function ShipmentReceiptPage({
           <section className="rcpt-timeline">
             <div className="rcpt-section-title">Tracking history</div>
             <ol className="rcpt-events">
-              {shipment.events.map((ev, i) => (
+              {shipment.events.map((ev: ReceiptEvent, i: number) => (
                 <li key={ev.id} className={i === 0 ? "is-latest" : ""}>
                   <div className="rcpt-event-dot" />
                   <div className="rcpt-event-body">
@@ -365,16 +372,16 @@ export default async function ShipmentReceiptPage({
             <div className="rcpt-foot-eyebrow">Track this shipment</div>
             <div>
               Recipient can follow live status at{" "}
-              <strong>aurea-one-flame.vercel.app/track/{shipment.trackingCode}</strong>
+              <strong>USPS-S-one-flame.vercel.app/track/{shipment.trackingCode}</strong>
               {" "}— no login required.
             </div>
           </div>
           <div className="rcpt-foot-block">
             <div className="rcpt-foot-eyebrow">Insurance</div>
             <div>
-              Every Aurea shipment is covered up to its declared value. Excess
+              Every USPS-S shipment is covered up to its declared value. Excess
               cover available at booking. File a claim at{" "}
-              <strong>aurea-one-flame.vercel.app/claims</strong> within 7 days
+              <strong>USPS-S-one-flame.vercel.app/claims</strong> within 7 days
               of the delivery window.
             </div>
           </div>
@@ -382,14 +389,14 @@ export default async function ShipmentReceiptPage({
             <div className="rcpt-foot-eyebrow">Contact</div>
             <div>
               Questions about this shipment:{" "}
-              <strong>support@aurealogistics.com</strong>. We answer within 4
+              <strong>support@usps-s.com</strong>. We answer within 4
               hours, every day.
             </div>
           </div>
           <div className="rcpt-foot-rule" />
           <div className="rcpt-foot-base">
             <span>
-              © {new Date().getFullYear()} Aurea Logistics. SOC 2 Type II ·
+              © {new Date().getFullYear()} USPS-S. SOC 2 Type II ·
               ISO 27001 · GDPR
             </span>
             <span>Last updated {updated}</span>

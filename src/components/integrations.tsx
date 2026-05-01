@@ -22,7 +22,7 @@ const CARRIERS = [
 export function Integrations() {
   return (
     <section className="integrations" id="integrations">
-      <div className="container-aurea">
+      <div className="container-USPS-S">
         <ScrollReveal className="int-head">
           <span className="eyebrow-inline">Integrations</span>
           <h3 className="int-title">
@@ -39,7 +39,7 @@ export function Integrations() {
         </ScrollReveal>
 
         <ScrollReveal className="int-footnote">
-          Aurea handles carrier differences behind a single HTTP contract. Add a new
+          USPS-S handles carrier differences behind a single HTTP contract. Add a new
           shipping partner tomorrow and your code doesn&rsquo;t change.
         </ScrollReveal>
       </div>

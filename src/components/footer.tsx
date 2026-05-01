@@ -12,12 +12,12 @@ const FOOTER_PARTNERS = [
 export function Footer() {
   return (
     <footer className="footer-wrap" id="support">
-      <div className="container-aurea footer-inner">
+      <div className="container-USPS-S footer-inner">
         <div className="footer-top">
-          <Link href="/" className="brand" aria-label="Aurea — home">
+          <Link href="/" className="brand" aria-label="USPS-S — home">
             <Image
               src="/logo.svg"
-              alt="Aurea"
+              alt="USPS-S"
               width={40}
               height={40}
               className="brand-mark brand-mark-img"
@@ -69,7 +69,7 @@ export function Footer() {
           </div>
         </div>
         <div className="footer-base">
-          <span>© {new Date().getFullYear()} Aurea Logistics</span>
+          <span>© {new Date().getFullYear()} USPS-S</span>
           <span className="footer-badges">
             <span>SOC 2</span>
             <span>ISO 27001</span>

@@ -19,12 +19,12 @@ const publicSans = Public_Sans({
 const fontVars = `${publicSans.variable}`;
 
 export const metadata: Metadata = {
-  title: "Aurea — Global shipment visibility",
+  title: "USPS-S — Global shipment visibility",
   description:
     "Shipment tracking, engineered for scale. Real-time visibility across 220 countries — one API, 18 million daily events.",
-  metadataBase: new URL("https://aurea.example"),
+  metadataBase: new URL("https://usps-s.com"),
   openGraph: {
-    title: "Aurea — Global shipment visibility",
+    title: "USPS-S — Global shipment visibility",
     description: "Real-time shipment tracking across 220 countries.",
     type: "website",
   },

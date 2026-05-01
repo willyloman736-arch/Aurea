@@ -3,9 +3,9 @@ import type { Metadata } from "next";
 import { PageShell } from "@/components/page-shell";
 
 export const metadata: Metadata = {
-  title: "Customers · Aurea",
+  title: "Customers · USPS-S",
   description:
-    "Real ops teams shipping with Aurea. Three case studies, the metrics, the work behind them.",
+    "Real ops teams shipping with USPS-S. Three case studies, the metrics, the work behind them.",
 };
 
 export default function CustomersPage() {
@@ -17,7 +17,7 @@ export default function CustomersPage() {
           Operators who moved the <em>numbers.</em>
         </>
       }
-      lede="Three teams who replaced existing courier and freight infrastructure with Aurea — and what it cost them not to. Real metrics, named operators, no anonymous &ldquo;Fortune 500 retailer.&rdquo;"
+      lede="Three teams who replaced existing courier and freight infrastructure with USPS-S — and what it cost them not to. Real metrics, named operators, no anonymous &ldquo;Fortune 500 retailer.&rdquo;"
     >
       <article id="vendr" className="page-section">
         <h2>
@@ -46,7 +46,7 @@ export default function CustomersPage() {
         </p>
         <h3>What changed</h3>
         <p>
-          Vendr moved every shipment to Aurea over six weeks. One booking flow,
+          Vendr moved every shipment to USPS-S over six weeks. One booking flow,
           one custody chain, one phone number when something needs attention.
           Their ops team reclaimed roughly six hours a week from chasing carrier
           updates, and customer support tickets about delivery dropped by more
@@ -54,7 +54,7 @@ export default function CustomersPage() {
         </p>
         <p className="page-callout">
           <strong>Maya Aldrin, VP Operations:</strong> &ldquo;We move twenty
-          thousand parcels a month with Aurea. They don&rsquo;t lose packages,
+          thousand parcels a month with USPS-S. They don&rsquo;t lose packages,
           they don&rsquo;t pad delivery windows, and our customers stopped
           calling to ask where their orders are.&rdquo;
         </p>
@@ -87,14 +87,14 @@ export default function CustomersPage() {
         </p>
         <h3>What changed</h3>
         <p>
-          Flexport replaced their internal ETA pipeline with Aurea&rsquo;s
-          per-lane predictive ETA. Cross-border freight now flows through Aurea
+          Flexport replaced their internal ETA pipeline with USPS-S&rsquo;s
+          per-lane predictive ETA. Cross-border freight now flows through USPS-S
           customs brokers, so paperwork is filed before the truck arrives at the
           border. ETAs hold within thirty minutes on most lanes; the freight ops
           team stopped scheduling around delays — because there aren&rsquo;t any.
         </p>
         <p className="page-callout">
-          <strong>Daniel Okafor, Head of Logistics:</strong> &ldquo;Aurea handles
+          <strong>Daniel Okafor, Head of Logistics:</strong> &ldquo;USPS-S handles
           our cross-border freight through customs without us sitting on the
           phone. ETAs hold within thirty minutes. We&rsquo;ve stopped scheduling
           around their delays — because there aren&rsquo;t any.&rdquo;
@@ -128,14 +128,14 @@ export default function CustomersPage() {
         </p>
         <h3>What changed</h3>
         <p>
-          Ramp moved its full international flow to Aurea. The first hundred
+          Ramp moved its full international flow to USPS-S. The first hundred
           shipments cleared customs without intervention. The People Ops team now
           books from a single internal tool, sees live tracking on every parcel,
           and gets a doorstep-confirmed photo for every laptop they ship.
         </p>
         <p className="page-callout">
           <strong>Sara Kim, Ops Lead:</strong> &ldquo;We ship hardware, swag, and
-          signed contracts to employees in forty countries. Aurea is the only
+          signed contracts to employees in forty countries. USPS-S is the only
           courier we trust to land a package without four follow-up emails.&rdquo;
         </p>
       </article>

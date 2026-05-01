@@ -8,7 +8,7 @@ const STUDIES = [
     unit: "%",
     metricLabel: "support tickets",
     story:
-      "We move 20,000 parcels a month with Aurea. They don't lose packages, they don't pad delivery windows, and our customers stopped calling to ask where their orders are.",
+      "We move 20,000 parcels a month with USPS-S. They don't lose packages, they don't pad delivery windows, and our customers stopped calling to ask where their orders are.",
     author: "Maya Aldrin",
     role: "VP Operations",
     initial: "M",
@@ -20,7 +20,7 @@ const STUDIES = [
     unit: "min",
     metricLabel: "ETA accuracy",
     story:
-      "Aurea handles our cross-border freight through customs without us sitting on the phone. ETAs hold within thirty minutes. We've stopped scheduling around their delays — because there aren't any.",
+      "USPS-S handles our cross-border freight through customs without us sitting on the phone. ETAs hold within thirty minutes. We've stopped scheduling around their delays — because there aren't any.",
     author: "Daniel Okafor",
     role: "Head of Logistics",
     initial: "D",
@@ -32,7 +32,7 @@ const STUDIES = [
     unit: "countries",
     metricLabel: "served, no follow-ups",
     story:
-      "We ship hardware, swag, and signed contracts to employees in 40 countries. Aurea is the only courier we trust to land a package without four follow-up emails.",
+      "We ship hardware, swag, and signed contracts to employees in 40 countries. USPS-S is the only courier we trust to land a package without four follow-up emails.",
     author: "Sara Kim",
     role: "Ops Lead",
     initial: "S",
@@ -42,14 +42,14 @@ const STUDIES = [
 export function CaseStudies() {
   return (
     <section className="case-studies" id="customers">
-      <div className="container-aurea">
+      <div className="container-USPS-S">
         <ScrollReveal className="section-head">
           <span className="eyebrow-inline">Case studies</span>
           <h2 className="section-title">
             Operators who <em>moved the numbers.</em>
           </h2>
           <p className="section-sub">
-            Three teams who replaced existing tracking infrastructure with Aurea
+            Three teams who replaced existing tracking infrastructure with USPS-S
             — and what it cost them not to.
           </p>
         </ScrollReveal>

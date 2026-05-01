@@ -104,7 +104,7 @@ export default async function SettingsPage() {
         <div className="dash-card">
           <h2 className="dash-card-title">Data & export</h2>
           <p className="dash-card-sub">
-            Aurea stores all shipment events in Neon. You own the data — export
+            USPS-S stores all shipment events in Neon. You own the data — export
             or delete any time.
           </p>
           <div className="dash-form-actions">

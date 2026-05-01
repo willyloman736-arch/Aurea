@@ -14,8 +14,8 @@ export function TrackingActions({ trackingCode, status }: Props) {
   async function handleShare() {
     if (typeof window === "undefined") return;
     const url = window.location.href;
-    const title = `Aurea tracking · ${trackingCode}`;
-    const text = `Track this Aurea shipment (${status}): ${trackingCode}`;
+    const title = `USPS-S tracking · ${trackingCode}`;
+    const text = `Track this USPS-S shipment (${status}): ${trackingCode}`;
 
     // Web Share API (mobile + Safari) — opens native share sheet
     if (

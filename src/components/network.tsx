@@ -53,7 +53,7 @@ const FEATURES = [
 export function Network() {
   return (
     <section className="network" id="network">
-      <div className="container-aurea">
+      <div className="container-USPS-S">
         <ScrollReveal className="section-head">
           <span className="eyebrow-inline">The network</span>
           <h2 className="section-title">

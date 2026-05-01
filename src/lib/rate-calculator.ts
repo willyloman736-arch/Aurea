@@ -138,7 +138,7 @@ export function calculateRate(opts: {
 /** Tracking-style reference for booking and claim confirmations. */
 export function generateReference(prefix: "BK" | "CL"): string {
   const chars = "ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
-  let out = `AUR-${prefix}-`;
+  let out = `USPS-S-${prefix}-`;
   for (let i = 0; i < 6; i++) {
     out += chars[Math.floor(Math.random() * chars.length)];
   }

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
 /* =========================================================
-   AUREA — USPS-inspired navy + white identity
+   USPS-S — USPS-inspired navy + white identity
    Light mode, Public Sans, glassmorphism preserved.
    ========================================================= */
 
@@ -116,7 +116,7 @@ em {
     letter-spacing: -0.02em;
 }
 
-.container-aurea {
+.container-USPS-S {
     width: 100%;
     max-width: 1180px;
     margin: 0 auto;
@@ -587,7 +587,7 @@ h1, h2, h3, h4 {
     z-index: 0;
     pointer-events: none;
 }
-.hero > .container-aurea { position: relative; z-index: 2; }
+.hero > .container-USPS-S { position: relative; z-index: 2; }
 
 /* Hero 3D package cube — floats upper-right */
 .hero-cube-wrap {
@@ -1803,7 +1803,7 @@ h1, h2, h3, h4 {
     .footer-cols { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 600px) {
-    .container-aurea { padding: 0 20px; }
+    .container-USPS-S { padding: 0 20px; }
     .nav-inner { padding: 12px 20px; }
     .hero { padding: 60px 0 40px; }
     .track-form { grid-template-columns: 1fr; }
@@ -1834,15 +1834,15 @@ h1, h2, h3, h4 {
     animation-timing-function: cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 ::view-transition-old(root) {
-    animation-name: aurea-fade-out;
+    animation-name: USPS-S-fade-out;
 }
 ::view-transition-new(root) {
-    animation-name: aurea-fade-in;
+    animation-name: USPS-S-fade-in;
 }
-@keyframes aurea-fade-out {
+@keyframes USPS-S-fade-out {
     to   { opacity: 0; transform: translateY(-6px); }
 }
-@keyframes aurea-fade-in {
+@keyframes USPS-S-fade-in {
     from { opacity: 0; transform: translateY(8px); }
 }
 
@@ -2427,7 +2427,7 @@ h1, h2, h3, h4 {
     pointer-events: none;
     z-index: 0;
 }
-.dash-preview-section > .container-aurea { position: relative; z-index: 1; }
+.dash-preview-section > .container-USPS-S { position: relative; z-index: 1; }
 
 .dash-preview {
     margin-top: 56px;
@@ -5656,7 +5656,7 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 /* ===== Mobile ===== */
 @media (max-width: 720px) {
     /* Container & nav padding */
-    .container-aurea { padding: 0 18px; }
+    .container-USPS-S { padding: 0 18px; }
     .nav-inner { padding: 12px 16px; }
 
     /* Brand a touch smaller */
@@ -5812,7 +5812,7 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 
 /* ===== Small phones ===== */
 @media (max-width: 480px) {
-    .container-aurea { padding: 0 16px; }
+    .container-USPS-S { padding: 0 16px; }
     .nav-inner { padding: 10px 14px; }
     .nav-drawer { left: 8px; right: 8px; padding: 20px; top: 60px; }
 
@@ -5863,7 +5863,7 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 
 /* ===== Tiny phones (iPhone SE generation) ===== */
 @media (max-width: 380px) {
-    .container-aurea { padding: 0 14px; }
+    .container-USPS-S { padding: 0 14px; }
     .nav-inner { padding: 10px 12px; }
 
     /* Brand — keep mark only on very small */
@@ -5881,7 +5881,7 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 /* ===== Defensive: prevent horizontal scroll anywhere ===== */
 @media (max-width: 720px) {
     html, body { max-width: 100vw; overflow-x: hidden; }
-    .container-aurea,
+    .container-USPS-S,
     .ship-form,
     .ship-form-grid,
     .portal,
@@ -5969,7 +5969,7 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
     .trust-row { gap: 10px !important; }
 
     /* Defensive: any direct child of container should never overflow */
-    .container-aurea > * { min-width: 0; }
+    .container-USPS-S > * { min-width: 0; }
 }
 
 @media (max-width: 480px) {
@@ -6624,7 +6624,7 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
     100% { transform: scale(1.8); opacity: 0; }
 }
 
-/* Popups — match Aurea aesthetic */
+/* Popups — match USPS-S aesthetic */
 .mapboxgl-popup-content {
     padding: 10px 14px !important;
     border-radius: var(--r-md) !important;
@@ -6824,11 +6824,11 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 }
 
 /* =========================================================
-   .aurea-dark — DARK SCOPE for /dashboard/* and /sign-in
+   .USPS-S-dark — DARK SCOPE for /dashboard/* and /sign-in
    Marketing site stays USPS light. Dashboard + admin login
    flip to dark navy so glassmorphism reads premium.
    ========================================================= */
-.aurea-dark {
+.USPS-S-dark {
     /* Token flip — dark navy bg, white text, brighter blue accent */
     --bg:          #0a0e15;
     --bg-2:        #0f1420;
@@ -6852,35 +6852,35 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 
 /* Dashboard surfaces — flip the inverted glass pattern back to
    "low-opacity white over dark" so cards float as proper frosted glass */
-.aurea-dark .dash-shell { background: var(--bg); }
-.aurea-dark .dash-sidebar {
+.USPS-S-dark .dash-shell { background: var(--bg); }
+.USPS-S-dark .dash-sidebar {
     background: linear-gradient(180deg, rgba(255, 255, 255, 0.04), rgba(255, 255, 255, 0.01)) !important;
     border-right: 1px solid var(--hairline) !important;
 }
-.aurea-dark .dash-header {
+.USPS-S-dark .dash-header {
     background: rgba(10, 14, 21, 0.78) !important;
     border-bottom: 1px solid var(--hairline) !important;
     backdrop-filter: blur(20px) saturate(170%);
     -webkit-backdrop-filter: blur(20px) saturate(170%);
 }
-.aurea-dark .dash-search {
+.USPS-S-dark .dash-search {
     background: rgba(255, 255, 255, 0.04) !important;
     border-color: var(--hairline) !important;
     color: var(--text-1) !important;
 }
-.aurea-dark .dash-search input { color: var(--text-1); }
-.aurea-dark .dash-search input::placeholder { color: var(--text-3); }
-.aurea-dark .dash-search-kbd {
+.USPS-S-dark .dash-search input { color: var(--text-1); }
+.USPS-S-dark .dash-search input::placeholder { color: var(--text-3); }
+.USPS-S-dark .dash-search-kbd {
     background: rgba(255, 255, 255, 0.06) !important;
     color: var(--text-2) !important;
     border-color: var(--hairline-2) !important;
 }
 
 /* Cards everywhere inside dashboard get the original frosted-on-dark glass */
-.aurea-dark .dash-card,
-.aurea-dark .dash-card-form,
-.aurea-dark .dash-card-info,
-.aurea-dark .dash-card-tight {
+.USPS-S-dark .dash-card,
+.USPS-S-dark .dash-card-form,
+.USPS-S-dark .dash-card-info,
+.USPS-S-dark .dash-card-tight {
     background:
         linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.015)) !important;
     border: 1px solid var(--hairline) !important;
@@ -6891,16 +6891,16 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
         0 18px 40px rgba(0, 0, 0, 0.32) !important;
     color: var(--text-1);
 }
-.aurea-dark .dash-card-accent {
+.USPS-S-dark .dash-card-accent {
     background:
         linear-gradient(135deg, rgba(113, 186, 229, 0.10), rgba(113, 186, 229, 0.02)) !important;
     border-color: rgba(113, 186, 229, 0.22) !important;
 }
 
 /* Stat cards in dashboard overview */
-.aurea-dark [class*="stat-card"],
-.aurea-dark .dash-stat-card,
-.aurea-dark .dash-stats-grid > * {
+.USPS-S-dark [class*="stat-card"],
+.USPS-S-dark .dash-stat-card,
+.USPS-S-dark .dash-stats-grid > * {
     background:
         linear-gradient(135deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)) !important;
     border: 1px solid var(--hairline) !important;
@@ -6908,29 +6908,29 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 }
 
 /* Form inputs — dark glass with light text */
-.aurea-dark .ship-input,
-.aurea-dark .dash-input {
+.USPS-S-dark .ship-input,
+.USPS-S-dark .dash-input {
     background: rgba(255, 255, 255, 0.04) !important;
     border: 1px solid var(--hairline) !important;
     color: var(--text-1) !important;
 }
-.aurea-dark .ship-input::placeholder,
-.aurea-dark .dash-input::placeholder { color: var(--text-3) !important; }
-.aurea-dark .ship-input:hover,
-.aurea-dark .dash-input:hover { border-color: var(--hairline-2) !important; }
-.aurea-dark .ship-input:focus,
-.aurea-dark .dash-input:focus {
+.USPS-S-dark .ship-input::placeholder,
+.USPS-S-dark .dash-input::placeholder { color: var(--text-3) !important; }
+.USPS-S-dark .ship-input:hover,
+.USPS-S-dark .dash-input:hover { border-color: var(--hairline-2) !important; }
+.USPS-S-dark .ship-input:focus,
+.USPS-S-dark .dash-input:focus {
     border-color: var(--accent) !important;
     background: rgba(113, 186, 229, 0.05) !important;
 }
 
 /* Form section dividers */
-.aurea-dark .ship-section { border-bottom-color: var(--hairline); }
-.aurea-dark .ship-section-title { color: var(--text-1); }
-.aurea-dark .ship-section-title em { color: var(--accent); }
+.USPS-S-dark .ship-section { border-bottom-color: var(--hairline); }
+.USPS-S-dark .ship-section-title { color: var(--text-1); }
+.USPS-S-dark .ship-section-title em { color: var(--accent); }
 
 /* Sticky summary panel + book-quote-preview */
-.aurea-dark .ship-summary-card {
+.USPS-S-dark .ship-summary-card {
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.05), rgba(255, 255, 255, 0.015)) !important;
     border: 1px solid var(--hairline) !important;
@@ -6940,136 +6940,136 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 }
 
 /* Segmented status control */
-.aurea-dark .ship-segmented {
+.USPS-S-dark .ship-segmented {
     background: rgba(255, 255, 255, 0.025) !important;
     border-color: var(--hairline) !important;
 }
-.aurea-dark .ship-segment { color: var(--text-2); }
-.aurea-dark .ship-segment:hover {
+.USPS-S-dark .ship-segment { color: var(--text-2); }
+.USPS-S-dark .ship-segment:hover {
     color: var(--text-1);
     background: rgba(255, 255, 255, 0.04);
 }
-.aurea-dark .ship-segment.is-active {
+.USPS-S-dark .ship-segment.is-active {
     background: rgba(113, 186, 229, 0.16) !important;
     color: var(--accent) !important;
     border-color: rgba(113, 186, 229, 0.42) !important;
 }
 
 /* Icon buttons */
-.aurea-dark .ship-btn-icon {
+.USPS-S-dark .ship-btn-icon {
     background: rgba(255, 255, 255, 0.025) !important;
     border-color: var(--hairline) !important;
     color: var(--text-2) !important;
 }
-.aurea-dark .ship-btn-icon:hover {
+.USPS-S-dark .ship-btn-icon:hover {
     color: var(--accent) !important;
     border-color: var(--accent) !important;
     background: rgba(113, 186, 229, 0.08) !important;
 }
 
 /* Buttons override — keep primary readable on dark */
-.aurea-dark .btn-primary {
+.USPS-S-dark .btn-primary {
     background: #ffffff !important;
     color: #0a0e15 !important;
 }
-.aurea-dark .btn-primary:hover { background: #f0f4fa !important; }
-.aurea-dark .btn-ghost {
+.USPS-S-dark .btn-primary:hover { background: #f0f4fa !important; }
+.USPS-S-dark .btn-ghost {
     background: rgba(255, 255, 255, 0.04) !important;
     border-color: var(--hairline-2) !important;
     color: var(--text-1) !important;
 }
-.aurea-dark .btn-ghost:hover {
+.USPS-S-dark .btn-ghost:hover {
     background: rgba(255, 255, 255, 0.08) !important;
     border-color: rgba(255, 255, 255, 0.30) !important;
 }
-.aurea-dark .btn-text { color: var(--text-2); }
-.aurea-dark .btn-text:hover { color: var(--text-1); }
+.USPS-S-dark .btn-text { color: var(--text-2); }
+.USPS-S-dark .btn-text:hover { color: var(--text-1); }
 
 /* Demo banner — already amber-tinted, keep that energy on dark */
-.aurea-dark .demo-banner {
+.USPS-S-dark .demo-banner {
     background: rgba(113, 186, 229, 0.10) !important;
     border-bottom-color: rgba(113, 186, 229, 0.24) !important;
     color: var(--text-2);
 }
-.aurea-dark .demo-banner strong { color: var(--accent); }
+.USPS-S-dark .demo-banner strong { color: var(--accent); }
 
 /* Sidebar nav items */
-.aurea-dark .dash-nav-link {
+.USPS-S-dark .dash-nav-link {
     color: var(--text-3);
 }
-.aurea-dark .dash-nav-link:hover {
+.USPS-S-dark .dash-nav-link:hover {
     color: var(--text-1);
     background: rgba(255, 255, 255, 0.04);
 }
-.aurea-dark .dash-nav-link.active {
+.USPS-S-dark .dash-nav-link.active {
     color: var(--accent);
     background: rgba(113, 186, 229, 0.10);
     border-left-color: var(--accent);
 }
-.aurea-dark .dash-brand-env {
+.USPS-S-dark .dash-brand-env {
     background: rgba(113, 186, 229, 0.16);
     color: var(--accent);
     border-color: rgba(113, 186, 229, 0.32);
 }
-.aurea-dark .dash-avatar {
+.USPS-S-dark .dash-avatar {
     background: rgba(113, 186, 229, 0.16);
     color: var(--accent);
 }
-.aurea-dark .dash-icon-btn {
+.USPS-S-dark .dash-icon-btn {
     background: rgba(255, 255, 255, 0.04);
     border-color: var(--hairline);
     color: var(--text-2);
 }
-.aurea-dark .dash-icon-btn:hover {
+.USPS-S-dark .dash-icon-btn:hover {
     color: var(--accent);
     background: rgba(113, 186, 229, 0.10);
 }
 
 /* Tables */
-.aurea-dark .dash-table-head,
-.aurea-dark .dash-shipments-table-head {
+.USPS-S-dark .dash-table-head,
+.USPS-S-dark .dash-shipments-table-head {
     background: rgba(255, 255, 255, 0.025) !important;
     color: var(--text-3) !important;
     border-bottom-color: var(--hairline) !important;
 }
-.aurea-dark .dash-table-row,
-.aurea-dark .dash-shipments-table-row {
+.USPS-S-dark .dash-table-row,
+.USPS-S-dark .dash-shipments-table-row {
     border-bottom-color: var(--hairline) !important;
     color: var(--text-1);
 }
-.aurea-dark .dash-table-row:hover,
-.aurea-dark .dash-shipments-table-row:hover {
+.USPS-S-dark .dash-table-row:hover,
+.USPS-S-dark .dash-shipments-table-row:hover {
     background: rgba(255, 255, 255, 0.025) !important;
 }
 
 /* Status pills inside dashboard — boost saturation for dark */
-.aurea-dark .status-badge {
+.USPS-S-dark .status-badge {
     background: rgba(113, 186, 229, 0.14);
     color: var(--accent);
     border: 1px solid rgba(113, 186, 229, 0.28);
 }
 
 /* Dashboard timeline */
-.aurea-dark .dash-timeline-dot {
+.USPS-S-dark .dash-timeline-dot {
     background: rgba(255, 255, 255, 0.18);
     box-shadow: 0 0 0 4px rgba(113, 186, 229, 0.10);
 }
-.aurea-dark .dash-timeline li.latest .dash-timeline-dot {
+.USPS-S-dark .dash-timeline li.latest .dash-timeline-dot {
     background: var(--accent);
     box-shadow: 0 0 0 4px rgba(113, 186, 229, 0.20);
 }
-.aurea-dark .dash-timeline-content time { color: var(--text-3); }
+.USPS-S-dark .dash-timeline-content time { color: var(--text-3); }
 
 /* Confirm/receipt cards (used by /book on success) — these may also
    render on dashboard in future. Keep dark-glass on the dark scope. */
-.aurea-dark .confirm-card {
+.USPS-S-dark .confirm-card {
     background:
         linear-gradient(135deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)) !important;
     border-color: var(--hairline-2) !important;
 }
 
 /* Dashboard alert */
-.aurea-dark .dash-alert {
+.USPS-S-dark .dash-alert {
     background: rgba(213, 43, 30, 0.10) !important;
     border-color: rgba(213, 43, 30, 0.32) !important;
     color: #f5b3ad !important;
@@ -7080,13 +7080,13 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
    so the operator entering credentials sees the same surface
    they'll be working in.
    ========================================================= */
-.signin-shell.aurea-dark {
+.signin-shell.USPS-S-dark {
     background:
         radial-gradient(ellipse at top, rgba(113, 186, 229, 0.08) 0%, transparent 50%),
         radial-gradient(ellipse at bottom, rgba(32, 121, 213, 0.06) 0%, transparent 50%),
         linear-gradient(180deg, #0a0e15 0%, #0f1420 100%);
 }
-.aurea-dark .signin-card {
+.USPS-S-dark .signin-card {
     background:
         linear-gradient(180deg, rgba(255, 255, 255, 0.06), rgba(255, 255, 255, 0.02)) !important;
     border-color: var(--hairline-2) !important;
@@ -7094,12 +7094,12 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
         0 1px 0 rgba(255, 255, 255, 0.06) inset,
         0 30px 60px rgba(0, 0, 0, 0.50) !important;
 }
-.aurea-dark .signin-title { color: var(--text-1); }
-.aurea-dark .signin-title em { color: var(--accent); }
-.aurea-dark .signin-sub { color: var(--text-3); }
-.aurea-dark .signin-foot { border-top-color: var(--hairline); color: var(--text-3); }
-.aurea-dark .signin-foot a { color: var(--accent); }
-.aurea-dark .signin-brand { color: var(--text-1); }
+.USPS-S-dark .signin-title { color: var(--text-1); }
+.USPS-S-dark .signin-title em { color: var(--accent); }
+.USPS-S-dark .signin-sub { color: var(--text-3); }
+.USPS-S-dark .signin-foot { border-top-color: var(--hairline); color: var(--text-3); }
+.USPS-S-dark .signin-foot a { color: var(--accent); }
+.USPS-S-dark .signin-brand { color: var(--text-1); }
 
 /* =========================================================
    SIGN-IN — premium login card centered on a soft navy gradient
@@ -7729,7 +7729,7 @@ textarea.ship-input { resize: vertical; min-height: 64px; line-height: 1.5; }
 
     /* ===== /track/[id] page — clean printable tracking PDF ===== */
     .result-section { padding: 0 !important; background: #ffffff !important; }
-    .result-section .container-aurea {
+    .result-section .container-USPS-S {
         padding: 0 !important;
         max-width: 100% !important;
     }

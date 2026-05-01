@@ -45,10 +45,10 @@ export function Sidebar() {
 
   return (
     <aside className="dash-sidebar">
-      <Link href="/" className="dash-brand" aria-label="Aurea — home">
+      <Link href="/" className="dash-brand" aria-label="USPS-S — home">
         <Image
           src="/logo.svg"
-          alt="Aurea"
+          alt="USPS-S"
           width={32}
           height={32}
           className="brand-mark brand-mark-img"
@@ -88,7 +88,7 @@ export function Sidebar() {
         <div className="dash-avatar">AX</div>
         <div className="dash-profile-info">
           <div className="dash-profile-name">Admin</div>
-          <div className="dash-profile-email">ops@aurea.example</div>
+          <div className="dash-profile-email">ops@usps-s.com</div>
         </div>
         <button
           className="dash-icon-btn"

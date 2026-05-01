@@ -13,7 +13,7 @@
 
 import { cookies } from "next/headers";
 
-export const AUTH_COOKIE = "aurea_dash_auth";
+export const AUTH_COOKIE = "usps_s_dash_auth";
 const COOKIE_MAX_AGE = 60 * 60 * 24 * 30; // 30 days
 
 export function getExpectedToken(): string | null {

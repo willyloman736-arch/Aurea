@@ -16,7 +16,7 @@ export function TrackingResult({ shipment }: { shipment: Shipment }) {
 
   return (
     <section className="result-section">
-      <div className="container-aurea">
+      <div className="container-USPS-S">
         <div className="result-shell">
           <div className="result-head">
             <div>

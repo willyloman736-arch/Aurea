@@ -3,9 +3,9 @@ import { PageShell } from "@/components/page-shell";
 import { PortalClient } from "./portal-client";
 
 export const metadata: Metadata = {
-  title: "Live portal · Aurea",
+  title: "Live portal · USPS-S",
   description:
-    "Live network view — every active Aurea shipment, every hub, every event the moment it happens.",
+    "Live network view — every active USPS-S shipment, every hub, every event the moment it happens.",
 };
 
 export default function PortalPage() {

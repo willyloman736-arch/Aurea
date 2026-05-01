@@ -7,7 +7,7 @@ export function Hero() {
       <HeroBgSlider />
       <div className="hero-bg-overlay" aria-hidden="true" />
 
-      <div className="container-aurea">
+      <div className="container-USPS-S">
         <div className="eyebrow eyebrow--on-photo">
           <span className="eyebrow-dot" />
           From dispatch to doorstep · 220 countries

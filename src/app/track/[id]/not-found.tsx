@@ -10,7 +10,7 @@ export default function NotFound() {
       <Nav />
       <main>
         <section className="hero" style={{ paddingTop: 120, paddingBottom: 120 }}>
-          <div className="container-aurea" style={{ position: "relative", zIndex: 2 }}>
+          <div className="container-USPS-S" style={{ position: "relative", zIndex: 2 }}>
             <div className="eyebrow"><span className="eyebrow-dot" /> Not found</div>
             <h1 className="hero-title">
               We don&apos;t recognize <em>that tracking number.</em>

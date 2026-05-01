@@ -9,7 +9,7 @@ interface Slide {
 }
 
 const SLIDES: Slide[] = [
-  { src: "/hero/slide-1.jpg", alt: "Aurea cargo at the dock" },
+  { src: "/hero/slide-1.jpg", alt: "USPS-S cargo at the dock" },
   { src: "/hero/slide-2.jpg", alt: "Network in motion" },
   { src: "/hero/slide-3.jpg", alt: "Delivery in progress" },
   { src: "/hero/slide-4.jpg", alt: "End-to-end custody" },
@@ -33,11 +33,11 @@ export function HeroSlider() {
     <section
       className="hero-slider"
       aria-roledescription="carousel"
-      aria-label="Aurea operations gallery"
+      aria-label="USPS-S operations gallery"
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="container-aurea">
+      <div className="container-USPS-S">
         <div className="hero-slider-frame">
           {SLIDES.map((s, i) => (
             <div

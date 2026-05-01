@@ -3,11 +3,11 @@ import { ScrollReveal } from "./scroll-reveal";
 export function Quote() {
   return (
     <section className="editorial" id="platform">
-      <div className="container-aurea">
+      <div className="container-USPS-S">
         <ScrollReveal as="figure" className="quote">
           <blockquote>
             <em>
-              &ldquo;We replaced four tracking integrations with one Aurea endpoint. Our ops team got six hours back every week, and our on-time number finally started telling the truth.&rdquo;
+              &ldquo;We replaced four tracking integrations with one USPS-S endpoint. Our ops team got six hours back every week, and our on-time number finally started telling the truth.&rdquo;
             </em>
           </blockquote>
           <figcaption>

@@ -5,7 +5,7 @@ import { ScrollReveal } from "./scroll-reveal";
 export function Overnight() {
   return (
     <section className="overnight" id="overnight">
-      <div className="container-aurea">
+      <div className="container-USPS-S">
         <div className="overnight-grid">
           <ScrollReveal className="overnight-copy">
             <span className="eyebrow-inline">Overnight &amp; same-day</span>
@@ -44,10 +44,10 @@ export function Overnight() {
 
           <ScrollReveal as="div" className="overnight-visual">
             <div className="overnight-image-frame">
-              {/* Save image at: aurea/public/overnight.jpg */}
+              {/* Save image at: USPS-S/public/overnight.jpg */}
               <Image
                 src="/overnight.jpg"
-                alt="Aurea overnight loading bay — couriers loading parcels into a van after dark"
+                alt="USPS-S overnight loading bay — couriers loading parcels into a van after dark"
                 className="overnight-image"
                 width={1920}
                 height={1080}

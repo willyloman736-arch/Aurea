@@ -29,7 +29,7 @@ function CracksOverlay() {
 export function Metrics() {
   return (
     <section className="metrics">
-      <ScrollReveal className="container-aurea metrics-inner">
+      <ScrollReveal className="container-USPS-S metrics-inner">
         <div className="metric">
           <div className="metric-num">
             <Counter to={18.2} decimals={1} />

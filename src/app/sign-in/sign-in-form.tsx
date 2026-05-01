@@ -26,11 +26,11 @@ export function SignInForm() {
   }
 
   return (
-    <main className="signin-shell aurea-dark">
-      <Link href="/" className="signin-brand" aria-label="Aurea — home">
+    <main className="signin-shell USPS-S-dark">
+      <Link href="/" className="signin-brand" aria-label="USPS-S — home">
         <Image
           src="/logo.svg"
-          alt="Aurea"
+          alt="USPS-S"
           width={48}
           height={48}
           className="brand-mark brand-mark-img"

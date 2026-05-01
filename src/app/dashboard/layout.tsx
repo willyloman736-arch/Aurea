@@ -3,7 +3,7 @@ import { Sidebar } from "@/components/dashboard/sidebar";
 import { hasDatabase } from "@/lib/db";
 
 export const metadata: Metadata = {
-  title: "Dashboard — Aurea",
+  title: "Dashboard — USPS-S",
   robots: { index: false, follow: false },
 };
 
@@ -14,7 +14,7 @@ export default function DashboardLayout({
 }) {
   const isDemo = !hasDatabase();
   return (
-    <div className="dash-shell aurea-dark">
+    <div className="dash-shell USPS-S-dark">
       <Sidebar />
       <div className="dash-main">
         {isDemo && (

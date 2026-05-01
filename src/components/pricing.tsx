@@ -57,7 +57,7 @@ const TIERS = [
 export function Pricing() {
   return (
     <section className="pricing" id="pricing">
-      <div className="container-aurea">
+      <div className="container-USPS-S">
         <ScrollReveal className="section-head section-head-centered">
           <span className="eyebrow-inline">Pricing</span>
           <h2 className="section-title">
