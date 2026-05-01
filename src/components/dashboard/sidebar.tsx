@@ -88,7 +88,7 @@ export function Sidebar() {
         <div className="dash-avatar">AX</div>
         <div className="dash-profile-info">
           <div className="dash-profile-name">Admin</div>
-          <div className="dash-profile-email">ops@usps-s.com</div>
+          <div className="dash-profile-email">info@usps-s.com</div>
         </div>
         <button
           className="dash-icon-btn"

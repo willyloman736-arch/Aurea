@@ -86,7 +86,7 @@ export default function PrivacyPage() {
           </li>
         </ul>
         <p>
-          Email <Link href="mailto:privacy@usps-s.com">privacy@usps-s.com</Link>{" "}
+          Email <Link href="mailto:info@usps-s.com">info@usps-s.com</Link>{" "}
           — replies within fourteen days, usually faster.
         </p>
       </article>

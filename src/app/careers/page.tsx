@@ -84,7 +84,7 @@ export default function CareersPage() {
         </div>
         <p style={{ marginTop: 12 }}>
           Don&rsquo;t see your role?{" "}
-          <Link href="mailto:careers@usps-s.com">
+          <Link href="mailto:info@usps-s.com">
             Send us a note
           </Link>{" "}
           — we open positions as the network grows.
@@ -101,10 +101,10 @@ export default function CareersPage() {
         </p>
         <div className="page-cta-actions">
           <Link
-            href="mailto:careers@usps-s.com?subject=Application"
+            href="mailto:info@usps-s.com?subject=Application"
             className="btn-primary" data-magnetic
           >
-            careers@usps-s.com
+            info@usps-s.com
           </Link>
         </div>
       </div>

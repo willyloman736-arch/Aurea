@@ -45,7 +45,7 @@ export function Faq() {
           </h2>
           <p className="section-sub">
             Can&rsquo;t find what you&rsquo;re looking for? Ping us at{" "}
-            <a href="mailto:hello@usps-s.com">hello@usps-s.com</a>
+            <a href="mailto:info@usps-s.com">info@usps-s.com</a>
             {" "}— replies within an hour during business days.
           </p>
         </ScrollReveal>

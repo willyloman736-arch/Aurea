@@ -11,27 +11,27 @@ export const metadata: Metadata = {
 const CHANNELS = [
   {
     label: "Quotes & ops",
-    detail: "hello@usps-s.com",
+    detail: "info@usps-s.com",
     sub: "Replies within an hour, weekdays. Quote requests go to a real ops lead, not a queue.",
-    href: "mailto:hello@usps-s.com",
+    href: "mailto:info@usps-s.com",
   },
   {
     label: "Existing accounts",
-    detail: "support@usps-s.com",
+    detail: "info@usps-s.com",
     sub: "Account questions, claims, anything stuck in transit. Tell us your tracking code in the first line.",
-    href: "mailto:support@usps-s.com",
+    href: "mailto:info@usps-s.com",
   },
   {
     label: "Partnerships",
-    detail: "partners@usps-s.com",
+    detail: "info@usps-s.com",
     sub: "Carrier partnerships, hub agreements, integrations. We move slowly here on purpose.",
-    href: "mailto:partners@usps-s.com",
+    href: "mailto:info@usps-s.com",
   },
   {
     label: "Press",
-    detail: "press@usps-s.com",
+    detail: "info@usps-s.com",
     sub: "Coverage, comment requests, brand assets.",
-    href: "mailto:press@usps-s.com",
+    href: "mailto:info@usps-s.com",
   },
 ];
 
@@ -117,10 +117,10 @@ export default function ContactPage() {
         </p>
         <div className="page-cta-actions">
           <Link
-            href="mailto:hello@usps-s.com?subject=Quote%20request"
+            href="mailto:info@usps-s.com?subject=Quote%20request"
             className="btn-primary" data-magnetic
           >
-            Email hello@usps-s.com
+            Email info@usps-s.com
           </Link>
         </div>
       </div>

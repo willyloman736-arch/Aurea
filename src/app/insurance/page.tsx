@@ -90,8 +90,8 @@ export default function InsurancePage() {
         <ol>
           <li>
             Email{" "}
-            <Link href="mailto:claims@usps-s.com">
-              claims@usps-s.com
+            <Link href="mailto:info@usps-s.com">
+              info@usps-s.com
             </Link>{" "}
             within seven days of the delivery window
           </li>

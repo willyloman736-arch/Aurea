@@ -389,7 +389,7 @@ export default async function ShipmentReceiptPage({
             <div className="rcpt-foot-eyebrow">Contact</div>
             <div>
               Questions about this shipment:{" "}
-              <strong>support@usps-s.com</strong>. We answer within 4
+              <strong>info@usps-s.com</strong>. We answer within 4
               hours, every day.
             </div>
           </div>

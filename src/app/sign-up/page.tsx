@@ -29,7 +29,7 @@ export default function SignUpPage() {
             <form
               className="track-card"
               style={{ maxWidth: 520, padding: 20, animation: "none" }}
-              action="mailto:hello@usps-s.com"
+              action="mailto:info@usps-s.com"
               method="post"
             >
               <div className="track-form">

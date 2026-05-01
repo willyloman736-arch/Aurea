@@ -88,8 +88,8 @@ export default function TermsPage() {
           Every shipment is insured up to its declared value at no extra cost.
           For higher-value cargo, additional cover is available at booking.
           Claims are filed by emailing{" "}
-          <Link href="mailto:claims@usps-s.com">
-            claims@usps-s.com
+          <Link href="mailto:info@usps-s.com">
+            info@usps-s.com
           </Link>{" "}
           with the tracking code and a description of what happened. Most claims
           resolve in under forty-eight hours.
@@ -133,8 +133,8 @@ export default function TermsPage() {
         <h2>10. Disputes</h2>
         <p>
           We try to resolve disputes through{" "}
-          <Link href="mailto:hello@usps-s.com">
-            hello@usps-s.com
+          <Link href="mailto:info@usps-s.com">
+            info@usps-s.com
           </Link>{" "}
           first — most are misunderstandings that an ops lead can fix in an
           afternoon. Failing that, disputes go to binding arbitration in the
