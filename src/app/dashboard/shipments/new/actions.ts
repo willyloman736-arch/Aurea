@@ -81,7 +81,8 @@ export async function createShipmentAction(formData: FormData) {
     revalidatePath("/dashboard");
     revalidatePath("/dashboard/shipments");
     revalidatePath(`/track/${trackingCode}`);
-    redirect(`/dashboard/shipments/${saved.id}`);
+    revalidatePath(`/receipt/${trackingCode}`);
+    redirect(`/dashboard/shipments/${saved.id}?created=1`);
   }
 
   try {
@@ -111,7 +112,8 @@ export async function createShipmentAction(formData: FormData) {
     revalidatePath("/dashboard");
     revalidatePath("/dashboard/shipments");
     revalidatePath(`/track/${trackingCode}`);
-    redirect(`/dashboard/shipments/${saved.id}`);
+    revalidatePath(`/receipt/${trackingCode}`);
+    redirect(`/dashboard/shipments/${saved.id}?created=1`);
   } catch (err) {
     if (err instanceof Error && err.message === "NEXT_REDIRECT") throw err;
     return { error: (err as Error).message };

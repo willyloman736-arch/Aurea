@@ -4,9 +4,11 @@ import { ArrowLeft, ArrowRight, ExternalLink, FileText, User } from "lucide-reac
 import { DashHeader } from "@/components/dashboard/header";
 import { StatusPill } from "@/components/dashboard/status-pill";
 import { getShipmentById } from "@/lib/dashboard-queries";
+import { getSiteUrl } from "@/lib/site-url";
 import { STEP_LABELS } from "@/lib/types";
 import type { ShipmentStatus } from "@/lib/types";
 import { UpdateEventCard } from "./update-event";
+import { ShipmentClientActions } from "./shipment-client-actions";
 
 export const dynamic = "force-dynamic";
 
@@ -19,13 +21,19 @@ type TimelineEvent = {
 
 export default async function ShipmentDetailPage({
   params,
+  searchParams,
 }: {
   params: Promise<{ id: string }>;
+  searchParams?: Promise<{ created?: string }>;
 }) {
   const { id } = await params;
+  const created = (await searchParams)?.created === "1";
   const shipment = await getShipmentById(id);
   if (!shipment) notFound();
 
+  const siteUrl = getSiteUrl();
+  const trackingUrl = `${siteUrl}/track/${shipment.trackingCode}`;
+  const receiptUrl = `${siteUrl}/receipt/${shipment.trackingCode}`;
   const pct = ((shipment.progress - 1) / (STEP_LABELS.length - 1)) * 100;
 
   return (
@@ -42,7 +50,7 @@ export default async function ShipmentDetailPage({
               <ArrowLeft size={13} strokeWidth={1.5} /> Back
             </Link>
             <Link
-              href={`/receipt/${shipment.id}`}
+              href={`/receipt/${shipment.trackingCode}`}
               className="btn-ghost btn-sm"
               target="_blank"
             >
@@ -60,6 +68,15 @@ export default async function ShipmentDetailPage({
       />
 
       <div className="dash-content">
+        {created && (
+          <div className="dash-alert dash-alert-success">
+            <FileText size={14} strokeWidth={1.5} />
+            <span>
+              Shipment created. USPS-S receipt is ready at{" "}
+              <strong>{receiptUrl}</strong>.
+            </span>
+          </div>
+        )}
         <div className="dash-detail-grid">
           <div>
             {/* Status + route */}
@@ -151,6 +168,14 @@ export default async function ShipmentDetailPage({
           </div>
 
           <div>
+            <ShipmentClientActions
+              trackingCode={shipment.trackingCode}
+              trackingUrl={trackingUrl}
+              receiptUrl={receiptUrl}
+              recipientEmail={shipment.receiverEmail}
+              recipientName={shipment.receiverName}
+            />
+
             {/* ETA */}
             <div className="dash-card dash-card-accent">
               <h4>Estimated delivery</h4>

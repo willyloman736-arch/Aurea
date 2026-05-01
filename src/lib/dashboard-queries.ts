@@ -113,6 +113,20 @@ export async function getShipmentById(id: string) {
   }
 }
 
+export async function getShipmentByReceiptKey(key: string) {
+  if (!hasDatabase()) return demoFindById(key) ?? demoFindByCode(key);
+  try {
+    return await prisma.shipment.findFirst({
+      where: {
+        OR: [{ id: key }, { trackingCode: key.toUpperCase() }],
+      },
+      include: { events: { orderBy: { time: "desc" } } },
+    });
+  } catch {
+    return null;
+  }
+}
+
 export async function getShipmentByCode(trackingCode: string) {
   if (!hasDatabase()) return demoFindByCode(trackingCode);
   try {

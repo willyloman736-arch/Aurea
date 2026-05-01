@@ -3,7 +3,8 @@ import Image from "next/image";
 import Link from "next/link";
 import type { Metadata } from "next";
 import { ArrowRight, ArrowLeft } from "lucide-react";
-import { getShipmentById } from "@/lib/dashboard-queries";
+import { getShipmentByReceiptKey } from "@/lib/dashboard-queries";
+import { getSiteUrl } from "@/lib/site-url";
 import { ReceiptActions } from "./receipt-actions";
 
 export const metadata: Metadata = {
@@ -51,9 +52,10 @@ export default async function ShipmentReceiptPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
-  const shipment = await getShipmentById(id);
+  const shipment = await getShipmentByReceiptKey(id);
   if (!shipment) notFound();
 
+  const siteUrl = getSiteUrl();
   const status = shipment.status;
   const issued = formatDate(shipment.createdAt);
   const updated = formatDate(shipment.updatedAt);
@@ -62,7 +64,7 @@ export default async function ShipmentReceiptPage({
   return (
     <main className="rcpt-shell">
       <ReceiptActions
-        backHref={`/dashboard/shipments/${id}`}
+        backHref={`/track/${shipment.trackingCode}`}
         trackingCode={shipment.trackingCode}
       />
 
@@ -372,7 +374,7 @@ export default async function ShipmentReceiptPage({
             <div className="rcpt-foot-eyebrow">Track this shipment</div>
             <div>
               Recipient can follow live status at{" "}
-              <strong>USPS-S-one-flame.vercel.app/track/{shipment.trackingCode}</strong>
+              <strong>{siteUrl}/track/{shipment.trackingCode}</strong>
               {" "}— no login required.
             </div>
           </div>
@@ -381,7 +383,7 @@ export default async function ShipmentReceiptPage({
             <div>
               Every USPS-S shipment is covered up to its declared value. Excess
               cover available at booking. File a claim at{" "}
-              <strong>USPS-S-one-flame.vercel.app/claims</strong> within 7 days
+              <strong>{siteUrl}/claims</strong> within 7 days
               of the delivery window.
             </div>
           </div>
@@ -407,7 +409,7 @@ export default async function ShipmentReceiptPage({
       {/* Bottom action bar (mobile-friendly) */}
       <div className="rcpt-foot-bar">
         <Link
-          href={`/dashboard/shipments/${id}`}
+          href={`/track/${shipment.trackingCode}`}
           className="btn-ghost btn-sm"
         >
           <ArrowLeft size={13} strokeWidth={1.6} />
